@@ -1,0 +1,1472 @@
+PYTHON PROGRAMMING KNOWLEDGE BASE
+
+Python is a high-level, general-purpose programming language.
+Python is known for readable syntax and is used for automation,
+web development, data analysis, scientific computing, scripting,
+education, software development, and artificial intelligence.
+
+Python source files normally use the .py extension.
+
+Python uses indentation to define blocks of code. Indentation is
+therefore part of Python syntax.
+
+A comment begins with the # character.
+
+Variables
+
+A variable is a name that refers to a value.
+
+Example:
+x = 10
+
+A variable can later be changed:
+
+x = 20
+
+Python variables do not require a type declaration.
+
+Common Python data types include:
+
+int - whole numbers
+float - decimal numbers
+str - text
+bool - True or False
+list - ordered mutable collection
+tuple - ordered immutable collection
+set - collection of unique values
+dict - collection of key-value pairs
+None - represents the absence of a value
+
+Numbers
+
+Python supports several arithmetic operations.
+
+Addition:
+10 + 5
+
+Subtraction:
+10 - 5
+
+Multiplication:
+10 * 5
+
+Division:
+10 / 5
+
+Floor division:
+10 // 3
+
+Remainder:
+10 % 3
+
+Exponentiation:
+2 ** 8
+
+The division operator / normally produces a floating-point
+number.
+
+The floor division operator // performs floor division.
+
+The modulo operator % returns the remainder.
+
+Strings
+
+A string represents text.
+
+Examples:
+
+"Hello"
+'Hello'
+"""Hello"""
+
+Strings can be combined using concatenation.
+
+Example:
+
+"Hello " + "world"
+
+Useful string methods include:
+
+upper()
+lower()
+strip()
+replace()
+split()
+join()
+startswith()
+endswith()
+find()
+count()
+
+String indexes start at zero.
+
+Example:
+
+text = "Python"
+
+text[0] is "P".
+
+Negative indexes count from the end.
+
+text[-1] is "n".
+
+String slicing can select part of a string.
+
+Example:
+
+text[0:3]
+
+This produces "Pyt".
+
+F-strings allow values to be inserted into text.
+
+Example:
+
+name = "Alex"
+age = 15
+message = f"{name} is {age} years old."
+
+Lists
+
+A list is an ordered, mutable collection.
+
+Example:
+
+numbers = [1, 2, 3, 4, 5]
+
+Lists can contain different types of values.
+
+Useful list methods include:
+
+append()
+extend()
+insert()
+remove()
+pop()
+clear()
+sort()
+reverse()
+copy()
+
+append adds an item to the end.
+
+insert adds an item at a specific position.
+
+remove removes a matching value.
+
+pop removes and returns an item.
+
+sort sorts a list.
+
+reverse reverses a list.
+
+Lists support indexes and slices.
+
+Example:
+
+numbers[0]
+
+numbers[-1]
+
+numbers[1:4]
+
+List comprehensions
+
+A list comprehension creates a list using an expression.
+
+Example:
+
+squares = [x * x for x in range(10)]
+
+A condition can be included.
+
+Example:
+
+even_numbers = [x for x in range(20) if x % 2 == 0]
+
+Tuples
+
+A tuple is an ordered collection that normally cannot be changed
+after creation.
+
+Example:
+
+point = (10, 20)
+
+Tuples are useful for representing fixed groups of values.
+
+Tuples can be unpacked.
+
+Example:
+
+x, y = point
+
+Sets
+
+A set is a collection containing unique values.
+
+Example:
+
+numbers = {1, 2, 3, 3}
+
+The resulting set contains only one copy of 3.
+
+Sets are useful when uniqueness and membership testing are
+important.
+
+Important set operations include:
+
+union
+intersection
+difference
+symmetric difference
+
+Example:
+
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+a | b means union.
+
+a & b means intersection.
+
+a - b means difference.
+
+Dictionaries
+
+A dictionary stores key-value pairs.
+
+Example:
+
+person = {
+    "name": "Alex",
+    "age": 15,
+    "student": True
+}
+
+A dictionary value can be retrieved using its key.
+
+Example:
+
+person["name"]
+
+Useful dictionary methods include:
+
+get()
+keys()
+values()
+items()
+update()
+pop()
+setdefault()
+
+get() is useful when a key might not exist.
+
+Example:
+
+person.get("name")
+
+Dictionaries are useful for structured information and fast
+lookup by key.
+
+Conditional statements
+
+Conditional statements allow a program to make decisions.
+
+Basic structure:
+
+if condition:
+    code
+
+elif another_condition:
+    code
+
+else:
+    code
+
+Comparison operators include:
+
+==
+!=
+>
+<
+>=
+<=
+
+Logical operators include:
+
+and
+or
+not
+
+Example:
+
+age = 15
+
+if age >= 18:
+    result = "adult"
+elif age >= 13:
+    result = "teenager"
+else:
+    result = "child"
+
+Loops
+
+A for loop repeats code for values in an iterable.
+
+Example:
+
+for number in range(5):
+    print(number)
+
+range(5) produces 0, 1, 2, 3, and 4.
+
+A while loop repeats while a condition is true.
+
+Example:
+
+counter = 0
+
+while counter < 5:
+    counter += 1
+
+The break statement exits a loop.
+
+The continue statement skips the rest of the current iteration
+and continues with the next iteration.
+
+Functions
+
+A function is a reusable block of code.
+
+Functions are defined with def.
+
+Example:
+
+def add(a, b):
+    return a + b
+
+Parameters are the values listed when defining a function.
+
+Arguments are the actual values supplied when calling a function.
+
+Example:
+
+result = add(5, 10)
+
+The return statement sends a value back to the caller.
+
+Functions help break large programs into smaller reusable pieces.
+
+Default parameters
+
+Functions can have default values.
+
+Example:
+
+def greet(name="friend"):
+    return f"Hello, {name}!"
+
+Calling greet() uses "friend".
+
+Calling greet("Alex") uses "Alex".
+
+Variable arguments
+
+*args collects extra positional arguments.
+
+Example:
+
+def add_many(*numbers):
+    return sum(numbers)
+
+**kwargs collects extra keyword arguments into a dictionary.
+
+Example:
+
+def describe(**information):
+    return information
+
+Lambda functions
+
+A lambda is a small anonymous function.
+
+Example:
+
+double = lambda x: x * 2
+
+Lambdas are often used when a short function is needed for
+operations such as sorting, mapping, or filtering.
+
+Map
+
+map() applies a function to every item in an iterable.
+
+Example:
+
+numbers = [1, 2, 3]
+
+doubled = list(map(lambda x: x * 2, numbers))
+
+Filter
+
+filter() keeps items for which a condition is true.
+
+Example:
+
+numbers = [1, 2, 3, 4]
+
+even = list(filter(lambda x: x % 2 == 0, numbers))
+
+Exceptions
+
+Exceptions represent errors or unusual conditions.
+
+Python commonly handles exceptions using try and except.
+
+Example:
+
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    result = None
+
+finally can contain code that should run whether an exception
+occurred or not.
+
+Example:
+
+try:
+    operation()
+except ValueError:
+    handle_error()
+finally:
+    cleanup()
+
+The raise statement can deliberately create an exception.
+
+Example:
+
+raise ValueError("Invalid value")
+
+Common Python exceptions include:
+
+SyntaxError - invalid Python syntax
+
+NameError - a name was used before it was defined
+
+TypeError - an operation received an incompatible type
+
+ValueError - a value is invalid
+
+IndexError - a sequence index is outside its range
+
+KeyError - a dictionary key does not exist
+
+AttributeError - an object does not have the requested attribute
+
+FileNotFoundError - a requested file does not exist
+
+ZeroDivisionError - division by zero was attempted
+
+File handling
+
+Python can read and write files.
+
+The with statement is recommended for file operations because it
+automatically closes the file.
+
+Example:
+
+with open("data.txt", "r", encoding="utf-8") as file:
+    text = file.read()
+
+Common file modes include:
+
+r - read
+w - write
+a - append
+rb - read binary
+wb - write binary
+
+read() reads the entire file.
+
+readline() reads one line.
+
+readlines() reads multiple lines.
+
+write() writes text.
+
+Pathlib
+
+The pathlib module provides object-oriented filesystem paths.
+
+Example:
+
+from pathlib import Path
+
+path = Path("knowledge")
+
+Useful Path methods include:
+
+exists()
+is_file()
+is_dir()
+mkdir()
+glob()
+rglob()
+read_text()
+write_text()
+
+rglob("*") can recursively search through directories.
+
+JSON
+
+JSON is a common format for storing structured information.
+
+Python provides the json module.
+
+json.dumps() converts a Python object into JSON text.
+
+json.loads() converts JSON text into a Python object.
+
+json.dump() writes JSON to a file.
+
+json.load() reads JSON from a file.
+
+Example:
+
+import json
+
+data = {
+    "name": "Alex",
+    "age": 15
+}
+
+text = json.dumps(data)
+
+Modules
+
+A module is a Python file that can be imported.
+
+Example:
+
+import math
+
+A specific item can be imported.
+
+Example:
+
+from pathlib import Path
+
+An alias can be created.
+
+Example:
+
+import datetime as dt
+
+Python's standard library contains many modules.
+
+Important standard-library modules include:
+
+os - operating system functionality
+
+sys - Python interpreter and system information
+
+math - mathematical functions
+
+random - pseudo-random number generation
+
+json - JSON processing
+
+csv - CSV processing
+
+re - regular expressions
+
+pathlib - filesystem paths
+
+datetime - dates and times
+
+time - time-related operations
+
+threading - threads
+
+queue - queues
+
+collections - specialized data structures
+
+itertools - iterator tools
+
+functools - higher-order functions and utilities
+
+statistics - statistical calculations
+
+urllib - URL and HTTP functionality
+
+zipfile - ZIP archive handling
+
+Classes
+
+A class is a blueprint for creating objects.
+
+An object is an instance of a class.
+
+Example:
+
+class Person:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        return f"My name is {self.name}."
+
+The __init__ method initializes an object.
+
+self refers to the current object.
+
+Attributes store information about an object.
+
+Methods are functions associated with a class.
+
+Inheritance
+
+Inheritance allows one class to derive behavior from another.
+
+Example:
+
+class Student(Person):
+
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = grade
+
+Student inherits from Person.
+
+super() can call behavior from the parent class.
+
+Object-oriented programming
+
+Important object-oriented programming concepts include:
+
+class
+object
+attribute
+method
+inheritance
+encapsulation
+polymorphism
+abstraction
+
+A class defines a structure and behavior.
+
+An object is an instance of a class.
+
+Encapsulation groups related data and behavior.
+
+Inheritance allows classes to reuse behavior.
+
+Polymorphism allows different objects to provide compatible
+behavior.
+
+Abstraction focuses on important behavior while hiding
+unnecessary implementation details.
+
+Dataclasses
+
+The dataclasses module can reduce repetitive code in classes
+used mainly for storing data.
+
+Example:
+
+from dataclasses import dataclass
+
+@dataclass
+class Point:
+    x: float
+    y: float
+
+Type hints
+
+Type hints describe expected types.
+
+Example:
+
+def multiply(a: int, b: int) -> int:
+    return a * b
+
+Type hints improve readability and help development tools.
+
+Type hints normally do not enforce types at runtime.
+
+Common type hints include:
+
+int
+float
+str
+bool
+list
+dict
+tuple
+set
+
+Enumerations
+
+The enum module provides named constants.
+
+Example:
+
+from enum import Enum
+
+class Status(Enum):
+    WAITING = 1
+    RUNNING = 2
+    FINISHED = 3
+
+Enums are useful when a variable should represent one of a fixed
+set of possible states.
+
+Iterators
+
+An iterator produces values one at a time.
+
+iter() creates an iterator.
+
+next() retrieves the next value.
+
+Example:
+
+numbers = iter([1, 2, 3])
+
+first = next(numbers)
+
+When an iterator has no more values, it normally raises
+StopIteration.
+
+Generators
+
+A generator produces values lazily using yield.
+
+Example:
+
+def count_up_to(limit):
+    number = 1
+
+    while number <= limit:
+        yield number
+        number += 1
+
+Generators can save memory because they do not need to create
+the entire result at once.
+
+Decorators
+
+A decorator modifies or wraps the behavior of a function.
+
+Example:
+
+def announce(function):
+
+    def wrapper(*args, **kwargs):
+        print("Calling function")
+        result = function(*args, **kwargs)
+        return result
+
+    return wrapper
+
+A decorator can be applied using @ syntax.
+
+Example:
+
+@announce
+def hello():
+    return "Hello"
+
+Decorators are commonly used for logging, caching,
+authentication, validation, timing, and framework behavior.
+
+Regular expressions
+
+The re module provides regular expressions.
+
+Regular expressions are patterns used to search, match, and
+modify text.
+
+Useful functions include:
+
+search()
+match()
+fullmatch()
+findall()
+finditer()
+sub()
+compile()
+
+Regular expressions are useful for finding patterns in text.
+
+Collections
+
+The collections module provides specialized data structures.
+
+Counter counts values.
+
+Example:
+
+from collections import Counter
+
+counts = Counter(["python", "python", "code"])
+
+defaultdict provides default values for missing dictionary keys.
+
+deque is an efficient double-ended queue.
+
+Stacks
+
+A stack follows LIFO:
+
+Last In, First Out.
+
+A Python list can be used as a stack.
+
+Example:
+
+stack = []
+
+stack.append("A")
+stack.append("B")
+
+item = stack.pop()
+
+The most recently added item is removed first.
+
+Queues
+
+A queue normally follows FIFO:
+
+First In, First Out.
+
+The collections.deque class is useful for implementing queues.
+
+Example:
+
+from collections import deque
+
+queue = deque()
+
+queue.append("A")
+queue.append("B")
+
+item = queue.popleft()
+
+The first inserted item is removed first.
+
+Searching
+
+Linear search checks elements one at a time.
+
+Example:
+
+def linear_search(values, target):
+
+    for index, value in enumerate(values):
+
+        if value == target:
+            return index
+
+    return -1
+
+Linear search normally has O(n) time complexity.
+
+Binary search repeatedly divides a sorted search range in half.
+
+Binary search requires sorted data.
+
+Binary search normally has O(log n) time complexity.
+
+Sorting
+
+Python provides sorted() and list.sort().
+
+sorted() creates a new sorted list.
+
+list.sort() changes the existing list.
+
+The key parameter determines the value used for sorting.
+
+Example:
+
+students = [
+    ("Alice", 95),
+    ("Bob", 82),
+    ("Charlie", 91)
+]
+
+students.sort(key=lambda student: student[1])
+
+Algorithms
+
+An algorithm is a defined sequence of steps for solving a
+problem.
+
+Important algorithm concepts include:
+
+searching
+sorting
+recursion
+traversal
+dynamic programming
+greedy algorithms
+divide and conquer
+graph traversal
+
+Big O notation
+
+Big O notation describes how an algorithm's resource usage
+grows as input size increases.
+
+O(1) means constant time.
+
+O(log n) means logarithmic time.
+
+O(n) means linear time.
+
+O(n log n) commonly appears in efficient sorting algorithms.
+
+O(n²) means quadratic time and commonly appears in simple
+nested-loop algorithms.
+
+Recursion
+
+Recursion occurs when a function calls itself.
+
+A recursive function normally requires a base case.
+
+Example:
+
+def factorial(n):
+
+    if n <= 1:
+        return 1
+
+    return n * factorial(n - 1)
+
+The base case stops the recursive calls.
+
+Trees
+
+A tree is a hierarchical data structure.
+
+A binary tree is a tree where each node can have at most two
+children.
+
+The children are commonly called left and right.
+
+Trees are useful for representing hierarchical information.
+
+Graphs
+
+A graph consists of vertices and edges.
+
+Graphs can represent:
+
+maps
+networks
+relationships
+dependencies
+connections
+
+An adjacency list can represent a graph using a dictionary.
+
+Example:
+
+graph = {
+    "A": ["B", "C"],
+    "B": ["A", "D"],
+    "C": ["A"],
+    "D": ["B"]
+}
+
+Breadth-first search
+
+Breadth-first search is commonly abbreviated BFS.
+
+BFS explores a graph level by level.
+
+BFS normally uses a queue.
+
+BFS can find shortest paths in unweighted graphs.
+
+Depth-first search
+
+Depth-first search is commonly abbreviated DFS.
+
+DFS explores one branch before moving to another.
+
+DFS can be implemented recursively or with a stack.
+
+Datetime
+
+Python provides the datetime module for working with dates and
+times.
+
+Example:
+
+from datetime import datetime, timedelta
+
+now = datetime.now()
+
+tomorrow = now + timedelta(days=1)
+
+timedelta represents a duration.
+
+Random
+
+The random module provides pseudo-random operations.
+
+randint(a, b) produces a random integer between a and b
+inclusive.
+
+choice(sequence) chooses an item from a sequence.
+
+shuffle() randomly rearranges a mutable sequence.
+
+Copying objects
+
+Python variables refer to objects.
+
+Mutable objects can be changed.
+
+Examples of commonly mutable objects include:
+
+list
+dict
+set
+
+Immutable objects include:
+
+str
+tuple
+int
+float
+
+copy.copy() creates a shallow copy.
+
+copy.deepcopy() creates a deep copy.
+
+A shallow copy may still share nested objects.
+
+A deep copy recursively copies nested objects.
+
+Environment variables
+
+Environment variables are values provided by the operating
+system environment.
+
+Python can access environment variables using os.environ.
+
+Environment variables are commonly used for configuration.
+
+Sensitive credentials should not normally be hard-coded into
+source code.
+
+Logging
+
+The logging module provides structured application logging.
+
+Common logging levels are:
+
+DEBUG
+INFO
+WARNING
+ERROR
+CRITICAL
+
+Logging is useful for understanding what a program is doing.
+
+Debugging
+
+Debugging is the process of finding and fixing software problems.
+
+Useful debugging methods include:
+
+reading tracebacks
+printing values
+using breakpoints
+using the pdb debugger
+writing tests
+checking inputs
+checking outputs
+creating smaller test cases
+examining assumptions
+
+A traceback usually shows where an exception occurred and the
+chain of function calls that led to it.
+
+Testing
+
+Tests verify that software behaves as expected.
+
+Python includes the unittest module.
+
+The assert statement can check an expected condition.
+
+Example:
+
+assert 2 + 3 == 5
+
+Tests help find bugs and prevent regressions.
+
+Clean code
+
+Useful clean-code principles include:
+
+Use descriptive names.
+
+Keep functions focused.
+
+Avoid unnecessary duplication.
+
+Keep related code together.
+
+Handle errors intentionally.
+
+Use consistent formatting.
+
+Prefer simple solutions when they are sufficient.
+
+Test important behavior.
+
+Refactor code when complexity becomes difficult to manage.
+
+Performance
+
+Performance describes how efficiently a program uses resources.
+
+Useful performance improvements can include:
+
+choosing better data structures
+using better algorithms
+avoiding repeated calculations
+using caching
+processing large files incrementally
+using generators
+profiling slow sections
+
+A program should normally be measured before making complex
+performance optimizations.
+
+Caching
+
+Caching stores previously calculated results so they can be
+reused.
+
+Python provides functools.lru_cache.
+
+Caching is useful when the same expensive calculation occurs
+repeatedly with the same inputs.
+
+APIs
+
+API stands for Application Programming Interface.
+
+An API defines how software components communicate.
+
+Web APIs commonly use HTTP.
+
+Common HTTP methods include:
+
+GET
+POST
+PUT
+PATCH
+DELETE
+
+JSON is commonly used as the data format for web APIs.
+
+HTTP status codes
+
+200 means OK.
+
+201 means Created.
+
+204 means No Content.
+
+400 means Bad Request.
+
+401 means Unauthorized.
+
+403 means Forbidden.
+
+404 means Not Found.
+
+500 means Internal Server Error.
+
+Databases
+
+A database stores structured information.
+
+SQLite is included in Python's standard library through the
+sqlite3 module.
+
+SQL is commonly used with relational databases.
+
+Common SQL commands include:
+
+SELECT
+INSERT
+UPDATE
+DELETE
+CREATE TABLE
+
+Parameterized SQL queries should be used instead of directly
+concatenating untrusted input into SQL statements.
+
+Command-line programs
+
+Python programs can receive command-line arguments.
+
+sys.argv contains command-line arguments.
+
+The argparse module provides a structured way to create
+command-line interfaces.
+
+Context managers
+
+A context manager controls setup and cleanup around a block of
+code.
+
+The with statement commonly uses context managers.
+
+Files are a common example.
+
+A custom context manager can implement __enter__ and __exit__.
+
+Properties
+
+The @property decorator allows a method to behave like an
+attribute.
+
+Properties can provide controlled access to internal values.
+
+Static methods
+
+A static method does not automatically receive self or cls.
+
+The @staticmethod decorator creates a static method.
+
+Class methods
+
+A class method receives the class as its first argument,
+normally named cls.
+
+The @classmethod decorator creates a class method.
+
+Serialization
+
+Serialization converts data into a format that can be stored
+or transmitted.
+
+Deserialization converts stored data back into objects.
+
+JSON is a common serialization format.
+
+Pickle is another Python serialization mechanism.
+
+Untrusted pickle data should never be loaded because pickle can
+execute arbitrary code during deserialization.
+
+Security
+
+Software should treat user input as untrusted.
+
+Programs should validate input.
+
+Programs should avoid executing arbitrary user-provided code.
+
+Passwords and API keys should not normally be hard-coded into
+source code.
+
+Secrets should be stored using appropriate secure mechanisms.
+
+SQL queries should use parameters instead of string
+concatenation with untrusted input.
+
+File paths supplied by users should be validated when programs
+access the filesystem.
+
+Python project structure
+
+A simple Python project might contain:
+
+project/
+    main.py
+    utilities.py
+    config.py
+    data/
+    tests/
+    README.md
+
+Large applications can divide functionality into multiple
+modules and packages.
+
+A module is generally a Python file.
+
+A package is a collection of related Python modules.
+
+The main program often coordinates the other modules.
+
+Virtual environments
+
+A virtual environment provides an isolated Python environment
+for a project.
+
+Virtual environments help prevent dependencies from different
+projects from interfering with each other.
+
+A common command is:
+
+python -m venv .venv
+
+Packages
+
+Python packages provide reusable functionality.
+
+pip is commonly used to install third-party Python packages.
+
+Third-party packages should be installed only when needed and
+from trustworthy sources.
+
+Standard library
+
+Python's standard library provides many features without
+requiring additional package installation.
+
+Examples include:
+
+pathlib
+json
+csv
+math
+random
+datetime
+collections
+itertools
+functools
+sqlite3
+urllib
+threading
+logging
+argparse
+re
+zipfile
+
+Python programming mindset
+
+A good Python programmer should:
+
+break large problems into smaller problems
+identify inputs and outputs
+choose suitable data structures
+write reusable functions
+test assumptions
+handle errors
+read tracebacks
+measure performance
+keep code understandable
+document important decisions
+avoid unnecessary complexity
+
+Problem-solving process
+
+A useful programming process is:
+
+1. Understand the problem.
+2. Identify inputs.
+3. Identify expected outputs.
+4. Break the problem into smaller tasks.
+5. Choose appropriate data structures.
+6. Design an algorithm.
+7. Implement the solution.
+8. Test normal cases.
+9. Test edge cases.
+10. Debug failures.
+11. Improve the design if necessary.
+12. Document important behavior.
+
+Python learning progression
+
+A beginner should first learn:
+
+variables
+strings
+numbers
+booleans
+lists
+dictionaries
+conditions
+loops
+functions
+
+Next learn:
+
+exceptions
+files
+modules
+classes
+object-oriented programming
+JSON
+comprehensions
+iterators
+generators
+
+More advanced topics include:
+
+decorators
+context managers
+type hints
+dataclasses
+testing
+concurrency
+async programming
+algorithms
+data structures
+APIs
+databases
+software architecture
+performance optimization
+
+Important concept relationships
+
+Variables store references to values.
+
+Lists store ordered collections.
+
+Dictionaries map keys to values.
+
+Sets store unique values.
+
+Functions organize reusable behavior.
+
+Classes organize related data and behavior.
+
+Modules organize code into reusable files.
+
+Packages organize related modules.
+
+Exceptions communicate error conditions.
+
+Files provide persistent storage.
+
+JSON provides structured data interchange.
+
+Databases provide structured persistent storage.
+
+Algorithms describe procedures for solving problems.
+
+Data structures determine how information is organized.
+
+Good software combines appropriate data structures,
+algorithms, organization, testing, and error handling.
+
+End of Python knowledge base.
