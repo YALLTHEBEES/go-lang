@@ -1,0 +1,71 @@
+{
+    "version": "2.0",
+    "created": 1789531305.0726347,
+    "inputs": {
+        "hi": {
+            "responses": [
+                "hello",
+                "Hello"
+            ],
+            "times_seen": 3,
+            "last_seen": 1789585124.1258037,
+            "created": 1789531315.2281358
+        },
+        "hello": {
+            "responses": [
+                "hi",
+                "Hello"
+            ],
+            "times_seen": 2,
+            "last_seen": 1789585118.1390395,
+            "created": 1789531319.9977822
+        },
+        "what is your name ": {
+            "responses": [
+                "I am robot"
+            ],
+            "times_seen": 1,
+            "last_seen": 1789585153.2860303,
+            "created": 1789585153.2860222
+        }
+    },
+    "words": {
+        "hi": {
+            "count": 6,
+            "first_seen": 1789531310.63296,
+            "last_seen": 1789585124.125818
+        },
+        "hello": {
+            "count": 4,
+            "first_seen": 1789531317.9474497,
+            "last_seen": 1789585118.1390586
+        },
+        "what": {
+            "count": 2,
+            "first_seen": 1789585144.3150673,
+            "last_seen": 1789585153.2860458
+        },
+        "is": {
+            "count": 2,
+            "first_seen": 1789585144.3150766,
+            "last_seen": 1789585153.286047
+        },
+        "your": {
+            "count": 2,
+            "first_seen": 1789585144.315081,
+            "last_seen": 1789585153.2860484
+        },
+        "name": {
+            "count": 2,
+            "first_seen": 1789585144.3150826,
+            "last_seen": 1789585153.2860494
+        }
+    },
+    "topics": {},
+    "stats": {
+        "messages": 7,
+        "learned": 3,
+        "correct": 1,
+        "incorrect": 2
+    }
+}
