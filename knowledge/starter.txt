@@ -1,0 +1,10 @@
+Python is a programming language.
+A computer is an electronic machine that processes information.
+Programming is the process of writing instructions for computers.
+Machine learning is a method where software learns patterns from data.
+Data is information that can be stored and processed.
+A file is a collection of information stored on a computer.
+A program is a set of instructions executed by a computer.
+An algorithm is a sequence of steps used to solve a problem.
+A variable is a named place used to store a value in a program.
+A function is a reusable block of program instructions.

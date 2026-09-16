@@ -1,0 +1,7754 @@
+{
+  "version": "5.0",
+  "created": 1789586481.8982115,
+  "updated": 1789586962.348306,
+  "inputs": {
+    "hi": {
+      "responses": {
+        "Fascinating. What leads you to mention that?": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 1,
+          "score": 0.35
+        },
+        "That's outside my current index records. Teach me what to say!": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        },
+        "say hi back": {
+          "count": 1,
+          "correct": 1,
+          "incorrect": 2,
+          "score": 0.29999999999999993
+        },
+        "hi": {
+          "count": 1,
+          "correct": 1,
+          "incorrect": 0,
+          "score": 0.6
+        },
+        "Hi": {
+          "count": 1,
+          "correct": 1,
+          "incorrect": 0,
+          "score": 0.6
+        }
+      },
+      "seen": 5,
+      "created": 1789586481.8983448,
+      "last_seen": 1789586825.8860486,
+      "confidence": 0.4399738378890245,
+      "sources": {
+        "migrated:brain.json": 2,
+        "conversation": 3
+      }
+    },
+    "fascinating what leads you to mention that": {
+      "responses": {
+        "hi": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        },
+        "now you say high back": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        },
+        "learn": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        }
+      },
+      "seen": 3,
+      "created": 1789586481.8983903,
+      "last_seen": 1789586481.8984203,
+      "confidence": 0.49994994986706864,
+      "sources": {
+        "migrated:brain.json": 3
+      }
+    },
+    "now you say high back": {
+      "responses": {
+        "Fascinating. What leads you to mention that?": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        }
+      },
+      "seen": 1,
+      "created": 1789586481.89843,
+      "last_seen": 1789586481.8984313,
+      "confidence": 0.4999499498693534,
+      "sources": {
+        "migrated:brain.json": 1
+      }
+    },
+    "learn": {
+      "responses": {
+        "Fascinating. What leads you to mention that?": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        },
+        "That's outside my current index records. Teach me what to say!": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        }
+      },
+      "seen": 2,
+      "created": 1789586481.8984382,
+      "last_seen": 1789586481.8984468,
+      "confidence": 0.49994994987258207,
+      "sources": {
+        "migrated:brain.json": 2
+      }
+    },
+    "that's outside my current index records teach me what to say": {
+      "responses": {
+        "learn": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        },
+        "hi": {
+          "count": 1,
+          "correct": 0,
+          "incorrect": 0,
+          "score": 0.5
+        }
+      },
+      "seen": 2,
+      "created": 1789586481.898463,
+      "last_seen": 1789586481.8984795,
+      "confidence": 0.49994994987938685,
+      "sources": {
+        "migrated:brain.json": 2
+      }
+    }
+  },
+  "words": {
+    "python": {
+      "count": 9,
+      "first_seen": 1789586481.9036322,
+      "last_seen": 1789586962.313815,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "is": {
+      "count": 90,
+      "first_seen": 1789586481.9036362,
+      "last_seen": 1789586962.3159554,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 90
+      }
+    },
+    "programming": {
+      "count": 18,
+      "first_seen": 1789586481.9036393,
+      "last_seen": 1789586962.3142676,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "language": {
+      "count": 9,
+      "first_seen": 1789586481.903641,
+      "last_seen": 1789586962.3138204,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "computer": {
+      "count": 27,
+      "first_seen": 1789586481.9039702,
+      "last_seen": 1789586962.315193,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 27
+      }
+    },
+    "an": {
+      "count": 18,
+      "first_seen": 1789586481.9039738,
+      "last_seen": 1789586962.315392,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "electronic": {
+      "count": 9,
+      "first_seen": 1789586481.903976,
+      "last_seen": 1789586962.3140283,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "machine": {
+      "count": 18,
+      "first_seen": 1789586481.903977,
+      "last_seen": 1789586962.314491,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "that": {
+      "count": 18,
+      "first_seen": 1789586481.9039779,
+      "last_seen": 1789586962.3147929,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "processes": {
+      "count": 9,
+      "first_seen": 1789586481.9039793,
+      "last_seen": 1789586962.3140311,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "information": {
+      "count": 27,
+      "first_seen": 1789586481.9039803,
+      "last_seen": 1789586962.3149714,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 27
+      }
+    },
+    "the": {
+      "count": 9,
+      "first_seen": 1789586481.9044247,
+      "last_seen": 1789586962.3142695,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "process": {
+      "count": 9,
+      "first_seen": 1789586481.904426,
+      "last_seen": 1789586962.3142703,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "of": {
+      "count": 45,
+      "first_seen": 1789586481.9044273,
+      "last_seen": 1789586962.3159575,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 45
+      }
+    },
+    "writing": {
+      "count": 9,
+      "first_seen": 1789586481.9044287,
+      "last_seen": 1789586962.314272,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "instructions": {
+      "count": 27,
+      "first_seen": 1789586481.9044304,
+      "last_seen": 1789586962.315959,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 27
+      }
+    },
+    "for": {
+      "count": 9,
+      "first_seen": 1789586481.9044316,
+      "last_seen": 1789586962.314274,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "computers": {
+      "count": 9,
+      "first_seen": 1789586481.9044325,
+      "last_seen": 1789586962.3142748,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "learning": {
+      "count": 9,
+      "first_seen": 1789586481.9048383,
+      "last_seen": 1789586962.3144922,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "method": {
+      "count": 9,
+      "first_seen": 1789586481.9048414,
+      "last_seen": 1789586962.3144937,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "where": {
+      "count": 9,
+      "first_seen": 1789586481.9048426,
+      "last_seen": 1789586962.3144946,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "software": {
+      "count": 9,
+      "first_seen": 1789586481.9048438,
+      "last_seen": 1789586962.3144956,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "learns": {
+      "count": 9,
+      "first_seen": 1789586481.9048455,
+      "last_seen": 1789586962.3144963,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "patterns": {
+      "count": 9,
+      "first_seen": 1789586481.9048467,
+      "last_seen": 1789586962.314497,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "from": {
+      "count": 9,
+      "first_seen": 1789586481.9048479,
+      "last_seen": 1789586962.3144975,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "data": {
+      "count": 18,
+      "first_seen": 1789586481.904849,
+      "last_seen": 1789586962.3147907,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "can": {
+      "count": 9,
+      "first_seen": 1789586481.9057176,
+      "last_seen": 1789586962.3147938,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "be": {
+      "count": 9,
+      "first_seen": 1789586481.905719,
+      "last_seen": 1789586962.3147945,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "stored": {
+      "count": 18,
+      "first_seen": 1789586481.9057202,
+      "last_seen": 1789586962.3149722,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "and": {
+      "count": 9,
+      "first_seen": 1789586481.905722,
+      "last_seen": 1789586962.3147962,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "processed": {
+      "count": 9,
+      "first_seen": 1789586481.905723,
+      "last_seen": 1789586962.3147972,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "file": {
+      "count": 9,
+      "first_seen": 1789586481.9065216,
+      "last_seen": 1789586962.314968,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "collection": {
+      "count": 9,
+      "first_seen": 1789586481.9065266,
+      "last_seen": 1789586962.3149698,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "on": {
+      "count": 9,
+      "first_seen": 1789586481.9065328,
+      "last_seen": 1789586962.3149729,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "program": {
+      "count": 27,
+      "first_seen": 1789586481.907003,
+      "last_seen": 1789586962.3159583,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 27
+      }
+    },
+    "set": {
+      "count": 9,
+      "first_seen": 1789586481.907007,
+      "last_seen": 1789586962.315189,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "executed": {
+      "count": 9,
+      "first_seen": 1789586481.9070113,
+      "last_seen": 1789586962.315191,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "by": {
+      "count": 9,
+      "first_seen": 1789586481.907013,
+      "last_seen": 1789586962.315192,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "algorithm": {
+      "count": 9,
+      "first_seen": 1789586481.9074023,
+      "last_seen": 1789586962.315393,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "sequence": {
+      "count": 9,
+      "first_seen": 1789586481.9074054,
+      "last_seen": 1789586962.3153946,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "steps": {
+      "count": 9,
+      "first_seen": 1789586481.9074078,
+      "last_seen": 1789586962.3153958,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "used": {
+      "count": 18,
+      "first_seen": 1789586481.9074092,
+      "last_seen": 1789586962.3156533,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "to": {
+      "count": 18,
+      "first_seen": 1789586481.9074106,
+      "last_seen": 1789586962.315654,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      }
+    },
+    "solve": {
+      "count": 9,
+      "first_seen": 1789586481.9074128,
+      "last_seen": 1789586962.315398,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "problem": {
+      "count": 9,
+      "first_seen": 1789586481.9074142,
+      "last_seen": 1789586962.3153987,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "variable": {
+      "count": 9,
+      "first_seen": 1789586481.9079015,
+      "last_seen": 1789586962.3156497,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "named": {
+      "count": 9,
+      "first_seen": 1789586481.907905,
+      "last_seen": 1789586962.315652,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "place": {
+      "count": 9,
+      "first_seen": 1789586481.9079063,
+      "last_seen": 1789586962.3156526,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "store": {
+      "count": 9,
+      "first_seen": 1789586481.9079103,
+      "last_seen": 1789586962.3156548,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "value": {
+      "count": 9,
+      "first_seen": 1789586481.9079118,
+      "last_seen": 1789586962.3156557,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "in": {
+      "count": 9,
+      "first_seen": 1789586481.9079132,
+      "last_seen": 1789586962.3156564,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "function": {
+      "count": 9,
+      "first_seen": 1789586481.9084811,
+      "last_seen": 1789586962.3159547,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "reusable": {
+      "count": 9,
+      "first_seen": 1789586481.9084845,
+      "last_seen": 1789586962.315956,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "block": {
+      "count": 9,
+      "first_seen": 1789586481.9084857,
+      "last_seen": 1789586962.315957,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      }
+    },
+    "hi": {
+      "count": 5,
+      "first_seen": 1789586488.3884642,
+      "last_seen": 1789586827.9476986,
+      "sources": {
+        "conversation": 5
+      }
+    },
+    "say": {
+      "count": 1,
+      "first_seen": 1789586806.0845892,
+      "last_seen": 1789586806.0845912,
+      "sources": {
+        "conversation": 1
+      }
+    },
+    "back": {
+      "count": 1,
+      "first_seen": 1789586806.0845942,
+      "last_seen": 1789586806.0845947,
+      "sources": {
+        "conversation": 1
+      }
+    }
+  },
+  "ngrams": {
+    "1": {
+      "python": 9,
+      "is": 90,
+      "a": 153,
+      "programming": 18,
+      "language": 9,
+      "computer": 27,
+      "an": 18,
+      "electronic": 9,
+      "machine": 18,
+      "that": 18,
+      "processes": 9,
+      "information": 27,
+      "the": 9,
+      "process": 9,
+      "of": 45,
+      "writing": 9,
+      "instructions": 27,
+      "for": 9,
+      "computers": 9,
+      "learning": 9,
+      "method": 9,
+      "where": 9,
+      "software": 9,
+      "learns": 9,
+      "patterns": 9,
+      "from": 9,
+      "data": 18,
+      "can": 9,
+      "be": 9,
+      "stored": 18,
+      "and": 9,
+      "processed": 9,
+      "file": 9,
+      "collection": 9,
+      "on": 9,
+      "program": 27,
+      "set": 9,
+      "executed": 9,
+      "by": 9,
+      "algorithm": 9,
+      "sequence": 9,
+      "steps": 9,
+      "used": 18,
+      "to": 18,
+      "solve": 9,
+      "problem": 9,
+      "variable": 9,
+      "named": 9,
+      "place": 9,
+      "store": 9,
+      "value": 9,
+      "in": 9,
+      "function": 9,
+      "reusable": 9,
+      "block": 9,
+      "hi": 5,
+      "say": 1,
+      "back": 1
+    },
+    "2": {
+      "python is": 9,
+      "is a": 63,
+      "a programming": 9,
+      "programming language": 9,
+      "a computer": 27,
+      "computer is": 9,
+      "is an": 9,
+      "an electronic": 9,
+      "electronic machine": 9,
+      "machine that": 9,
+      "that processes": 9,
+      "processes information": 9,
+      "programming is": 9,
+      "is the": 9,
+      "the process": 9,
+      "process of": 9,
+      "of writing": 9,
+      "writing instructions": 9,
+      "instructions for": 9,
+      "for computers": 9,
+      "machine learning": 9,
+      "learning is": 9,
+      "a method": 9,
+      "method where": 9,
+      "where software": 9,
+      "software learns": 9,
+      "learns patterns": 9,
+      "patterns from": 9,
+      "from data": 9,
+      "data is": 9,
+      "is information": 9,
+      "information that": 9,
+      "that can": 9,
+      "can be": 9,
+      "be stored": 9,
+      "stored and": 9,
+      "and processed": 9,
+      "a file": 9,
+      "file is": 9,
+      "a collection": 9,
+      "collection of": 9,
+      "of information": 9,
+      "information stored": 9,
+      "stored on": 9,
+      "on a": 9,
+      "a program": 18,
+      "program is": 9,
+      "a set": 9,
+      "set of": 9,
+      "of instructions": 9,
+      "instructions executed": 9,
+      "executed by": 9,
+      "by a": 9,
+      "an algorithm": 9,
+      "algorithm is": 9,
+      "a sequence": 9,
+      "sequence of": 9,
+      "of steps": 9,
+      "steps used": 9,
+      "used to": 18,
+      "to solve": 9,
+      "solve a": 9,
+      "a problem": 9,
+      "a variable": 9,
+      "variable is": 9,
+      "a named": 9,
+      "named place": 9,
+      "place used": 9,
+      "to store": 9,
+      "store a": 9,
+      "a value": 9,
+      "value in": 9,
+      "in a": 9,
+      "a function": 9,
+      "function is": 9,
+      "a reusable": 9,
+      "reusable block": 9,
+      "block of": 9,
+      "of program": 9,
+      "program instructions": 9,
+      "say hi": 1,
+      "hi back": 1
+    },
+    "3": {
+      "python is a": 9,
+      "is a programming": 9,
+      "a programming language": 9,
+      "a computer is": 9,
+      "computer is an": 9,
+      "is an electronic": 9,
+      "an electronic machine": 9,
+      "electronic machine that": 9,
+      "machine that processes": 9,
+      "that processes information": 9,
+      "programming is the": 9,
+      "is the process": 9,
+      "the process of": 9,
+      "process of writing": 9,
+      "of writing instructions": 9,
+      "writing instructions for": 9,
+      "instructions for computers": 9,
+      "machine learning is": 9,
+      "learning is a": 9,
+      "is a method": 9,
+      "a method where": 9,
+      "method where software": 9,
+      "where software learns": 9,
+      "software learns patterns": 9,
+      "learns patterns from": 9,
+      "patterns from data": 9,
+      "data is information": 9,
+      "is information that": 9,
+      "information that can": 9,
+      "that can be": 9,
+      "can be stored": 9,
+      "be stored and": 9,
+      "stored and processed": 9,
+      "a file is": 9,
+      "file is a": 9,
+      "is a collection": 9,
+      "a collection of": 9,
+      "collection of information": 9,
+      "of information stored": 9,
+      "information stored on": 9,
+      "stored on a": 9,
+      "on a computer": 9,
+      "a program is": 9,
+      "program is a": 9,
+      "is a set": 9,
+      "a set of": 9,
+      "set of instructions": 9,
+      "of instructions executed": 9,
+      "instructions executed by": 9,
+      "executed by a": 9,
+      "by a computer": 9,
+      "an algorithm is": 9,
+      "algorithm is a": 9,
+      "is a sequence": 9,
+      "a sequence of": 9,
+      "sequence of steps": 9,
+      "of steps used": 9,
+      "steps used to": 9,
+      "used to solve": 9,
+      "to solve a": 9,
+      "solve a problem": 9,
+      "a variable is": 9,
+      "variable is a": 9,
+      "is a named": 9,
+      "a named place": 9,
+      "named place used": 9,
+      "place used to": 9,
+      "used to store": 9,
+      "to store a": 9,
+      "store a value": 9,
+      "a value in": 9,
+      "value in a": 9,
+      "in a program": 9,
+      "a function is": 9,
+      "function is a": 9,
+      "is a reusable": 9,
+      "a reusable block": 9,
+      "reusable block of": 9,
+      "block of program": 9,
+      "of program instructions": 9,
+      "say hi back": 1
+    }
+  },
+  "facts": {
+    "python|definition|a programming language": {
+      "subject": "python",
+      "relation": "definition",
+      "value": "a programming language",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.9037015,
+      "last_seen": 1789586962.313865
+    },
+    "a computer|definition|an electronic machine that processes information": {
+      "subject": "a computer",
+      "relation": "definition",
+      "value": "an electronic machine that processes information",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.9040418,
+      "last_seen": 1789586962.3140712
+    },
+    "programming|definition|the process of writing instructions for computers": {
+      "subject": "programming",
+      "relation": "definition",
+      "value": "the process of writing instructions for computers",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.9044912,
+      "last_seen": 1789586962.3143055
+    },
+    "machine learning|definition|a method where software learns patterns from data": {
+      "subject": "machine learning",
+      "relation": "definition",
+      "value": "a method where software learns patterns from data",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.9049115,
+      "last_seen": 1789586962.314532
+    },
+    "data|definition|information that can be stored and processed": {
+      "subject": "data",
+      "relation": "definition",
+      "value": "information that can be stored and processed",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.9057834,
+      "last_seen": 1789586962.314825
+    },
+    "a file|definition|a collection of information stored on a computer": {
+      "subject": "a file",
+      "relation": "definition",
+      "value": "a collection of information stored on a computer",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.9066098,
+      "last_seen": 1789586962.3150048
+    },
+    "a program|definition|a set of instructions executed by a computer": {
+      "subject": "a program",
+      "relation": "definition",
+      "value": "a set of instructions executed by a computer",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.907084,
+      "last_seen": 1789586962.3152242
+    },
+    "an algorithm|definition|a sequence of steps used to solve a problem": {
+      "subject": "an algorithm",
+      "relation": "definition",
+      "value": "a sequence of steps used to solve a problem",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.9074802,
+      "last_seen": 1789586962.3154314
+    },
+    "a variable|definition|a named place used to store a value in a program": {
+      "subject": "a variable",
+      "relation": "definition",
+      "value": "a named place used to store a value in a program",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.908007,
+      "last_seen": 1789586962.3156917
+    },
+    "a function|definition|a reusable block of program instructions": {
+      "subject": "a function",
+      "relation": "definition",
+      "value": "a reusable block of program instructions",
+      "confidence": 0.5172186884000001,
+      "times_seen": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "created": 1789586481.908545,
+      "last_seen": 1789586962.315987
+    }
+  },
+  "concepts": {
+    "python": {
+      "words": {
+        "programming": 9,
+        "language": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9038556,
+      "last_seen": 1789586962.313974
+    },
+    "programming": {
+      "words": {
+        "python": 9,
+        "language": 9,
+        "process": 9,
+        "writing": 9,
+        "instructions": 9,
+        "computers": 9
+      },
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      },
+      "confidence": 0.48000000000000015,
+      "created": 1789586481.903878,
+      "last_seen": 1789586962.314399
+    },
+    "language": {
+      "words": {
+        "python": 9,
+        "programming": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9039001,
+      "last_seen": 1789586962.3139975
+    },
+    "computer": {
+      "words": {
+        "electronic": 9,
+        "machine": 9,
+        "processes": 9,
+        "information": 18,
+        "file": 9,
+        "collection": 9,
+        "stored": 9,
+        "program": 9,
+        "set": 9,
+        "instructions": 9,
+        "executed": 9
+      },
+      "count": 27,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 27
+      },
+      "confidence": 0.5700000000000002,
+      "created": 1789586481.9042542,
+      "last_seen": 1789586962.315361
+    },
+    "electronic": {
+      "words": {
+        "computer": 9,
+        "machine": 9,
+        "processes": 9,
+        "information": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.904282,
+      "last_seen": 1789586962.31419
+    },
+    "machine": {
+      "words": {
+        "computer": 9,
+        "electronic": 9,
+        "processes": 9,
+        "information": 9,
+        "learning": 9,
+        "method": 9,
+        "software": 9,
+        "learns": 9,
+        "patterns": 9,
+        "data": 9
+      },
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      },
+      "confidence": 0.48000000000000015,
+      "created": 1789586481.9043088,
+      "last_seen": 1789586962.3146777
+    },
+    "processes": {
+      "words": {
+        "computer": 9,
+        "electronic": 9,
+        "machine": 9,
+        "information": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.904336,
+      "last_seen": 1789586962.3142211
+    },
+    "information": {
+      "words": {
+        "computer": 18,
+        "electronic": 9,
+        "machine": 9,
+        "processes": 9,
+        "data": 9,
+        "stored": 18,
+        "processed": 9,
+        "file": 9,
+        "collection": 9
+      },
+      "count": 27,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 27
+      },
+      "confidence": 0.5700000000000002,
+      "created": 1789586481.904362,
+      "last_seen": 1789586962.3151286
+    },
+    "process": {
+      "words": {
+        "programming": 9,
+        "writing": 9,
+        "instructions": 9,
+        "computers": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9046962,
+      "last_seen": 1789586962.3144138
+    },
+    "writing": {
+      "words": {
+        "programming": 9,
+        "process": 9,
+        "instructions": 9,
+        "computers": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9047225,
+      "last_seen": 1789586962.3144286
+    },
+    "instructions": {
+      "words": {
+        "programming": 9,
+        "process": 9,
+        "writing": 9,
+        "computers": 9,
+        "program": 18,
+        "set": 9,
+        "executed": 9,
+        "computer": 9,
+        "function": 9,
+        "reusable": 9,
+        "block": 9
+      },
+      "count": 27,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 27
+      },
+      "confidence": 0.5700000000000002,
+      "created": 1789586481.9047527,
+      "last_seen": 1789586962.3161342
+    },
+    "computers": {
+      "words": {
+        "programming": 9,
+        "process": 9,
+        "writing": 9,
+        "instructions": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9047818,
+      "last_seen": 1789586962.314459
+    },
+    "learning": {
+      "words": {
+        "machine": 9,
+        "method": 9,
+        "software": 9,
+        "learns": 9,
+        "patterns": 9,
+        "data": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9055293,
+      "last_seen": 1789586962.314698
+    },
+    "method": {
+      "words": {
+        "machine": 9,
+        "learning": 9,
+        "software": 9,
+        "learns": 9,
+        "patterns": 9,
+        "data": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9055662,
+      "last_seen": 1789586962.3147182
+    },
+    "software": {
+      "words": {
+        "machine": 9,
+        "learning": 9,
+        "method": 9,
+        "learns": 9,
+        "patterns": 9,
+        "data": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9056041,
+      "last_seen": 1789586962.3147373
+    },
+    "learns": {
+      "words": {
+        "machine": 9,
+        "learning": 9,
+        "method": 9,
+        "software": 9,
+        "patterns": 9,
+        "data": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.905644,
+      "last_seen": 1789586962.3147569
+    },
+    "data": {
+      "words": {
+        "information": 9,
+        "stored": 9,
+        "processed": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9061122,
+      "last_seen": 1789586962.3148901
+    },
+    "stored": {
+      "words": {
+        "data": 9,
+        "information": 18,
+        "processed": 9,
+        "file": 9,
+        "collection": 9,
+        "computer": 9
+      },
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      },
+      "confidence": 0.48000000000000015,
+      "created": 1789586481.9061658,
+      "last_seen": 1789586962.3151429
+    },
+    "processed": {
+      "words": {
+        "data": 9,
+        "information": 9,
+        "stored": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9061913,
+      "last_seen": 1789586962.314939
+    },
+    "file": {
+      "words": {
+        "collection": 9,
+        "information": 9,
+        "stored": 9,
+        "computer": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9068067,
+      "last_seen": 1789586962.3150969
+    },
+    "collection": {
+      "words": {
+        "file": 9,
+        "information": 9,
+        "stored": 9,
+        "computer": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9068358,
+      "last_seen": 1789586962.315112
+    },
+    "program": {
+      "words": {
+        "set": 9,
+        "instructions": 18,
+        "executed": 9,
+        "computer": 9,
+        "function": 9,
+        "reusable": 9,
+        "block": 9
+      },
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      },
+      "confidence": 0.48000000000000015,
+      "created": 1789586481.9072583,
+      "last_seen": 1789586962.3161192
+    },
+    "executed": {
+      "words": {
+        "program": 9,
+        "set": 9,
+        "instructions": 9,
+        "computer": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.907318,
+      "last_seen": 1789586962.3153465
+    },
+    "algorithm": {
+      "words": {
+        "sequence": 9,
+        "steps": 9,
+        "used": 9,
+        "solve": 9,
+        "problem": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9077044,
+      "last_seen": 1789586962.315548
+    },
+    "sequence": {
+      "words": {
+        "algorithm": 9,
+        "steps": 9,
+        "used": 9,
+        "solve": 9,
+        "problem": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.907736,
+      "last_seen": 1789586962.3155653
+    },
+    "steps": {
+      "words": {
+        "algorithm": 9,
+        "sequence": 9,
+        "used": 9,
+        "solve": 9,
+        "problem": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.907771,
+      "last_seen": 1789586962.3155823
+    },
+    "used": {
+      "words": {
+        "algorithm": 9,
+        "sequence": 9,
+        "steps": 9,
+        "solve": 9,
+        "problem": 9,
+        "variable": 9,
+        "named": 9,
+        "place": 9,
+        "store": 9,
+        "value": 9,
+        "program": 9
+      },
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      },
+      "confidence": 0.48000000000000015,
+      "created": 1789586481.9078026,
+      "last_seen": 1789586962.3158896
+    },
+    "solve": {
+      "words": {
+        "algorithm": 9,
+        "sequence": 9,
+        "steps": 9,
+        "used": 9,
+        "problem": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9078336,
+      "last_seen": 1789586962.3156157
+    },
+    "variable": {
+      "words": {
+        "named": 9,
+        "place": 9,
+        "used": 9,
+        "store": 9,
+        "value": 9,
+        "program": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.908282,
+      "last_seen": 1789586962.3158317
+    },
+    "named": {
+      "words": {
+        "variable": 9,
+        "place": 9,
+        "used": 9,
+        "store": 9,
+        "value": 9,
+        "program": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.908318,
+      "last_seen": 1789586962.3158512
+    },
+    "place": {
+      "words": {
+        "variable": 9,
+        "named": 9,
+        "used": 9,
+        "store": 9,
+        "value": 9,
+        "program": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9083526,
+      "last_seen": 1789586962.3158703
+    },
+    "store": {
+      "words": {
+        "variable": 9,
+        "named": 9,
+        "place": 9,
+        "used": 9,
+        "value": 9,
+        "program": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9084232,
+      "last_seen": 1789586962.315909
+    },
+    "function": {
+      "words": {
+        "reusable": 9,
+        "block": 9,
+        "program": 9,
+        "instructions": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9087195,
+      "last_seen": 1789586962.3160753
+    },
+    "reusable": {
+      "words": {
+        "function": 9,
+        "block": 9,
+        "program": 9,
+        "instructions": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.9087508,
+      "last_seen": 1789586962.31609
+    },
+    "block": {
+      "words": {
+        "function": 9,
+        "reusable": 9,
+        "program": 9,
+        "instructions": 9
+      },
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "confidence": 0.39000000000000007,
+      "created": 1789586481.908778,
+      "last_seen": 1789586962.316105
+    },
+    "back": {
+      "words": {
+        "say": 1,
+        "hi": 1
+      },
+      "count": 1,
+      "sources": {
+        "conversation": 1
+      },
+      "confidence": 0.31,
+      "created": 1789586806.084697,
+      "last_seen": 1789586806.0846982
+    }
+  },
+  "associations": {
+    "python||programming": {
+      "left": "python",
+      "right": "programming",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3138902
+    },
+    "python||language": {
+      "left": "python",
+      "right": "language",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270965
+    },
+    "programming||language": {
+      "left": "programming",
+      "right": "language",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264952
+    },
+    "computer||electronic": {
+      "left": "computer",
+      "right": "electronic",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3140903
+    },
+    "computer||machine": {
+      "left": "computer",
+      "right": "machine",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261764
+    },
+    "computer||processes": {
+      "left": "computer",
+      "right": "processes",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3141043
+    },
+    "computer||information": {
+      "left": "computer",
+      "right": "information",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261414
+    },
+    "electronic||machine": {
+      "left": "electronic",
+      "right": "machine",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3141181
+    },
+    "electronic||processes": {
+      "left": "electronic",
+      "right": "processes",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327243
+    },
+    "electronic||information": {
+      "left": "electronic",
+      "right": "information",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314132
+    },
+    "machine||processes": {
+      "left": "machine",
+      "right": "processes",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266788
+    },
+    "machine||information": {
+      "left": "machine",
+      "right": "information",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3141458
+    },
+    "processes||information": {
+      "left": "processes",
+      "right": "information",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3141527
+    },
+    "programming||process": {
+      "left": "programming",
+      "right": "process",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3143215
+    },
+    "programming||writing": {
+      "left": "programming",
+      "right": "writing",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314328
+    },
+    "programming||instructions": {
+      "left": "programming",
+      "right": "instructions",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3143353
+    },
+    "programming||computers": {
+      "left": "programming",
+      "right": "computers",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3143415
+    },
+    "process||writing": {
+      "left": "process",
+      "right": "writing",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274622
+    },
+    "process||instructions": {
+      "left": "process",
+      "right": "instructions",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314355
+    },
+    "process||computers": {
+      "left": "process",
+      "right": "computers",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274753
+    },
+    "writing||instructions": {
+      "left": "writing",
+      "right": "instructions",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314368
+    },
+    "writing||computers": {
+      "left": "writing",
+      "right": "computers",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275416
+    },
+    "instructions||computers": {
+      "left": "instructions",
+      "right": "computers",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314381
+    },
+    "machine||learning": {
+      "left": "machine",
+      "right": "learning",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.31455
+    },
+    "machine||method": {
+      "left": "machine",
+      "right": "method",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3145566
+    },
+    "machine||software": {
+      "left": "machine",
+      "right": "software",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314563
+    },
+    "machine||learns": {
+      "left": "machine",
+      "right": "learns",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3145692
+    },
+    "learning||method": {
+      "left": "learning",
+      "right": "method",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327826
+    },
+    "learning||software": {
+      "left": "learning",
+      "right": "software",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278391
+    },
+    "learning||learns": {
+      "left": "learning",
+      "right": "learns",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278458
+    },
+    "learning||patterns": {
+      "left": "learning",
+      "right": "patterns",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278525
+    },
+    "method||software": {
+      "left": "method",
+      "right": "software",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279057
+    },
+    "method||learns": {
+      "left": "method",
+      "right": "learns",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327912
+    },
+    "method||patterns": {
+      "left": "method",
+      "right": "patterns",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279185
+    },
+    "method||data": {
+      "left": "method",
+      "right": "data",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3146195
+    },
+    "software||learns": {
+      "left": "software",
+      "right": "learns",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280702
+    },
+    "software||patterns": {
+      "left": "software",
+      "right": "patterns",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280768
+    },
+    "software||data": {
+      "left": "software",
+      "right": "data",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3146384
+    },
+    "learns||patterns": {
+      "left": "learns",
+      "right": "patterns",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281434
+    },
+    "learns||data": {
+      "left": "learns",
+      "right": "data",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3146505
+    },
+    "patterns||data": {
+      "left": "patterns",
+      "right": "data",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314657
+    },
+    "data||information": {
+      "left": "data",
+      "right": "information",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.31484
+    },
+    "data||stored": {
+      "left": "data",
+      "right": "stored",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267868
+    },
+    "data||processed": {
+      "left": "data",
+      "right": "processed",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314853
+    },
+    "information||stored": {
+      "left": "information",
+      "right": "stored",
+      "strength": 19.247664925007896,
+      "count": 27,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262646
+    },
+    "information||processed": {
+      "left": "information",
+      "right": "processed",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.314866
+    },
+    "stored||processed": {
+      "left": "stored",
+      "right": "processed",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3148725
+    },
+    "file||collection": {
+      "left": "file",
+      "right": "collection",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286502
+    },
+    "file||information": {
+      "left": "file",
+      "right": "information",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315027
+    },
+    "file||stored": {
+      "left": "file",
+      "right": "stored",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3150327
+    },
+    "file||computer": {
+      "left": "file",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315039
+    },
+    "collection||information": {
+      "left": "collection",
+      "right": "information",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3150454
+    },
+    "collection||stored": {
+      "left": "collection",
+      "right": "stored",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3150516
+    },
+    "collection||computer": {
+      "left": "collection",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315058
+    },
+    "information||computer": {
+      "left": "information",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3150706
+    },
+    "stored||computer": {
+      "left": "stored",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3150773
+    },
+    "program||set": {
+      "left": "program",
+      "right": "set",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315239
+    },
+    "program||instructions": {
+      "left": "program",
+      "right": "instructions",
+      "strength": 18.0,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 18
+      },
+      "last_seen": 1789586962.3160582
+    },
+    "program||executed": {
+      "left": "program",
+      "right": "executed",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315252
+    },
+    "program||computer": {
+      "left": "program",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3152583
+    },
+    "set||instructions": {
+      "left": "set",
+      "right": "instructions",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3152647
+    },
+    "set||executed": {
+      "left": "set",
+      "right": "executed",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288686
+    },
+    "set||computer": {
+      "left": "set",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3152773
+    },
+    "instructions||executed": {
+      "left": "instructions",
+      "right": "executed",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315284
+    },
+    "instructions||computer": {
+      "left": "instructions",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3152905
+    },
+    "executed||computer": {
+      "left": "executed",
+      "right": "computer",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3152966
+    },
+    "algorithm||sequence": {
+      "left": "algorithm",
+      "right": "sequence",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291144
+    },
+    "algorithm||steps": {
+      "left": "algorithm",
+      "right": "steps",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291216
+    },
+    "algorithm||used": {
+      "left": "algorithm",
+      "right": "used",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3154595
+    },
+    "algorithm||solve": {
+      "left": "algorithm",
+      "right": "solve",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329128
+    },
+    "sequence||steps": {
+      "left": "sequence",
+      "right": "steps",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329188
+    },
+    "sequence||used": {
+      "left": "sequence",
+      "right": "used",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3154786
+    },
+    "sequence||solve": {
+      "left": "sequence",
+      "right": "solve",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291945
+    },
+    "sequence||problem": {
+      "left": "sequence",
+      "right": "problem",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292015
+    },
+    "steps||used": {
+      "left": "steps",
+      "right": "used",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315497
+    },
+    "steps||solve": {
+      "left": "steps",
+      "right": "solve",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292615
+    },
+    "steps||problem": {
+      "left": "steps",
+      "right": "problem",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292685
+    },
+    "used||solve": {
+      "left": "used",
+      "right": "solve",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3155153
+    },
+    "used||problem": {
+      "left": "used",
+      "right": "problem",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3155215
+    },
+    "solve||problem": {
+      "left": "solve",
+      "right": "problem",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293352
+    },
+    "variable||named": {
+      "left": "variable",
+      "right": "named",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294652
+    },
+    "variable||place": {
+      "left": "variable",
+      "right": "place",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294718
+    },
+    "variable||used": {
+      "left": "variable",
+      "right": "used",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.31572
+    },
+    "variable||store": {
+      "left": "variable",
+      "right": "store",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294785
+    },
+    "named||place": {
+      "left": "named",
+      "right": "place",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295202
+    },
+    "named||used": {
+      "left": "named",
+      "right": "used",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315739
+    },
+    "named||store": {
+      "left": "named",
+      "right": "store",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329527
+    },
+    "named||value": {
+      "left": "named",
+      "right": "value",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329533
+    },
+    "place||used": {
+      "left": "place",
+      "right": "used",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3157568
+    },
+    "place||store": {
+      "left": "place",
+      "right": "store",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295677
+    },
+    "place||value": {
+      "left": "place",
+      "right": "value",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295743
+    },
+    "place||program": {
+      "left": "place",
+      "right": "program",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315775
+    },
+    "used||store": {
+      "left": "used",
+      "right": "store",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315781
+    },
+    "used||value": {
+      "left": "used",
+      "right": "value",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3157868
+    },
+    "used||program": {
+      "left": "used",
+      "right": "program",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3157928
+    },
+    "store||value": {
+      "left": "store",
+      "right": "value",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296084
+    },
+    "store||program": {
+      "left": "store",
+      "right": "program",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.315805
+    },
+    "value||program": {
+      "left": "value",
+      "right": "program",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3158114
+    },
+    "function||reusable": {
+      "left": "function",
+      "right": "reusable",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296926
+    },
+    "function||block": {
+      "left": "function",
+      "right": "block",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296993
+    },
+    "function||program": {
+      "left": "function",
+      "right": "program",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3160138
+    },
+    "function||instructions": {
+      "left": "function",
+      "right": "instructions",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3160203
+    },
+    "reusable||block": {
+      "left": "reusable",
+      "right": "block",
+      "strength": 10.247664925007902,
+      "count": 18,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9,
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3297076
+    },
+    "reusable||program": {
+      "left": "reusable",
+      "right": "program",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.316033
+    },
+    "reusable||instructions": {
+      "left": "reusable",
+      "right": "instructions",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.316039
+    },
+    "block||program": {
+      "left": "block",
+      "right": "program",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3160453
+    },
+    "block||instructions": {
+      "left": "block",
+      "right": "instructions",
+      "strength": 9.0,
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "last_seen": 1789586962.3160517
+    },
+    "is||of": {
+      "left": "is",
+      "right": "of",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3259609
+    },
+    "is||computer": {
+      "left": "is",
+      "right": "computer",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3259838
+    },
+    "is||information": {
+      "left": "is",
+      "right": "information",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3259976
+    },
+    "is||instructions": {
+      "left": "is",
+      "right": "instructions",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260107
+    },
+    "is||program": {
+      "left": "is",
+      "right": "program",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32602
+    },
+    "is||programming": {
+      "left": "is",
+      "right": "programming",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260272
+    },
+    "is||an": {
+      "left": "is",
+      "right": "an",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260338
+    },
+    "is||machine": {
+      "left": "is",
+      "right": "machine",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260407
+    },
+    "is||that": {
+      "left": "is",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260472
+    },
+    "is||data": {
+      "left": "is",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260536
+    },
+    "is||stored": {
+      "left": "is",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260603
+    },
+    "of||computer": {
+      "left": "of",
+      "right": "computer",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326068
+    },
+    "of||information": {
+      "left": "of",
+      "right": "information",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260746
+    },
+    "of||instructions": {
+      "left": "of",
+      "right": "instructions",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260815
+    },
+    "of||program": {
+      "left": "of",
+      "right": "program",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326088
+    },
+    "of||programming": {
+      "left": "of",
+      "right": "programming",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3260946
+    },
+    "of||an": {
+      "left": "of",
+      "right": "an",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326101
+    },
+    "of||machine": {
+      "left": "of",
+      "right": "machine",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261075
+    },
+    "of||that": {
+      "left": "of",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261137
+    },
+    "of||data": {
+      "left": "of",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32612
+    },
+    "of||stored": {
+      "left": "of",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261263
+    },
+    "of||used": {
+      "left": "of",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261335
+    },
+    "computer||instructions": {
+      "left": "computer",
+      "right": "instructions",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261485
+    },
+    "computer||program": {
+      "left": "computer",
+      "right": "program",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261554
+    },
+    "computer||programming": {
+      "left": "computer",
+      "right": "programming",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261626
+    },
+    "computer||an": {
+      "left": "computer",
+      "right": "an",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261695
+    },
+    "computer||that": {
+      "left": "computer",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261828
+    },
+    "computer||data": {
+      "left": "computer",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261895
+    },
+    "computer||stored": {
+      "left": "computer",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3261962
+    },
+    "computer||used": {
+      "left": "computer",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262029
+    },
+    "computer||to": {
+      "left": "computer",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262093
+    },
+    "information||instructions": {
+      "left": "information",
+      "right": "instructions",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262167
+    },
+    "information||program": {
+      "left": "information",
+      "right": "program",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262236
+    },
+    "information||programming": {
+      "left": "information",
+      "right": "programming",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262305
+    },
+    "information||an": {
+      "left": "information",
+      "right": "an",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262374
+    },
+    "information||machine": {
+      "left": "information",
+      "right": "machine",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326244
+    },
+    "information||that": {
+      "left": "information",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262508
+    },
+    "information||data": {
+      "left": "information",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262575
+    },
+    "information||used": {
+      "left": "information",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262713
+    },
+    "information||to": {
+      "left": "information",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326278
+    },
+    "information||python": {
+      "left": "information",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262851
+    },
+    "instructions||program": {
+      "left": "instructions",
+      "right": "program",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262928
+    },
+    "instructions||programming": {
+      "left": "instructions",
+      "right": "programming",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3262997
+    },
+    "instructions||an": {
+      "left": "instructions",
+      "right": "an",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3263063
+    },
+    "instructions||machine": {
+      "left": "instructions",
+      "right": "machine",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3263133
+    },
+    "instructions||that": {
+      "left": "instructions",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3263202
+    },
+    "instructions||data": {
+      "left": "instructions",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3263273
+    },
+    "instructions||stored": {
+      "left": "instructions",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326334
+    },
+    "instructions||used": {
+      "left": "instructions",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3263404
+    },
+    "instructions||to": {
+      "left": "instructions",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326347
+    },
+    "instructions||python": {
+      "left": "instructions",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326354
+    },
+    "instructions||language": {
+      "left": "instructions",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326361
+    },
+    "program||programming": {
+      "left": "program",
+      "right": "programming",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326368
+    },
+    "program||an": {
+      "left": "program",
+      "right": "an",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3263748
+    },
+    "program||machine": {
+      "left": "program",
+      "right": "machine",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326382
+    },
+    "program||that": {
+      "left": "program",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3263886
+    },
+    "program||data": {
+      "left": "program",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326395
+    },
+    "program||stored": {
+      "left": "program",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264017
+    },
+    "program||used": {
+      "left": "program",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264081
+    },
+    "program||to": {
+      "left": "program",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264146
+    },
+    "program||python": {
+      "left": "program",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326421
+    },
+    "program||language": {
+      "left": "program",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264277
+    },
+    "program||electronic": {
+      "left": "program",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264344
+    },
+    "programming||an": {
+      "left": "programming",
+      "right": "an",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264415
+    },
+    "programming||machine": {
+      "left": "programming",
+      "right": "machine",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264482
+    },
+    "programming||that": {
+      "left": "programming",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326455
+    },
+    "programming||data": {
+      "left": "programming",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264618
+    },
+    "programming||stored": {
+      "left": "programming",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264685
+    },
+    "programming||used": {
+      "left": "programming",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264754
+    },
+    "programming||to": {
+      "left": "programming",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264816
+    },
+    "programming||python": {
+      "left": "programming",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3264883
+    },
+    "programming||electronic": {
+      "left": "programming",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326502
+    },
+    "programming||processes": {
+      "left": "programming",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3265088
+    },
+    "an||machine": {
+      "left": "an",
+      "right": "machine",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326516
+    },
+    "an||that": {
+      "left": "an",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326522
+    },
+    "an||data": {
+      "left": "an",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3265285
+    },
+    "an||stored": {
+      "left": "an",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326535
+    },
+    "an||used": {
+      "left": "an",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3265414
+    },
+    "an||to": {
+      "left": "an",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3265476
+    },
+    "an||python": {
+      "left": "an",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3265727
+    },
+    "an||language": {
+      "left": "an",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3265824
+    },
+    "an||electronic": {
+      "left": "an",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326599
+    },
+    "an||processes": {
+      "left": "an",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326611
+    },
+    "an||the": {
+      "left": "an",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266184
+    },
+    "machine||that": {
+      "left": "machine",
+      "right": "that",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266258
+    },
+    "machine||data": {
+      "left": "machine",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266325
+    },
+    "machine||stored": {
+      "left": "machine",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266392
+    },
+    "machine||used": {
+      "left": "machine",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266456
+    },
+    "machine||to": {
+      "left": "machine",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326652
+    },
+    "machine||python": {
+      "left": "machine",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266585
+    },
+    "machine||language": {
+      "left": "machine",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266652
+    },
+    "machine||electronic": {
+      "left": "machine",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266718
+    },
+    "machine||the": {
+      "left": "machine",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3266852
+    },
+    "machine||process": {
+      "left": "machine",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326692
+    },
+    "that||data": {
+      "left": "that",
+      "right": "data",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326699
+    },
+    "that||stored": {
+      "left": "that",
+      "right": "stored",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267055
+    },
+    "that||used": {
+      "left": "that",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267164
+    },
+    "that||to": {
+      "left": "that",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267276
+    },
+    "that||python": {
+      "left": "that",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267395
+    },
+    "that||language": {
+      "left": "that",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267467
+    },
+    "that||electronic": {
+      "left": "that",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267534
+    },
+    "that||processes": {
+      "left": "that",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267596
+    },
+    "that||the": {
+      "left": "that",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326766
+    },
+    "that||process": {
+      "left": "that",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267727
+    },
+    "that||writing": {
+      "left": "that",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267791
+    },
+    "data||used": {
+      "left": "data",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267932
+    },
+    "data||to": {
+      "left": "data",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3267994
+    },
+    "data||python": {
+      "left": "data",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268058
+    },
+    "data||language": {
+      "left": "data",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268127
+    },
+    "data||electronic": {
+      "left": "data",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268194
+    },
+    "data||processes": {
+      "left": "data",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268256
+    },
+    "data||the": {
+      "left": "data",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326832
+    },
+    "data||process": {
+      "left": "data",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268387
+    },
+    "data||writing": {
+      "left": "data",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268452
+    },
+    "data||for": {
+      "left": "data",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268518
+    },
+    "stored||used": {
+      "left": "stored",
+      "right": "used",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326859
+    },
+    "stored||to": {
+      "left": "stored",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268657
+    },
+    "stored||python": {
+      "left": "stored",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268726
+    },
+    "stored||language": {
+      "left": "stored",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268795
+    },
+    "stored||electronic": {
+      "left": "stored",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268862
+    },
+    "stored||processes": {
+      "left": "stored",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268929
+    },
+    "stored||the": {
+      "left": "stored",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3268995
+    },
+    "stored||process": {
+      "left": "stored",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326906
+    },
+    "stored||writing": {
+      "left": "stored",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269124
+    },
+    "stored||for": {
+      "left": "stored",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269188
+    },
+    "stored||computers": {
+      "left": "stored",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269427
+    },
+    "used||to": {
+      "left": "used",
+      "right": "to",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269517
+    },
+    "used||python": {
+      "left": "used",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269584
+    },
+    "used||language": {
+      "left": "used",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326965
+    },
+    "used||electronic": {
+      "left": "used",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269713
+    },
+    "used||processes": {
+      "left": "used",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269782
+    },
+    "used||the": {
+      "left": "used",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269846
+    },
+    "used||process": {
+      "left": "used",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3269913
+    },
+    "used||writing": {
+      "left": "used",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.326998
+    },
+    "used||for": {
+      "left": "used",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270044
+    },
+    "used||computers": {
+      "left": "used",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270109
+    },
+    "used||learning": {
+      "left": "used",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270173
+    },
+    "to||python": {
+      "left": "to",
+      "right": "python",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270245
+    },
+    "to||language": {
+      "left": "to",
+      "right": "language",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270314
+    },
+    "to||electronic": {
+      "left": "to",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270378
+    },
+    "to||processes": {
+      "left": "to",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327044
+    },
+    "to||the": {
+      "left": "to",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270504
+    },
+    "to||process": {
+      "left": "to",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270571
+    },
+    "to||writing": {
+      "left": "to",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270636
+    },
+    "to||for": {
+      "left": "to",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270698
+    },
+    "to||computers": {
+      "left": "to",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270764
+    },
+    "to||learning": {
+      "left": "to",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3270826
+    },
+    "to||method": {
+      "left": "to",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327089
+    },
+    "python||electronic": {
+      "left": "python",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271031
+    },
+    "python||processes": {
+      "left": "python",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271098
+    },
+    "python||the": {
+      "left": "python",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271163
+    },
+    "python||process": {
+      "left": "python",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327123
+    },
+    "python||writing": {
+      "left": "python",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271294
+    },
+    "python||for": {
+      "left": "python",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271358
+    },
+    "python||computers": {
+      "left": "python",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271422
+    },
+    "python||learning": {
+      "left": "python",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327149
+    },
+    "python||method": {
+      "left": "python",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327155
+    },
+    "python||where": {
+      "left": "python",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271616
+    },
+    "language||electronic": {
+      "left": "language",
+      "right": "electronic",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327169
+    },
+    "language||processes": {
+      "left": "language",
+      "right": "processes",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271756
+    },
+    "language||the": {
+      "left": "language",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271823
+    },
+    "language||process": {
+      "left": "language",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327189
+    },
+    "language||writing": {
+      "left": "language",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3271956
+    },
+    "language||for": {
+      "left": "language",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272023
+    },
+    "language||computers": {
+      "left": "language",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327209
+    },
+    "language||learning": {
+      "left": "language",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272157
+    },
+    "language||method": {
+      "left": "language",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272223
+    },
+    "language||where": {
+      "left": "language",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327229
+    },
+    "language||software": {
+      "left": "language",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272357
+    },
+    "electronic||the": {
+      "left": "electronic",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272498
+    },
+    "electronic||process": {
+      "left": "electronic",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272562
+    },
+    "electronic||writing": {
+      "left": "electronic",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272626
+    },
+    "electronic||for": {
+      "left": "electronic",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272693
+    },
+    "electronic||computers": {
+      "left": "electronic",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327276
+    },
+    "electronic||learning": {
+      "left": "electronic",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327283
+    },
+    "electronic||method": {
+      "left": "electronic",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3272893
+    },
+    "electronic||where": {
+      "left": "electronic",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327296
+    },
+    "electronic||software": {
+      "left": "electronic",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327303
+    },
+    "electronic||learns": {
+      "left": "electronic",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273096
+    },
+    "processes||the": {
+      "left": "processes",
+      "right": "the",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273165
+    },
+    "processes||process": {
+      "left": "processes",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273232
+    },
+    "processes||writing": {
+      "left": "processes",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273299
+    },
+    "processes||for": {
+      "left": "processes",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327336
+    },
+    "processes||computers": {
+      "left": "processes",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273427
+    },
+    "processes||learning": {
+      "left": "processes",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273497
+    },
+    "processes||method": {
+      "left": "processes",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273563
+    },
+    "processes||where": {
+      "left": "processes",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273628
+    },
+    "processes||software": {
+      "left": "processes",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273695
+    },
+    "processes||learns": {
+      "left": "processes",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273761
+    },
+    "processes||patterns": {
+      "left": "processes",
+      "right": "patterns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273828
+    },
+    "the||process": {
+      "left": "the",
+      "right": "process",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32739
+    },
+    "the||writing": {
+      "left": "the",
+      "right": "writing",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3273966
+    },
+    "the||for": {
+      "left": "the",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327403
+    },
+    "the||computers": {
+      "left": "the",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274097
+    },
+    "the||learning": {
+      "left": "the",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274162
+    },
+    "the||method": {
+      "left": "the",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274224
+    },
+    "the||where": {
+      "left": "the",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327429
+    },
+    "the||software": {
+      "left": "the",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274355
+    },
+    "the||learns": {
+      "left": "the",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327442
+    },
+    "the||patterns": {
+      "left": "the",
+      "right": "patterns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274484
+    },
+    "the||from": {
+      "left": "the",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274548
+    },
+    "process||for": {
+      "left": "process",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274686
+    },
+    "process||learning": {
+      "left": "process",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274817
+    },
+    "process||method": {
+      "left": "process",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274884
+    },
+    "process||where": {
+      "left": "process",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3274949
+    },
+    "process||software": {
+      "left": "process",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275015
+    },
+    "process||learns": {
+      "left": "process",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275082
+    },
+    "process||patterns": {
+      "left": "process",
+      "right": "patterns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275146
+    },
+    "process||from": {
+      "left": "process",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275213
+    },
+    "process||can": {
+      "left": "process",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275278
+    },
+    "writing||for": {
+      "left": "writing",
+      "right": "for",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275347
+    },
+    "writing||learning": {
+      "left": "writing",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275483
+    },
+    "writing||method": {
+      "left": "writing",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275545
+    },
+    "writing||where": {
+      "left": "writing",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327561
+    },
+    "writing||software": {
+      "left": "writing",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275676
+    },
+    "writing||learns": {
+      "left": "writing",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327574
+    },
+    "writing||patterns": {
+      "left": "writing",
+      "right": "patterns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275807
+    },
+    "writing||from": {
+      "left": "writing",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275871
+    },
+    "writing||can": {
+      "left": "writing",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275933
+    },
+    "writing||be": {
+      "left": "writing",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3275998
+    },
+    "for||computers": {
+      "left": "for",
+      "right": "computers",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3276067
+    },
+    "for||learning": {
+      "left": "for",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3276134
+    },
+    "for||method": {
+      "left": "for",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3276198
+    },
+    "for||where": {
+      "left": "for",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3276265
+    },
+    "for||software": {
+      "left": "for",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327633
+    },
+    "for||learns": {
+      "left": "for",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327647
+    },
+    "for||patterns": {
+      "left": "for",
+      "right": "patterns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327659
+    },
+    "for||from": {
+      "left": "for",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3276696
+    },
+    "for||can": {
+      "left": "for",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3276794
+    },
+    "for||be": {
+      "left": "for",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3276901
+    },
+    "for||and": {
+      "left": "for",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277001
+    },
+    "computers||learning": {
+      "left": "computers",
+      "right": "learning",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277118
+    },
+    "computers||method": {
+      "left": "computers",
+      "right": "method",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277225
+    },
+    "computers||where": {
+      "left": "computers",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327733
+    },
+    "computers||software": {
+      "left": "computers",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277442
+    },
+    "computers||learns": {
+      "left": "computers",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277547
+    },
+    "computers||patterns": {
+      "left": "computers",
+      "right": "patterns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277652
+    },
+    "computers||from": {
+      "left": "computers",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327776
+    },
+    "computers||can": {
+      "left": "computers",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277872
+    },
+    "computers||be": {
+      "left": "computers",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3277984
+    },
+    "computers||and": {
+      "left": "computers",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32781
+    },
+    "computers||processed": {
+      "left": "computers",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278184
+    },
+    "learning||where": {
+      "left": "learning",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278325
+    },
+    "learning||from": {
+      "left": "learning",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327859
+    },
+    "learning||can": {
+      "left": "learning",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278656
+    },
+    "learning||be": {
+      "left": "learning",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327872
+    },
+    "learning||and": {
+      "left": "learning",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278785
+    },
+    "learning||processed": {
+      "left": "learning",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3278854
+    },
+    "learning||file": {
+      "left": "learning",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327892
+    },
+    "method||where": {
+      "left": "method",
+      "right": "where",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327899
+    },
+    "method||from": {
+      "left": "method",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279455
+    },
+    "method||can": {
+      "left": "method",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279567
+    },
+    "method||be": {
+      "left": "method",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.327963
+    },
+    "method||and": {
+      "left": "method",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279698
+    },
+    "method||processed": {
+      "left": "method",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279765
+    },
+    "method||file": {
+      "left": "method",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279831
+    },
+    "method||collection": {
+      "left": "method",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279898
+    },
+    "where||software": {
+      "left": "where",
+      "right": "software",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3279977
+    },
+    "where||learns": {
+      "left": "where",
+      "right": "learns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280044
+    },
+    "where||patterns": {
+      "left": "where",
+      "right": "patterns",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280108
+    },
+    "where||from": {
+      "left": "where",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280175
+    },
+    "where||can": {
+      "left": "where",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328024
+    },
+    "where||be": {
+      "left": "where",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32803
+    },
+    "where||and": {
+      "left": "where",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280365
+    },
+    "where||processed": {
+      "left": "where",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328043
+    },
+    "where||file": {
+      "left": "where",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280497
+    },
+    "where||collection": {
+      "left": "where",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280563
+    },
+    "where||on": {
+      "left": "where",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280628
+    },
+    "software||from": {
+      "left": "software",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280835
+    },
+    "software||can": {
+      "left": "software",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32809
+    },
+    "software||be": {
+      "left": "software",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3280962
+    },
+    "software||and": {
+      "left": "software",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281028
+    },
+    "software||processed": {
+      "left": "software",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281095
+    },
+    "software||file": {
+      "left": "software",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281162
+    },
+    "software||collection": {
+      "left": "software",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281229
+    },
+    "software||on": {
+      "left": "software",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281293
+    },
+    "software||set": {
+      "left": "software",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328136
+    },
+    "learns||from": {
+      "left": "learns",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281498
+    },
+    "learns||can": {
+      "left": "learns",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281565
+    },
+    "learns||be": {
+      "left": "learns",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281631
+    },
+    "learns||and": {
+      "left": "learns",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281696
+    },
+    "learns||processed": {
+      "left": "learns",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328176
+    },
+    "learns||file": {
+      "left": "learns",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281825
+    },
+    "learns||collection": {
+      "left": "learns",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281891
+    },
+    "learns||on": {
+      "left": "learns",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3281956
+    },
+    "learns||set": {
+      "left": "learns",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328202
+    },
+    "learns||executed": {
+      "left": "learns",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282087
+    },
+    "patterns||from": {
+      "left": "patterns",
+      "right": "from",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282158
+    },
+    "patterns||can": {
+      "left": "patterns",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282223
+    },
+    "patterns||be": {
+      "left": "patterns",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328229
+    },
+    "patterns||and": {
+      "left": "patterns",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282356
+    },
+    "patterns||processed": {
+      "left": "patterns",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282425
+    },
+    "patterns||file": {
+      "left": "patterns",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282487
+    },
+    "patterns||collection": {
+      "left": "patterns",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282554
+    },
+    "patterns||on": {
+      "left": "patterns",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328262
+    },
+    "patterns||set": {
+      "left": "patterns",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282685
+    },
+    "patterns||executed": {
+      "left": "patterns",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282754
+    },
+    "patterns||by": {
+      "left": "patterns",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282819
+    },
+    "from||can": {
+      "left": "from",
+      "right": "can",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282888
+    },
+    "from||be": {
+      "left": "from",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3282952
+    },
+    "from||and": {
+      "left": "from",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283017
+    },
+    "from||processed": {
+      "left": "from",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328308
+    },
+    "from||file": {
+      "left": "from",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283145
+    },
+    "from||collection": {
+      "left": "from",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283212
+    },
+    "from||on": {
+      "left": "from",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283274
+    },
+    "from||set": {
+      "left": "from",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283339
+    },
+    "from||executed": {
+      "left": "from",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283405
+    },
+    "from||by": {
+      "left": "from",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283467
+    },
+    "from||algorithm": {
+      "left": "from",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283532
+    },
+    "can||be": {
+      "left": "can",
+      "right": "be",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32836
+    },
+    "can||and": {
+      "left": "can",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283668
+    },
+    "can||processed": {
+      "left": "can",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283734
+    },
+    "can||file": {
+      "left": "can",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283799
+    },
+    "can||collection": {
+      "left": "can",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283865
+    },
+    "can||on": {
+      "left": "can",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328393
+    },
+    "can||set": {
+      "left": "can",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3283992
+    },
+    "can||executed": {
+      "left": "can",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284059
+    },
+    "can||by": {
+      "left": "can",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328412
+    },
+    "can||algorithm": {
+      "left": "can",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284185
+    },
+    "can||sequence": {
+      "left": "can",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284252
+    },
+    "be||and": {
+      "left": "be",
+      "right": "and",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328432
+    },
+    "be||processed": {
+      "left": "be",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284385
+    },
+    "be||file": {
+      "left": "be",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328445
+    },
+    "be||collection": {
+      "left": "be",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284516
+    },
+    "be||on": {
+      "left": "be",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328458
+    },
+    "be||set": {
+      "left": "be",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284643
+    },
+    "be||executed": {
+      "left": "be",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328471
+    },
+    "be||by": {
+      "left": "be",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284774
+    },
+    "be||algorithm": {
+      "left": "be",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328484
+    },
+    "be||sequence": {
+      "left": "be",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284905
+    },
+    "be||steps": {
+      "left": "be",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3284972
+    },
+    "and||processed": {
+      "left": "and",
+      "right": "processed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285046
+    },
+    "and||file": {
+      "left": "and",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328511
+    },
+    "and||collection": {
+      "left": "and",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285174
+    },
+    "and||on": {
+      "left": "and",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285239
+    },
+    "and||set": {
+      "left": "and",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285306
+    },
+    "and||executed": {
+      "left": "and",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285367
+    },
+    "and||by": {
+      "left": "and",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328543
+    },
+    "and||algorithm": {
+      "left": "and",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285494
+    },
+    "and||sequence": {
+      "left": "and",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328556
+    },
+    "and||steps": {
+      "left": "and",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285625
+    },
+    "and||solve": {
+      "left": "and",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328569
+    },
+    "processed||file": {
+      "left": "processed",
+      "right": "file",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285758
+    },
+    "processed||collection": {
+      "left": "processed",
+      "right": "collection",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285828
+    },
+    "processed||on": {
+      "left": "processed",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285892
+    },
+    "processed||set": {
+      "left": "processed",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3285956
+    },
+    "processed||executed": {
+      "left": "processed",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286026
+    },
+    "processed||by": {
+      "left": "processed",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328609
+    },
+    "processed||algorithm": {
+      "left": "processed",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286161
+    },
+    "processed||sequence": {
+      "left": "processed",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286228
+    },
+    "processed||steps": {
+      "left": "processed",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286295
+    },
+    "processed||solve": {
+      "left": "processed",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286362
+    },
+    "processed||problem": {
+      "left": "processed",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286428
+    },
+    "file||on": {
+      "left": "file",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328657
+    },
+    "file||set": {
+      "left": "file",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286633
+    },
+    "file||executed": {
+      "left": "file",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32867
+    },
+    "file||by": {
+      "left": "file",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286765
+    },
+    "file||algorithm": {
+      "left": "file",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286834
+    },
+    "file||sequence": {
+      "left": "file",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286898
+    },
+    "file||steps": {
+      "left": "file",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3286963
+    },
+    "file||solve": {
+      "left": "file",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287027
+    },
+    "file||problem": {
+      "left": "file",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287094
+    },
+    "file||variable": {
+      "left": "file",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328716
+    },
+    "collection||on": {
+      "left": "collection",
+      "right": "on",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287232
+    },
+    "collection||set": {
+      "left": "collection",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287299
+    },
+    "collection||executed": {
+      "left": "collection",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328737
+    },
+    "collection||by": {
+      "left": "collection",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287437
+    },
+    "collection||algorithm": {
+      "left": "collection",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287504
+    },
+    "collection||sequence": {
+      "left": "collection",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287573
+    },
+    "collection||steps": {
+      "left": "collection",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328764
+    },
+    "collection||solve": {
+      "left": "collection",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287706
+    },
+    "collection||problem": {
+      "left": "collection",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287773
+    },
+    "collection||variable": {
+      "left": "collection",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287842
+    },
+    "collection||named": {
+      "left": "collection",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287904
+    },
+    "on||set": {
+      "left": "on",
+      "right": "set",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3287973
+    },
+    "on||executed": {
+      "left": "on",
+      "right": "executed",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328804
+    },
+    "on||by": {
+      "left": "on",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288105
+    },
+    "on||algorithm": {
+      "left": "on",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328817
+    },
+    "on||sequence": {
+      "left": "on",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288236
+    },
+    "on||steps": {
+      "left": "on",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.32883
+    },
+    "on||solve": {
+      "left": "on",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288362
+    },
+    "on||problem": {
+      "left": "on",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288424
+    },
+    "on||variable": {
+      "left": "on",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288488
+    },
+    "on||named": {
+      "left": "on",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288553
+    },
+    "on||place": {
+      "left": "on",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288617
+    },
+    "set||by": {
+      "left": "set",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328875
+    },
+    "set||algorithm": {
+      "left": "set",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288815
+    },
+    "set||sequence": {
+      "left": "set",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288882
+    },
+    "set||steps": {
+      "left": "set",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3288944
+    },
+    "set||solve": {
+      "left": "set",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328901
+    },
+    "set||problem": {
+      "left": "set",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3289075
+    },
+    "set||variable": {
+      "left": "set",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3289142
+    },
+    "set||named": {
+      "left": "set",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3289206
+    },
+    "set||place": {
+      "left": "set",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328955
+    },
+    "set||store": {
+      "left": "set",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3289616
+    },
+    "executed||by": {
+      "left": "executed",
+      "right": "by",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328969
+    },
+    "executed||algorithm": {
+      "left": "executed",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.328976
+    },
+    "executed||sequence": {
+      "left": "executed",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3289826
+    },
+    "executed||steps": {
+      "left": "executed",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3289893
+    },
+    "executed||solve": {
+      "left": "executed",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3289955
+    },
+    "executed||problem": {
+      "left": "executed",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290024
+    },
+    "executed||variable": {
+      "left": "executed",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329009
+    },
+    "executed||named": {
+      "left": "executed",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290155
+    },
+    "executed||place": {
+      "left": "executed",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290222
+    },
+    "executed||store": {
+      "left": "executed",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290288
+    },
+    "executed||value": {
+      "left": "executed",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290355
+    },
+    "by||algorithm": {
+      "left": "by",
+      "right": "algorithm",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290427
+    },
+    "by||sequence": {
+      "left": "by",
+      "right": "sequence",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329049
+    },
+    "by||steps": {
+      "left": "by",
+      "right": "steps",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290558
+    },
+    "by||solve": {
+      "left": "by",
+      "right": "solve",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329062
+    },
+    "by||problem": {
+      "left": "by",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290682
+    },
+    "by||variable": {
+      "left": "by",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290749
+    },
+    "by||named": {
+      "left": "by",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290813
+    },
+    "by||place": {
+      "left": "by",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290877
+    },
+    "by||store": {
+      "left": "by",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3290942
+    },
+    "by||value": {
+      "left": "by",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291006
+    },
+    "by||in": {
+      "left": "by",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291073
+    },
+    "algorithm||problem": {
+      "left": "algorithm",
+      "right": "problem",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291347
+    },
+    "algorithm||variable": {
+      "left": "algorithm",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291416
+    },
+    "algorithm||named": {
+      "left": "algorithm",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291478
+    },
+    "algorithm||place": {
+      "left": "algorithm",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291545
+    },
+    "algorithm||store": {
+      "left": "algorithm",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329161
+    },
+    "algorithm||value": {
+      "left": "algorithm",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3291676
+    },
+    "algorithm||in": {
+      "left": "algorithm",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329174
+    },
+    "algorithm||function": {
+      "left": "algorithm",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329181
+    },
+    "sequence||variable": {
+      "left": "sequence",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292081
+    },
+    "sequence||named": {
+      "left": "sequence",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292146
+    },
+    "sequence||place": {
+      "left": "sequence",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329221
+    },
+    "sequence||store": {
+      "left": "sequence",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292277
+    },
+    "sequence||value": {
+      "left": "sequence",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292344
+    },
+    "sequence||in": {
+      "left": "sequence",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292408
+    },
+    "sequence||function": {
+      "left": "sequence",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292477
+    },
+    "sequence||reusable": {
+      "left": "sequence",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292544
+    },
+    "steps||variable": {
+      "left": "steps",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292754
+    },
+    "steps||named": {
+      "left": "steps",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329282
+    },
+    "steps||place": {
+      "left": "steps",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292887
+    },
+    "steps||store": {
+      "left": "steps",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3292954
+    },
+    "steps||value": {
+      "left": "steps",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293018
+    },
+    "steps||in": {
+      "left": "steps",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293083
+    },
+    "steps||function": {
+      "left": "steps",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293147
+    },
+    "steps||reusable": {
+      "left": "steps",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293211
+    },
+    "steps||block": {
+      "left": "steps",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293278
+    },
+    "solve||variable": {
+      "left": "solve",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329342
+    },
+    "solve||named": {
+      "left": "solve",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293493
+    },
+    "solve||place": {
+      "left": "solve",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293562
+    },
+    "solve||store": {
+      "left": "solve",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293629
+    },
+    "solve||value": {
+      "left": "solve",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293695
+    },
+    "solve||in": {
+      "left": "solve",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293762
+    },
+    "solve||function": {
+      "left": "solve",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329383
+    },
+    "solve||reusable": {
+      "left": "solve",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3293896
+    },
+    "solve||block": {
+      "left": "solve",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329396
+    },
+    "problem||variable": {
+      "left": "problem",
+      "right": "variable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294039
+    },
+    "problem||named": {
+      "left": "problem",
+      "right": "named",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294106
+    },
+    "problem||place": {
+      "left": "problem",
+      "right": "place",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294172
+    },
+    "problem||store": {
+      "left": "problem",
+      "right": "store",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329424
+    },
+    "problem||value": {
+      "left": "problem",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294303
+    },
+    "problem||in": {
+      "left": "problem",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329437
+    },
+    "problem||function": {
+      "left": "problem",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294432
+    },
+    "problem||reusable": {
+      "left": "problem",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294501
+    },
+    "problem||block": {
+      "left": "problem",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294566
+    },
+    "variable||value": {
+      "left": "variable",
+      "right": "value",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329485
+    },
+    "variable||in": {
+      "left": "variable",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294916
+    },
+    "variable||function": {
+      "left": "variable",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3294983
+    },
+    "variable||reusable": {
+      "left": "variable",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329505
+    },
+    "variable||block": {
+      "left": "variable",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295116
+    },
+    "named||in": {
+      "left": "named",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295395
+    },
+    "named||function": {
+      "left": "named",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295462
+    },
+    "named||reusable": {
+      "left": "named",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329553
+    },
+    "named||block": {
+      "left": "named",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295596
+    },
+    "place||in": {
+      "left": "place",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295808
+    },
+    "place||function": {
+      "left": "place",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295875
+    },
+    "place||reusable": {
+      "left": "place",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3295941
+    },
+    "place||block": {
+      "left": "place",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296006
+    },
+    "store||in": {
+      "left": "store",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329615
+    },
+    "store||function": {
+      "left": "store",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296218
+    },
+    "store||reusable": {
+      "left": "store",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296285
+    },
+    "store||block": {
+      "left": "store",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329635
+    },
+    "value||in": {
+      "left": "value",
+      "right": "in",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329643
+    },
+    "value||function": {
+      "left": "value",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296494
+    },
+    "value||reusable": {
+      "left": "value",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296564
+    },
+    "value||block": {
+      "left": "value",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329663
+    },
+    "in||function": {
+      "left": "in",
+      "right": "function",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329671
+    },
+    "in||reusable": {
+      "left": "in",
+      "right": "reusable",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.3296776
+    },
+    "in||block": {
+      "left": "in",
+      "right": "block",
+      "strength": 1.2476649250079015,
+      "count": 9,
+      "sources": {
+        "consolidation": 9
+      },
+      "last_seen": 1789586962.329684
+    },
+    "say||hi": {
+      "left": "say",
+      "right": "hi",
+      "strength": 1.0,
+      "count": 1,
+      "sources": {
+        "conversation": 1
+      },
+      "last_seen": 1789586806.0846465
+    },
+    "say||back": {
+      "left": "say",
+      "right": "back",
+      "strength": 1.4158883083359672,
+      "count": 4,
+      "sources": {
+        "conversation": 1,
+        "consolidation": 3
+      },
+      "last_seen": 1789586962.3297305
+    },
+    "hi||back": {
+      "left": "hi",
+      "right": "back",
+      "strength": 1.4158883083359672,
+      "count": 4,
+      "sources": {
+        "conversation": 1,
+        "consolidation": 3
+      },
+      "last_seen": 1789586962.3297234
+    },
+    "hi||say": {
+      "left": "hi",
+      "right": "say",
+      "strength": 0.4158883083359671,
+      "count": 3,
+      "sources": {
+        "consolidation": 3
+      },
+      "last_seen": 1789586962.3297167
+    }
+  },
+  "sources": {
+    "file:/workspaces/go-lang/knowledge/starter.txt": {
+      "source_id": "file:/workspaces/go-lang/knowledge/starter.txt",
+      "source_type": "file",
+      "location": "/workspaces/go-lang/knowledge/starter.txt",
+      "title": "starter.txt",
+      "added": 1789586481.9033995,
+      "last_read": 1789586962.3161862,
+      "times_read": 9,
+      "words_learned": 900,
+      "active": true
+    },
+    "file:/workspaces/go-lang/knowledge/history.txt": {
+      "source_id": "file:/workspaces/go-lang/knowledge/history.txt",
+      "source_type": "file",
+      "location": "/workspaces/go-lang/knowledge/history.txt",
+      "title": "history.txt",
+      "added": 1789586782.1565533,
+      "last_read": 0,
+      "times_read": 0,
+      "words_learned": 0,
+      "active": true
+    },
+    "file:/workspaces/go-lang/knowledge/science.txt": {
+      "source_id": "file:/workspaces/go-lang/knowledge/science.txt",
+      "source_type": "file",
+      "location": "/workspaces/go-lang/knowledge/science.txt",
+      "title": "science.txt",
+      "added": 1789586782.1566708,
+      "last_read": 0,
+      "times_read": 0,
+      "words_learned": 0,
+      "active": true
+    },
+    "file:/workspaces/go-lang/knowledge/math.txt": {
+      "source_id": "file:/workspaces/go-lang/knowledge/math.txt",
+      "source_type": "file",
+      "location": "/workspaces/go-lang/knowledge/math.txt",
+      "title": "math.txt",
+      "added": 1789586782.1593063,
+      "last_read": 0,
+      "times_read": 0,
+      "words_learned": 0,
+      "active": true
+    },
+    "file:/workspaces/go-lang/knowledge/programming.txt": {
+      "source_id": "file:/workspaces/go-lang/knowledge/programming.txt",
+      "source_type": "file",
+      "location": "/workspaces/go-lang/knowledge/programming.txt",
+      "title": "programming.txt",
+      "added": 1789586842.2085736,
+      "last_read": 0,
+      "times_read": 0,
+      "words_learned": 0,
+      "active": true
+    },
+    "file:/workspaces/go-lang/knowledge/python.txt": {
+      "source_id": "file:/workspaces/go-lang/knowledge/python.txt",
+      "source_type": "file",
+      "location": "/workspaces/go-lang/knowledge/python.txt",
+      "title": "python.txt",
+      "added": 1789586962.3162727,
+      "last_read": 0,
+      "times_read": 0,
+      "words_learned": 0,
+      "active": true
+    }
+  },
+  "sentences": {
+    "python is a programming language": {
+      "text": "Python is a programming language.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.9036164,
+      "last_seen": 1789586962.3138032,
+      "confidence": 0.4
+    },
+    "a computer is an electronic machine that processes information": {
+      "text": "A computer is an electronic machine that processes information.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.903957,
+      "last_seen": 1789586962.3140178,
+      "confidence": 0.4
+    },
+    "programming is the process of writing instructions for computers": {
+      "text": "Programming is the process of writing instructions for computers.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.9044092,
+      "last_seen": 1789586962.314261,
+      "confidence": 0.4
+    },
+    "machine learning is a method where software learns patterns from data": {
+      "text": "Machine learning is a method where software learns patterns from data.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.9048243,
+      "last_seen": 1789586962.314484,
+      "confidence": 0.4
+    },
+    "data is information that can be stored and processed": {
+      "text": "Data is information that can be stored and processed.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.9056966,
+      "last_seen": 1789586962.3147845,
+      "confidence": 0.4
+    },
+    "a file is a collection of information stored on a computer": {
+      "text": "A file is a collection of information stored on a computer.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.906505,
+      "last_seen": 1789586962.3149602,
+      "confidence": 0.4
+    },
+    "a program is a set of instructions executed by a computer": {
+      "text": "A program is a set of instructions executed by a computer.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.90699,
+      "last_seen": 1789586962.3151808,
+      "confidence": 0.4
+    },
+    "an algorithm is a sequence of steps used to solve a problem": {
+      "text": "An algorithm is a sequence of steps used to solve a problem.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.9073877,
+      "last_seen": 1789586962.315385,
+      "confidence": 0.4
+    },
+    "a variable is a named place used to store a value in a program": {
+      "text": "A variable is a named place used to store a value in a program.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.9078884,
+      "last_seen": 1789586962.3156424,
+      "confidence": 0.4
+    },
+    "a function is a reusable block of program instructions": {
+      "text": "A function is a reusable block of program instructions.",
+      "count": 9,
+      "sources": {
+        "file:/workspaces/go-lang/knowledge/starter.txt": 9
+      },
+      "first_seen": 1789586481.908471,
+      "last_seen": 1789586962.3159485,
+      "confidence": 0.4
+    },
+    "say hi back": {
+      "text": "say hi back",
+      "count": 1,
+      "sources": {
+        "conversation": 1
+      },
+      "first_seen": 1789586806.0845804,
+      "last_seen": 1789586806.0845828,
+      "confidence": 0.4
+    }
+  },
+  "documents": {
+    "file:/workspaces/go-lang/knowledge/starter.txt": {
+      "path": "/workspaces/go-lang/knowledge/starter.txt",
+      "title": "starter.txt",
+      "words": 100,
+      "sentences": 10,
+      "last_learned": 1789586962.3162198
+    }
+  },
+  "stats": {
+    "messages": 4,
+    "learn_events": 13,
+    "facts_learned": 90,
+    "sentences_learned": 91,
+    "words_learned": 754,
+    "sources_read": 9,
+    "responses": 4,
+    "correct": 3,
+    "incorrect": 3,
+    "self_cycles": 9
+  },
+  "settings": {
+    "auto_learn": true,
+    "auto_save": true,
+    "allow_web": false,
+    "allow_crawl": false,
+    "crawl_depth": 1,
+    "crawl_pages": 25,
+    "learn_interval": 60,
+    "save_interval": 30
+  },
+  "queue": [],
+  "recent_topics": []
+}

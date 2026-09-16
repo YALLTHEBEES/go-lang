@@ -1,0 +1,10 @@
+{
+  "auto_learn": true,
+  "auto_save": true,
+  "allow_web": false,
+  "allow_crawl": false,
+  "crawl_depth": 1,
+  "crawl_pages": 25,
+  "learn_interval": 60,
+  "save_interval": 30
+}
