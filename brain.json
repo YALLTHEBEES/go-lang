@@ -3,23 +3,27 @@
     "inputs": {
         "hi": {
             "responses": [
-                "Fascinating. What leads you to mention that?"
+                "Fascinating. What leads you to mention that?",
+                "That's outside my current index records. Teach me what to say!"
             ],
             "weights": {
-                "Fascinating. What leads you to mention that?": 2
+                "Fascinating. What leads you to mention that?": 3,
+                "That's outside my current index records. Teach me what to say!": 1
             },
-            "seen": 2
+            "seen": 4
         },
         "fascinating what leads you to mention that ": {
             "responses": [
                 "hi",
-                "now you say high back"
+                "now you say high back",
+                "learn"
             ],
             "weights": {
-                "hi": 2,
-                "now you say high back": 2
+                "hi": 3,
+                "now you say high back": 2,
+                "learn": 1
             },
-            "seen": 4
+            "seen": 6
         },
         "now you say high back": {
             "responses": [
@@ -29,10 +33,32 @@
                 "Fascinating. What leads you to mention that?": 2
             },
             "seen": 2
+        },
+        "learn": {
+            "responses": [
+                "Fascinating. What leads you to mention that?",
+                "That's outside my current index records. Teach me what to say!"
+            ],
+            "weights": {
+                "Fascinating. What leads you to mention that?": 1,
+                "That's outside my current index records. Teach me what to say!": 1
+            },
+            "seen": 2
+        },
+        "that's outside my current index records teach me what to say ": {
+            "responses": [
+                "learn",
+                "hi"
+            ],
+            "weights": {
+                "learn": 1,
+                "hi": 1
+            },
+            "seen": 2
         }
     },
     "stats": {
-        "learned": 3,
+        "learned": 5,
         "conversations": 0
     }
 }
