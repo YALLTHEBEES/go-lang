@@ -1,6 +1,6 @@
 {
   "version": "4.0",
-  "next_id": 1622,
+  "next_id": 1623,
   "knowledge": [
     {
       "id": 1,
@@ -27522,9 +27522,9 @@
         "value."
       ],
       "created": 1789606741.0800178,
-      "times_used": 0,
+      "times_used": 1,
       "useful_votes": 0,
-      "bad_votes": 0
+      "bad_votes": 1
     },
     {
       "id": 1554,
@@ -28688,11 +28688,50 @@
       "times_used": 0,
       "useful_votes": 0,
       "bad_votes": 0
+    },
+    {
+      "id": 1622,
+      "kind": "note",
+      "text": "Question: what is python? Answer: A Python value with identity, type, and value.",
+      "source": "conversation_memory",
+      "topic": "memory",
+      "keywords": [
+        "question",
+        "python",
+        "answer",
+        "value",
+        "identity",
+        "type",
+        "value."
+      ],
+      "created": 1789606854.119274,
+      "times_used": 0,
+      "useful_votes": 0,
+      "bad_votes": 0
     }
   ],
-  "memories": [],
-  "conversations": [],
-  "question_history": [],
+  "memories": [
+    {
+      "text": "Question: what is python? Answer: A Python value with identity, type, and value.",
+      "category": "conversation",
+      "created": 1789606812.5880294
+    }
+  ],
+  "conversations": [
+    {
+      "question": "what is python?",
+      "answer": "A Python value with identity, type, and value.",
+      "created": 1789606812.5880167
+    }
+  ],
+  "question_history": [
+    {
+      "question": "what is python?",
+      "type": "definition",
+      "subject": "python",
+      "created": 1789606812.5880084
+    }
+  ],
   "file_hashes": {
     "knowledge/starter.txt": "bc3ad9cebd6979c6a85b2eccb65b112297ea947d2746968704aa4be7af2b040d",
     "knowledge/python.txt": "a9e2b0f6f9bcb74c9cebfd9f8e52fbd89c49363ae39ba8b90e55a40c896bcc81"

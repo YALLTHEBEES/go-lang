@@ -1,7 +1,12 @@
 {
+  "auto_learning": true,
+  "learning_interval_seconds": 60,
+  "allow_web": false,
+  "min_answer_score": 0.15,
+  "max_search_results": 12,
+  "remember_conversations": true,
   "auto_learn": true,
   "auto_save": true,
-  "allow_web": false,
   "allow_crawl": false,
   "crawl_depth": 1,
   "crawl_pages": 25,
