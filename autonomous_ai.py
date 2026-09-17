@@ -1,350 +1,743 @@
 """
 AUTONOMOUS LEARNING AI
-======================
+Version 4.0
 
-A single-file, Python-standard-library learning system.
+Python-only local learning system.
 
-What it does:
-- Learns from conversations.
-- Learns from local .txt/.md/.csv/.json files.
-- Can learn from URLs using Python's standard urllib library.
-- Can crawl additional links from a page when explicitly enabled.
-- Builds a vocabulary, n-gram language model, concepts, associations,
-  facts, examples, and question/answer memories.
-- Tracks confidence and source counts.
-- Revisits knowledge and consolidates related information.
-- Uses feedback to reinforce or weaken responses.
-- Saves everything to a JSON brain file.
-- Runs background "self-learning" cycles from its configured knowledge
-  sources while the program is open.
-- Does NOT call ChatGPT, OpenAI, or another external AI API.
-- Uses only Python's standard library.
-
-Important:
-This is a learning engine, not a human-level neural network.
-"Learning on its own" here means that after you give it trusted local
-files or URLs, it can continuously extract patterns, vocabulary,
-relationships, and knowledge from those sources without you manually
-teaching every individual response.
-
-Python version: 3.10+
+Main improvements:
+- Much better question understanding
+- Definition-aware retrieval
+- Topic detection
+- Synonym and alias handling
+- Phrase matching
+- Concept matching
+- Question-type matching
+- Definition prioritization
+- Better answer construction
+- Duplicate prevention
+- Persistent memory
+- Feedback learning
+- Local knowledge learning
+- Automatic background learning
+- Conversation memory
+- Search commands
+- No external packages required
 """
 
-# ============================================================
-# IMPORTS
-# ============================================================
+from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
 import os
-import random
 import re
 import threading
 import time
-import urllib.error
-import urllib.parse
-import urllib.request
 
-from collections import Counter, defaultdict, deque
-from dataclasses import dataclass
-from difflib import SequenceMatcher
-from html.parser import HTMLParser
+from collections import Counter, defaultdict
+from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 
 # ============================================================
 # CONFIGURATION
 # ============================================================
 
-BRAIN_FILE = "autonomous_brain.json"
-CONFIG_FILE = "autonomous_config.json"
-KNOWLEDGE_DIR = "knowledge"
+VERSION = "4.0"
 
-VERSION = "5.0"
+KNOWLEDGE_DIR = Path("knowledge")
+BRAIN_FILE = Path("autonomous_brain.json")
+CONFIG_FILE = Path("autonomous_config.json")
 
-MAX_INPUTS = 20000
-MAX_RESPONSES = 30
-MAX_FACTS = 30000
-MAX_WORDS = 50000
-MAX_CONCEPTS = 20000
-MAX_ASSOCIATIONS = 50000
-MAX_SOURCE_TEXT = 2_000_000
-
-MIN_MATCH_SCORE = 0.34
-GOOD_MATCH_SCORE = 0.58
-VERY_GOOD_MATCH_SCORE = 0.78
-
-MAX_CANDIDATES = 15
-MAX_SENTENCE_LENGTH = 600
-
-AUTO_LEARN_INTERVAL = 60
-AUTO_SAVE_INTERVAL = 30
-
-REQUEST_TIMEOUT = 12
-MAX_CRAWL_PAGES = 25
-MAX_CRAWL_DEPTH = 1
-
-USER_AGENT = "AutonomousLearningAI/5.0"
-
-STOP_WORDS = {
-    "a", "an", "the", "is", "are", "am", "to", "of", "in", "on",
-    "at", "for", "and", "or", "but", "i", "you", "he", "she", "it",
-    "we", "they", "me", "my", "your", "our", "their", "this", "that",
-    "these", "those", "with", "do", "does", "did", "be", "been",
-    "being", "was", "were", "as", "from", "by", "about", "what",
-    "how", "why", "when", "where", "who", "which", "can", "could",
-    "would", "should", "will", "shall", "may", "might", "must",
-    "have", "has", "had", "having", "not", "no", "yes", "if",
-    "then", "than", "so", "very", "just", "into", "over", "under",
-    "again", "also", "there", "here", "all", "any", "some", "more",
-    "most", "other", "such", "only", "too", "up", "down", "out",
-    "off", "once", "because", "while", "during", "before", "after",
-    "each", "both", "few", "many", "much", "own", "same", "new"
+SUPPORTED_EXTENSIONS = {
+    ".txt",
+    ".md",
+    ".csv",
+    ".json",
+    ".log",
 }
 
-SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
-WORD_RE = re.compile(r"[A-Za-z0-9_']+")
-URL_RE = re.compile(r"https?://[^\s<>\"]+")
+MAX_KNOWLEDGE_ITEMS = 100000
+MAX_MEMORY_ITEMS = 10000
+MAX_CONVERSATION_ITEMS = 10000
+MAX_WORDS = 200000
+MAX_ASSOCIATIONS = 200000
+
+DEFAULT_CONFIG = {
+    "auto_learning": True,
+    "learning_interval_seconds": 60,
+    "allow_web": False,
+    "min_answer_score": 0.15,
+    "max_search_results": 12,
+    "remember_conversations": True,
+}
 
 
 # ============================================================
-# UTILITY FUNCTIONS
+# WORD DATA
 # ============================================================
 
-def now() -> float:
-    return time.time()
+STOP_WORDS = {
+    "a", "an", "the", "is", "are", "am", "was", "were",
+    "be", "been", "being", "to", "of", "in", "on", "at",
+    "for", "from", "with", "by", "as", "and", "or",
+    "but", "if", "then", "than", "so", "because",
+    "this", "that", "these", "those", "it", "its",
+    "they", "them", "their", "there", "here",
+    "i", "me", "my", "mine", "we", "us", "our",
+    "you", "your", "yours", "he", "she", "his", "her",
+    "what", "which", "who", "whom", "whose",
+    "when", "where", "why", "how",
+    "do", "does", "did", "can", "could", "would",
+    "should", "will", "shall", "may", "might",
+    "about", "into", "over", "under", "up", "down",
+    "more", "most", "some", "any", "many", "much",
+    "very", "really", "just", "also", "too",
+    "tell", "give", "show", "explain", "describe",
+    "please", "help",
+}
 
 
-def clamp(value: float, low: float = 0.0, high: float = 1.0) -> float:
-    return max(low, min(high, value))
+QUESTION_WORDS = {
+    "what",
+    "why",
+    "how",
+    "when",
+    "where",
+    "who",
+    "which",
+    "can",
+    "could",
+    "does",
+    "do",
+    "did",
+    "is",
+    "are",
+    "difference",
+    "example",
+}
 
 
-def clean_text(text: str) -> str:
-    text = str(text or "").lower().strip()
-    text = re.sub(r"\s+", " ", text)
-    return text
+# Common aliases and related forms.
+ALIASES = {
+    "py": "python",
+    "python3": "python",
+    "python2": "python",
+    "functions": "function",
+    "methods": "method",
+    "variables": "variable",
+    "lists": "list",
+    "tuples": "tuple",
+    "sets": "set",
+    "dictionaries": "dictionary",
+    "dict": "dictionary",
+    "dicts": "dictionary",
+    "loops": "loop",
+    "classes": "class",
+    "objects": "object",
+    "modules": "module",
+    "packages": "package",
+    "libraries": "library",
+    "exceptions": "exception",
+    "errors": "error",
+    "strings": "string",
+    "integers": "integer",
+    "floats": "float",
+    "booleans": "boolean",
+    "numbers": "number",
+    "arguments": "argument",
+    "parameters": "parameter",
+    "programs": "program",
+    "programming": "programming",
+    "developers": "developer",
+    "coding": "code",
+    "codes": "code",
+    "applications": "application",
+    "apps": "application",
+    "computer": "computing",
+    "computers": "computing",
+}
 
+
+RELATED_TERMS = {
+    "python": {
+        "language",
+        "programming",
+        "code",
+        "software",
+        "program",
+        "syntax",
+        "developer",
+    },
+
+    "function": {
+        "parameter",
+        "argument",
+        "return",
+        "def",
+        "call",
+        "code",
+        "function",
+    },
+
+    "variable": {
+        "value",
+        "name",
+        "assignment",
+        "data",
+        "type",
+    },
+
+    "list": {
+        "collection",
+        "sequence",
+        "item",
+        "element",
+        "index",
+        "mutable",
+    },
+
+    "tuple": {
+        "collection",
+        "sequence",
+        "item",
+        "element",
+        "index",
+        "immutable",
+    },
+
+    "dictionary": {
+        "mapping",
+        "key",
+        "value",
+        "pair",
+        "lookup",
+    },
+
+    "loop": {
+        "iteration",
+        "repeat",
+        "for",
+        "while",
+        "condition",
+    },
+
+    "class": {
+        "object",
+        "instance",
+        "method",
+        "attribute",
+        "inheritance",
+    },
+
+    "object": {
+        "class",
+        "instance",
+        "attribute",
+        "method",
+    },
+
+    "exception": {
+        "error",
+        "try",
+        "except",
+        "raise",
+        "handling",
+    },
+
+    "string": {
+        "text",
+        "character",
+        "sequence",
+        "format",
+    },
+}
+
+
+# ============================================================
+# TEXT UTILITIES
+# ============================================================
 
 def normalize_text(text: str) -> str:
-    text = clean_text(text)
-    text = re.sub(r"[^\w\s']", " ", text)
+    """Normalize whitespace and invisible characters."""
+    if not text:
+        return ""
+
+    text = text.replace("\r\n", "\n")
+    text = text.replace("\r", "\n")
+    text = text.replace("\t", " ")
+
+    lines = []
+
+    for line in text.split("\n"):
+        line = re.sub(r"[ \t]+", " ", line)
+        lines.append(line.strip())
+
+    return "\n".join(lines).strip()
+
+
+def normalize_for_search(text: str) -> str:
+    """Normalize text specifically for searching."""
+    text = text.lower()
+
+    replacements = {
+        "’": "'",
+        "“": '"',
+        "”": '"',
+        "`": "",
+    }
+
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+
+    text = re.sub(r"[^a-z0-9+#.\-_' ]+", " ", text)
     text = re.sub(r"\s+", " ", text)
+
     return text.strip()
 
 
 def tokenize(text: str) -> List[str]:
-    return WORD_RE.findall(clean_text(text))
+    """Return lowercase searchable tokens."""
+    text = normalize_for_search(text)
+
+    return re.findall(
+        r"[a-zA-Z0-9_+#.-]+",
+        text.lower()
+    )
 
 
-def useful_words(text: str) -> List[str]:
+def canonical_word(word: str) -> str:
+    """Convert words to their canonical form."""
+    word = word.lower().strip()
+
+    if word in ALIASES:
+        return ALIASES[word]
+
+    # Basic plural handling.
+    if len(word) > 4:
+        if word.endswith("ies"):
+            return word[:-3] + "y"
+
+        if word.endswith("es") and not word.endswith("ses"):
+            return word[:-2]
+
+        if word.endswith("s") and not word.endswith("ss"):
+            return word[:-1]
+
+    return word
+
+
+def canonical_words(words: List[str]) -> List[str]:
+    return [canonical_word(word) for word in words]
+
+
+def content_words(text: str) -> List[str]:
+    words = canonical_words(tokenize(text))
+
     return [
-        word for word in tokenize(text)
-        if word not in STOP_WORDS and len(word) > 1
+        word
+        for word in words
+        if word not in STOP_WORDS
+        and len(word) > 1
     ]
 
 
-def word_set(text: str) -> Set[str]:
-    return set(useful_words(text))
-
-
-def word_counter(text: str) -> Counter:
-    return Counter(useful_words(text))
-
-
-def sentence_split(text: str) -> List[str]:
-    text = re.sub(r"\s+", " ", text.strip())
-    if not text:
-        return []
-    pieces = SENTENCE_SPLIT.split(text)
+def unique_preserve_order(items: List[str]) -> List[str]:
+    seen = set()
     result = []
-    for piece in pieces:
-        piece = piece.strip()
-        if piece:
-            result.append(piece[:MAX_SENTENCE_LENGTH])
+
+    for item in items:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+
     return result
 
 
-def safe_filename(value: str) -> str:
-    value = re.sub(r"[^A-Za-z0-9._-]+", "_", value)
-    return value[:100] or "source"
+def split_sentences(text: str) -> List[str]:
+    """Split text into reasonably useful sentences."""
+    text = normalize_text(text)
 
+    if not text:
+        return []
 
-def timestamp_string(value: Optional[float] = None) -> str:
-    value = value or now()
-    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(value))
-
-
-def weighted_average(old: float, new: float, weight: float) -> float:
-    weight = clamp(weight)
-    return old * (1.0 - weight) + new * weight
-
-
-def sigmoid(x: float) -> float:
-    try:
-        return 1.0 / (1.0 + math.exp(-x))
-    except OverflowError:
-        return 0.0 if x < 0 else 1.0
-
-
-# ============================================================
-# SIMILARITY
-# ============================================================
-
-def character_similarity(a: str, b: str) -> float:
-    return SequenceMatcher(
-        None,
-        normalize_text(a),
-        normalize_text(b)
-    ).ratio()
-
-
-def word_overlap(a: str, b: str) -> float:
-    wa = word_set(a)
-    wb = word_set(b)
-
-    if not wa or not wb:
-        return 0.0
-
-    return len(wa & wb) / len(wa | wb)
-
-
-def containment_similarity(a: str, b: str) -> float:
-    wa = word_set(a)
-    wb = word_set(b)
-
-    if not wa or not wb:
-        return 0.0
-
-    smaller = min(len(wa), len(wb))
-    if smaller == 0:
-        return 0.0
-
-    return len(wa & wb) / smaller
-
-
-def cosine_similarity(a: str, b: str) -> float:
-    ca = word_counter(a)
-    cb = word_counter(b)
-
-    if not ca or not cb:
-        return 0.0
-
-    vocabulary = set(ca) | set(cb)
-
-    dot = 0.0
-    ma = 0.0
-    mb = 0.0
-
-    for word in vocabulary:
-        x = ca.get(word, 0)
-        y = cb.get(word, 0)
-        dot += x * y
-        ma += x * x
-        mb += y * y
-
-    if ma == 0 or mb == 0:
-        return 0.0
-
-    return dot / (math.sqrt(ma) * math.sqrt(mb))
-
-
-def ngram_similarity(a: str, b: str, n: int = 2) -> float:
-    def grams(text: str) -> Set[str]:
-        words = tokenize(text)
-        if len(words) < n:
-            return set(words)
-        return {
-            " ".join(words[i:i+n])
-            for i in range(len(words) - n + 1)
-        }
-
-    ga = grams(a)
-    gb = grams(b)
-
-    if not ga or not gb:
-        return 0.0
-
-    return len(ga & gb) / len(ga | gb)
-
-
-def combined_similarity(a: str, b: str) -> float:
-    scores = [
-        character_similarity(a, b),
-        word_overlap(a, b),
-        cosine_similarity(a, b),
-        containment_similarity(a, b),
-        ngram_similarity(a, b),
-    ]
-
-    score = (
-        scores[0] * 0.18 +
-        scores[1] * 0.28 +
-        scores[2] * 0.24 +
-        scores[3] * 0.18 +
-        scores[4] * 0.12
+    parts = re.split(
+        r"(?<=[.!?])\s+|\n+",
+        text
     )
 
-    return clamp(score)
+    result = []
+
+    for part in parts:
+        part = part.strip()
+
+        if len(part) >= 8:
+            result.append(part)
+
+    return result
+
+
+def clean_answer(text: str) -> str:
+    """Clean a retrieved answer before displaying it."""
+    text = normalize_text(text)
+
+    # Remove common source labels.
+    text = re.sub(
+        r"^(FACT|DEFINITION|CONCEPT|RULE|EXAMPLE|ANSWER|TERM|RELATION|NOTE)\s*:\s*",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+    text = text.strip(" -–—:")
+
+    # Avoid giant answers.
+    if len(text) > 900:
+        text = text[:900].rsplit(" ", 1)[0] + "..."
+
+    return text
+
+
+def text_similarity(a: str, b: str) -> float:
+    """Simple Jaccard-style similarity."""
+    a_words = set(content_words(a))
+    b_words = set(content_words(b))
+
+    if not a_words or not b_words:
+        return 0.0
+
+    intersection = len(a_words & b_words)
+    union = len(a_words | b_words)
+
+    return intersection / max(1, union)
+
+
+def phrase_contains(text: str, phrase: str) -> bool:
+    text = normalize_for_search(text)
+    phrase = normalize_for_search(phrase)
+
+    if not phrase:
+        return False
+
+    return phrase in text
 
 
 # ============================================================
-# HTML EXTRACTION
-# ============================================================
-
-class TextExtractor(HTMLParser):
-    def __init__(self) -> None:
-        super().__init__()
-        self.parts: List[str] = []
-        self.links: List[str] = []
-        self.skip_depth = 0
-        self.skip_tags = {
-            "script", "style", "noscript", "svg", "canvas",
-            "nav", "footer", "header", "form"
-        }
-
-    def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]):
-        tag = tag.lower()
-
-        if tag in self.skip_tags:
-            self.skip_depth += 1
-
-        if tag == "a":
-            for key, value in attrs:
-                if key.lower() == "href" and value:
-                    self.links.append(value)
-
-    def handle_endtag(self, tag: str):
-        tag = tag.lower()
-        if tag in self.skip_tags and self.skip_depth:
-            self.skip_depth -= 1
-
-    def handle_data(self, data: str):
-        if self.skip_depth == 0:
-            data = re.sub(r"\s+", " ", data).strip()
-            if data:
-                self.parts.append(data)
-
-    def text(self) -> str:
-        return "\n".join(self.parts)
-
-
-# ============================================================
-# SOURCE RECORD
+# QUESTION UNDERSTANDING
 # ============================================================
 
 @dataclass
-class SourceRecord:
-    source_id: str
-    source_type: str
-    location: str
-    title: str
-    added: float
-    last_read: float
-    times_read: int
-    words_learned: int
-    active: bool = True
+class ParsedQuestion:
+    original: str
+    normalized: str
+    question_type: str
+    subject: str
+    subject_words: List[str]
+    important_words: List[str]
+    phrases: List[str]
+    intent_words: List[str]
+
+
+class QuestionAnalyzer:
+    """
+    Converts a natural-language question into structured intent.
+
+    This is the part that fixes the major problem where:
+        "What is Python?"
+    accidentally retrieves:
+        "Python supports functional programming techniques."
+    """
+
+    DEFINITION_PATTERNS = [
+        r"\bwhat is\b",
+        r"\bwhat are\b",
+        r"\bdefine\b",
+        r"\bdefinition of\b",
+        r"\bmeaning of\b",
+        r"\bwhat does .* mean\b",
+        r"\bwhat's\b",
+    ]
+
+    HOW_PATTERNS = [
+        r"\bhow does\b",
+        r"\bhow do\b",
+        r"\bhow can\b",
+        r"\bhow to\b",
+        r"\bhow is\b",
+        r"\bhow are\b",
+    ]
+
+    WHY_PATTERNS = [
+        r"\bwhy is\b",
+        r"\bwhy are\b",
+        r"\bwhy does\b",
+        r"\bwhy do\b",
+        r"\bwhy can\b",
+    ]
+
+    COMPARISON_PATTERNS = [
+        r"\bdifference between\b",
+        r"\bdifference of\b",
+        r"\bcompare\b",
+        r"\bversus\b",
+        r"\bvs\b",
+        r"\bwhich is different\b",
+    ]
+
+    EXAMPLE_PATTERNS = [
+        r"\bgive me an example\b",
+        r"\bexample of\b",
+        r"\bshow me an example\b",
+        r"\bexamples of\b",
+    ]
+
+    EXPLANATION_PATTERNS = [
+        r"\bexplain\b",
+        r"\bdescribe\b",
+        r"\btell me about\b",
+        r"\bhow does .* work\b",
+        r"\bwhat does .* do\b",
+    ]
+
+    WHEN_PATTERNS = [
+        r"\bwhen was\b",
+        r"\bwhen did\b",
+        r"\bwhen is\b",
+        r"\bwhen are\b",
+    ]
+
+    WHERE_PATTERNS = [
+        r"\bwhere is\b",
+        r"\bwhere are\b",
+        r"\bwhere does\b",
+        r"\bwhere can\b",
+    ]
+
+    WHO_PATTERNS = [
+        r"\bwho is\b",
+        r"\bwho was\b",
+        r"\bwho are\b",
+    ]
+
+    @classmethod
+    def detect_type(cls, question: str) -> str:
+        q = question.lower().strip()
+
+        for pattern in cls.COMPARISON_PATTERNS:
+            if re.search(pattern, q):
+                return "comparison"
+
+        for pattern in cls.EXAMPLE_PATTERNS:
+            if re.search(pattern, q):
+                return "example"
+
+        for pattern in cls.DEFINITION_PATTERNS:
+            if re.search(pattern, q):
+                return "definition"
+
+        for pattern in cls.HOW_PATTERNS:
+            if re.search(pattern, q):
+                return "how"
+
+        for pattern in cls.WHY_PATTERNS:
+            if re.search(pattern, q):
+                return "why"
+
+        for pattern in cls.EXPLANATION_PATTERNS:
+            if re.search(pattern, q):
+                return "explanation"
+
+        for pattern in cls.WHEN_PATTERNS:
+            if re.search(pattern, q):
+                return "when"
+
+        for pattern in cls.WHERE_PATTERNS:
+            if re.search(pattern, q):
+                return "where"
+
+        for pattern in cls.WHO_PATTERNS:
+            if re.search(pattern, q):
+                return "who"
+
+        return "general"
+
+    @classmethod
+    def extract_subject(cls, question: str) -> str:
+        q = question.strip().rstrip("?!. ")
+
+        patterns = [
+            r"what is (.+)",
+            r"what are (.+)",
+            r"define (.+)",
+            r"definition of (.+)",
+            r"meaning of (.+)",
+            r"what does (.+) mean",
+            r"explain (.+)",
+            r"describe (.+)",
+            r"tell me about (.+)",
+            r"how does (.+) work",
+            r"how do (.+) work",
+            r"why is (.+)",
+            r"why are (.+)",
+            r"what can (.+) be used for",
+            r"what does (.+) do",
+            r"give me an example of (.+)",
+            r"example of (.+)",
+        ]
+
+        for pattern in patterns:
+            match = re.search(
+                pattern,
+                q,
+                flags=re.IGNORECASE,
+            )
+
+            if match:
+                subject = match.group(1).strip()
+
+                subject = re.sub(
+                    r"\b(in python|with python)\b",
+                    "",
+                    subject,
+                    flags=re.IGNORECASE,
+                )
+
+                return subject.strip(" .?!")
+
+        # Fall back to content words.
+        words = content_words(q)
+
+        return " ".join(words[:8])
+
+    @classmethod
+    def build_phrases(cls, text: str) -> List[str]:
+        words = canonical_words(tokenize(text))
+
+        phrases = []
+
+        for size in (4, 3, 2):
+            for i in range(len(words) - size + 1):
+                chunk = words[i:i + size]
+
+                if all(word not in STOP_WORDS for word in chunk):
+                    phrases.append(" ".join(chunk))
+
+        return unique_preserve_order(phrases)
+
+    @classmethod
+    def analyze(cls, question: str) -> ParsedQuestion:
+        normalized = normalize_for_search(question)
+        question_type = cls.detect_type(question)
+
+        subject = cls.extract_subject(question)
+
+        subject_words = unique_preserve_order(
+            content_words(subject)
+        )
+
+        important = unique_preserve_order(
+            content_words(question)
+        )
+
+        phrases = cls.build_phrases(question)
+
+        intent_words = [
+            word
+            for word in tokenize(question)
+            if word.lower() in QUESTION_WORDS
+        ]
+
+        return ParsedQuestion(
+            original=question,
+            normalized=normalized,
+            question_type=question_type,
+            subject=subject,
+            subject_words=subject_words,
+            important_words=important,
+            phrases=phrases,
+            intent_words=intent_words,
+        )
+
+
+# ============================================================
+# KNOWLEDGE ITEM
+# ============================================================
+
+@dataclass
+class KnowledgeItem:
+    id: int
+    kind: str
+    text: str
+    source: str
+    topic: str
+    keywords: List[str]
+    created: float
+    times_used: int = 0
+    useful_votes: int = 0
+    bad_votes: int = 0
+
+    def feedback_score(self) -> float:
+        total = self.useful_votes + self.bad_votes
+
+        if total == 0:
+            return 0.0
+
+        return (
+            self.useful_votes - self.bad_votes
+        ) / total
+
+
+# ============================================================
+# CONFIG MANAGER
+# ============================================================
+
+class ConfigManager:
+
+    def __init__(self, path: Path):
+        self.path = path
+        self.data = dict(DEFAULT_CONFIG)
+        self.load()
+
+    def load(self):
+        if not self.path.exists():
+            self.save()
+            return
+
+        try:
+            with self.path.open(
+                "r",
+                encoding="utf-8",
+            ) as f:
+                loaded = json.load(f)
+
+            if isinstance(loaded, dict):
+                self.data.update(loaded)
+
+        except Exception:
+            self.data = dict(DEFAULT_CONFIG)
+
+    def save(self):
+        try:
+            with self.path.open(
+                "w",
+                encoding="utf-8",
+            ) as f:
+                json.dump(
+                    self.data,
+                    f,
+                    indent=2,
+                )
+        except Exception:
+            pass
+
+    def get(self, key: str, default=None):
+        return self.data.get(key, default)
+
+    def set(self, key: str, value: Any):
+        self.data[key] = value
+        self.save()
 
 
 # ============================================================
@@ -352,749 +745,435 @@ class SourceRecord:
 # ============================================================
 
 class Brain:
-    """
-    Persistent storage and learning core.
-    """
 
-    def __init__(self, path: str = BRAIN_FILE):
+    def __init__(self, path: Path):
         self.path = path
+
+        self.knowledge: List[KnowledgeItem] = []
+
+        self.word_counts: Counter = Counter()
+        self.topic_counts: Counter = Counter()
+        self.kind_counts: Counter = Counter()
+
+        self.associations: Dict[str, Counter] = defaultdict(Counter)
+
+        self.source_counts: Counter = Counter()
+
+        self.file_hashes: Dict[str, str] = {}
+
+        self.memories: List[Dict[str, Any]] = []
+        self.conversations: List[Dict[str, Any]] = []
+
+        self.question_history: List[Dict[str, Any]] = []
+
+        self.next_id = 1
+
         self.lock = threading.RLock()
-        self.data = self.default_data()
+
         self.load()
 
-    def default_data(self) -> Dict[str, Any]:
-        return {
-            "version": VERSION,
-            "created": now(),
-            "updated": now(),
+    # --------------------------------------------------------
+    # LOAD
+    # --------------------------------------------------------
 
-            "inputs": {},
-            "words": {},
-            "ngrams": {
-                "1": {},
-                "2": {},
-                "3": {}
-            },
-            "facts": {},
-            "concepts": {},
-            "associations": {},
-            "sources": {},
-            "sentences": {},
-            "documents": {},
-
-            "stats": {
-                "messages": 0,
-                "learn_events": 0,
-                "facts_learned": 0,
-                "sentences_learned": 0,
-                "words_learned": 0,
-                "sources_read": 0,
-                "responses": 0,
-                "correct": 0,
-                "incorrect": 0,
-                "self_cycles": 0,
-            },
-
-            "settings": {
-                "auto_learn": True,
-                "auto_save": True,
-                "allow_web": False,
-                "allow_crawl": False,
-                "crawl_depth": MAX_CRAWL_DEPTH,
-                "crawl_pages": MAX_CRAWL_PAGES,
-                "learn_interval": AUTO_LEARN_INTERVAL,
-                "save_interval": AUTO_SAVE_INTERVAL,
-            },
-
-            "queue": [],
-            "recent_topics": [],
-        }
-
-    def merge_defaults(self, loaded: Dict[str, Any]) -> None:
-        defaults = self.default_data()
-
-        for key, value in defaults.items():
-            if key not in loaded:
-                loaded[key] = value
-
-        for section in (
-            "stats",
-            "settings",
-            "ngrams",
-        ):
-            if section not in loaded:
-                loaded[section] = defaults[section]
-
-        for key, value in defaults["stats"].items():
-            loaded["stats"].setdefault(key, value)
-
-        for key, value in defaults["settings"].items():
-            loaded["settings"].setdefault(key, value)
-
-        for key in ("1", "2", "3"):
-            loaded["ngrams"].setdefault(key, {})
-
-    def load(self) -> None:
-        if not os.path.exists(self.path):
+    def load(self):
+        if not self.path.exists():
+            self.save()
             return
 
         try:
-            with open(self.path, "r", encoding="utf-8") as file:
-                loaded = json.load(file)
+            with self.path.open(
+                "r",
+                encoding="utf-8",
+            ) as f:
+                data = json.load(f)
 
-            if isinstance(loaded, dict):
-                self.merge_defaults(loaded)
-                self.data = loaded
+            self.next_id = int(
+                data.get("next_id", 1)
+            )
 
-        except (OSError, json.JSONDecodeError) as error:
-            print(f"[brain] Could not load brain: {error}")
+            raw_knowledge = data.get(
+                "knowledge",
+                [],
+            )
 
-    def save(self) -> None:
+            self.knowledge = []
+
+            for item in raw_knowledge:
+                try:
+                    self.knowledge.append(
+                        KnowledgeItem(
+                            id=int(item["id"]),
+                            kind=str(item.get("kind", "fact")),
+                            text=str(item.get("text", "")),
+                            source=str(item.get("source", "")),
+                            topic=str(item.get("topic", "")),
+                            keywords=list(
+                                item.get("keywords", [])
+                            ),
+                            created=float(
+                                item.get(
+                                    "created",
+                                    time.time(),
+                                )
+                            ),
+                            times_used=int(
+                                item.get(
+                                    "times_used",
+                                    0,
+                                )
+                            ),
+                            useful_votes=int(
+                                item.get(
+                                    "useful_votes",
+                                    0,
+                                )
+                            ),
+                            bad_votes=int(
+                                item.get(
+                                    "bad_votes",
+                                    0,
+                                )
+                            ),
+                        )
+                    )
+                except Exception:
+                    continue
+
+            self.memories = list(
+                data.get("memories", [])
+            )
+
+            self.conversations = list(
+                data.get("conversations", [])
+            )
+
+            self.question_history = list(
+                data.get("question_history", [])
+            )
+
+            self.file_hashes = dict(
+                data.get("file_hashes", {})
+            )
+
+            self.rebuild_indexes()
+
+        except Exception as exc:
+            print(
+                f"Warning: could not load brain: {exc}"
+            )
+
+    # --------------------------------------------------------
+    # SAVE
+    # --------------------------------------------------------
+
+    def save(self):
         with self.lock:
-            self.data["updated"] = now()
-            temp = self.path + ".tmp"
+            data = {
+                "version": VERSION,
+                "next_id": self.next_id,
+                "knowledge": [
+                    asdict(item)
+                    for item in self.knowledge[
+                        -MAX_KNOWLEDGE_ITEMS:
+                    ]
+                ],
+                "memories": self.memories[
+                    -MAX_MEMORY_ITEMS:
+                ],
+                "conversations": self.conversations[
+                    -MAX_CONVERSATION_ITEMS:
+                ],
+                "question_history": self.question_history[
+                    -MAX_CONVERSATION_ITEMS:
+                ],
+                "file_hashes": self.file_hashes,
+            }
+
+            temp_path = self.path.with_suffix(
+                ".tmp"
+            )
 
             try:
-                with open(temp, "w", encoding="utf-8") as file:
+                with temp_path.open(
+                    "w",
+                    encoding="utf-8",
+                ) as f:
                     json.dump(
-                        self.data,
-                        file,
+                        data,
+                        f,
                         indent=2,
-                        ensure_ascii=False
+                        ensure_ascii=False,
                     )
 
-                os.replace(temp, self.path)
+                temp_path.replace(self.path)
 
-            except OSError as error:
-                print(f"[brain] Save failed: {error}")
-
-    # --------------------------------------------------------
-    # Generic counters
-    # --------------------------------------------------------
-
-    def increment(self, stat: str, amount: int = 1) -> None:
-        self.data["stats"][stat] = (
-            self.data["stats"].get(stat, 0) + amount
-        )
+            except Exception:
+                try:
+                    if temp_path.exists():
+                        temp_path.unlink()
+                except Exception:
+                    pass
 
     # --------------------------------------------------------
-    # Word learning
+    # INDEXES
     # --------------------------------------------------------
 
-    def learn_words(self, text: str, source_id: str = "") -> List[str]:
-        words = tokenize(text)
-        learned = []
+    def rebuild_indexes(self):
+        self.word_counts = Counter()
+        self.topic_counts = Counter()
+        self.kind_counts = Counter()
+        self.associations = defaultdict(Counter)
+        self.source_counts = Counter()
+
+        for item in self.knowledge:
+
+            words = canonical_words(
+                tokenize(item.text)
+            )
+
+            for word in words:
+                if word not in STOP_WORDS:
+                    self.word_counts[word] += 1
+
+            if item.topic:
+                self.topic_counts[
+                    canonical_word(item.topic)
+                ] += 1
+
+            self.kind_counts[item.kind] += 1
+
+            self.source_counts[item.source] += 1
+
+            unique_words = unique_preserve_order(
+                [
+                    word
+                    for word in words
+                    if word not in STOP_WORDS
+                ]
+            )
+
+            # Limit association growth.
+            unique_words = unique_words[:100]
+
+            for a in unique_words:
+                for b in unique_words:
+                    if a != b:
+                        self.associations[a][b] += 1
+
+        # Trim associations.
+        for word in list(self.associations.keys()):
+            self.associations[word] = Counter(
+                dict(
+                    self.associations[word].most_common(50)
+                )
+            )
+
+    # --------------------------------------------------------
+    # KNOWLEDGE
+    # --------------------------------------------------------
+
+    def add_knowledge(
+        self,
+        kind: str,
+        text: str,
+        source: str = "",
+        topic: str = "",
+        keywords: Optional[List[str]] = None,
+    ) -> Optional[KnowledgeItem]:
+
+        text = clean_answer(text)
+
+        if len(text) < 5:
+            return None
+
+        normalized = normalize_for_search(text)
 
         with self.lock:
-            for word in words:
-                if len(word) < 2:
-                    continue
 
-                record = self.data["words"].setdefault(
-                    word,
-                    {
-                        "count": 0,
-                        "first_seen": now(),
-                        "last_seen": now(),
-                        "sources": {},
-                    }
-                )
+            # Duplicate check.
+            for existing in self.knowledge[-5000:]:
+                if (
+                    normalize_for_search(
+                        existing.text
+                    ) == normalized
+                ):
+                    return None
 
-                record["count"] += 1
-                record["last_seen"] = now()
-
-                if source_id:
-                    record["sources"][source_id] = (
-                        record["sources"].get(source_id, 0) + 1
+            item = KnowledgeItem(
+                id=self.next_id,
+                kind=kind.lower().strip(),
+                text=text,
+                source=source,
+                topic=topic,
+                keywords=unique_preserve_order(
+                    canonical_words(
+                        keywords or content_words(text)
                     )
+                )[:100],
+                created=time.time(),
+            )
 
-                learned.append(word)
+            self.next_id += 1
 
-            self.increment("words_learned", len(set(learned)))
+            self.knowledge.append(item)
 
-            self.prune_words()
+            if len(self.knowledge) > MAX_KNOWLEDGE_ITEMS:
+                self.knowledge = self.knowledge[
+                    -MAX_KNOWLEDGE_ITEMS:
+                ]
 
-        return learned
+            self._index_item(item)
 
-    def prune_words(self) -> None:
-        if len(self.data["words"]) <= MAX_WORDS:
-            return
+            return item
 
-        items = sorted(
-            self.data["words"].items(),
-            key=lambda item: item[1].get("count", 0),
-            reverse=True
+    def _index_item(self, item: KnowledgeItem):
+        words = canonical_words(
+            tokenize(item.text)
         )
 
-        self.data["words"] = dict(items[:MAX_WORDS])
+        useful_words = [
+            word
+            for word in words
+            if word not in STOP_WORDS
+        ]
+
+        for word in useful_words:
+            self.word_counts[word] += 1
+
+        if item.topic:
+            self.topic_counts[
+                canonical_word(item.topic)
+            ] += 1
+
+        self.kind_counts[item.kind] += 1
+        self.source_counts[item.source] += 1
+
+        unique_words = unique_preserve_order(
+            useful_words
+        )[:100]
+
+        for a in unique_words:
+            for b in unique_words:
+                if a != b:
+                    self.associations[a][b] += 1
 
     # --------------------------------------------------------
-    # N-gram learning
+    # MEMORY
     # --------------------------------------------------------
 
-    def learn_ngrams(self, text: str) -> None:
-        words = tokenize(text)
+    def add_memory(
+        self,
+        text: str,
+        category: str = "general",
+    ):
+        text = clean_answer(text)
 
-        if not words:
+        if len(text) < 5:
             return
 
         with self.lock:
-            for word in words:
-                bucket = self.data["ngrams"]["1"]
-                bucket[word] = bucket.get(word, 0) + 1
+            self.memories.append({
+                "text": text,
+                "category": category,
+                "created": time.time(),
+            })
 
-            for n in (2, 3):
-                if len(words) < n:
-                    continue
+            self.memories = self.memories[
+                -MAX_MEMORY_ITEMS:
+            ]
 
-                bucket = self.data["ngrams"][str(n)]
-
-                for index in range(len(words) - n + 1):
-                    gram = " ".join(words[index:index+n])
-                    bucket[gram] = bucket.get(gram, 0) + 1
-
-    # --------------------------------------------------------
-    # Input/response memory
-    # --------------------------------------------------------
-
-    def remember_input(
+    def add_conversation(
         self,
-        user_input: str,
-        response: str,
-        source_id: str = "conversation"
-    ) -> None:
-
-        key = normalize_text(user_input)
-        response = response.strip()
-
-        if not key or not response:
-            return
-
+        question: str,
+        answer: str,
+    ):
         with self.lock:
-            record = self.data["inputs"].setdefault(
-                key,
-                {
-                    "responses": {},
-                    "seen": 0,
-                    "created": now(),
-                    "last_seen": now(),
-                    "confidence": 0.5,
-                    "sources": {},
-                }
-            )
+            self.conversations.append({
+                "question": question,
+                "answer": answer,
+                "created": time.time(),
+            })
 
-            record["seen"] += 1
-            record["last_seen"] = now()
+            self.conversations = self.conversations[
+                -MAX_CONVERSATION_ITEMS:
+            ]
 
-            response_record = record["responses"].setdefault(
-                response,
-                {
-                    "count": 0,
-                    "correct": 0,
-                    "incorrect": 0,
-                    "score": 0.5,
-                }
-            )
-
-            response_record["count"] += 1
-
-            if source_id:
-                record["sources"][source_id] = (
-                    record["sources"].get(source_id, 0) + 1
-                )
-
-            self.increment("learn_events")
-            self.prune_inputs()
-
-    def prune_inputs(self) -> None:
-        if len(self.data["inputs"]) <= MAX_INPUTS:
-            return
-
-        items = sorted(
-            self.data["inputs"].items(),
-            key=lambda item: (
-                item[1].get("seen", 0),
-                item[1].get("last_seen", 0)
-            ),
-            reverse=True
-        )
-
-        self.data["inputs"] = dict(items[:MAX_INPUTS])
-
-    # --------------------------------------------------------
-    # Sentences
-    # --------------------------------------------------------
-
-    def learn_sentence(
+    def record_question(
         self,
-        sentence: str,
-        source_id: str = ""
-    ) -> None:
-
-        sentence = re.sub(r"\s+", " ", sentence).strip()
-
-        if len(sentence) < 8:
-            return
-
-        key = normalize_text(sentence)
-
-        with self.lock:
-            record = self.data["sentences"].setdefault(
-                key,
-                {
-                    "text": sentence,
-                    "count": 0,
-                    "sources": {},
-                    "first_seen": now(),
-                    "last_seen": now(),
-                    "confidence": 0.4,
-                }
-            )
-
-            record["count"] += 1
-            record["last_seen"] = now()
-
-            if source_id:
-                record["sources"][source_id] = (
-                    record["sources"].get(source_id, 0) + 1
-                )
-
-            self.increment("sentences_learned")
-
-            if len(self.data["sentences"]) > MAX_FACTS:
-                self.prune_sentences()
-
-    def prune_sentences(self) -> None:
-        items = sorted(
-            self.data["sentences"].items(),
-            key=lambda item: (
-                item[1].get("count", 0),
-                len(item[1].get("sources", {}))
-            ),
-            reverse=True
-        )
-
-        self.data["sentences"] = dict(items[:MAX_FACTS])
-
-    # --------------------------------------------------------
-    # Facts
-    # --------------------------------------------------------
-
-    def add_fact(
-        self,
+        question: str,
+        question_type: str,
         subject: str,
-        relation: str,
-        value: str,
-        source_id: str,
-        confidence: float = 0.5
-    ) -> str:
+    ):
+        self.question_history.append({
+            "question": question,
+            "type": question_type,
+            "subject": subject,
+            "created": time.time(),
+        })
 
-        subject = normalize_text(subject)
-        relation = normalize_text(relation)
-        value = value.strip()
-
-        if not subject or not relation or not value:
-            return ""
-
-        fact_id = f"{subject}|{relation}|{normalize_text(value)}"
-
-        with self.lock:
-            record = self.data["facts"].setdefault(
-                fact_id,
-                {
-                    "subject": subject,
-                    "relation": relation,
-                    "value": value,
-                    "confidence": clamp(confidence),
-                    "times_seen": 0,
-                    "sources": {},
-                    "created": now(),
-                    "last_seen": now(),
-                }
-            )
-
-            record["times_seen"] += 1
-            record["last_seen"] = now()
-
-            old_conf = record.get("confidence", 0.5)
-
-            source_count = len(record.get("sources", {}))
-
-            record["confidence"] = weighted_average(
-                old_conf,
-                clamp(confidence),
-                0.10
-            )
-
-            if source_id:
-                record["sources"][source_id] = (
-                    record["sources"].get(source_id, 0) + 1
-                )
-
-            # Independent sources increase confidence.
-            if len(record["sources"]) > source_count:
-                record["confidence"] = clamp(
-                    record["confidence"] + 0.04
-                )
-
-            self.increment("facts_learned")
-
-            self.prune_facts()
-
-        return fact_id
-
-    def prune_facts(self) -> None:
-        if len(self.data["facts"]) <= MAX_FACTS:
-            return
-
-        items = sorted(
-            self.data["facts"].items(),
-            key=lambda item: (
-                item[1].get("confidence", 0),
-                item[1].get("times_seen", 0),
-                len(item[1].get("sources", {}))
-            ),
-            reverse=True
-        )
-
-        self.data["facts"] = dict(items[:MAX_FACTS])
+        self.question_history = self.question_history[
+            -MAX_CONVERSATION_ITEMS:
+        ]
 
     # --------------------------------------------------------
-    # Concepts
+    # FEEDBACK
     # --------------------------------------------------------
 
-    def add_concept(
+    def vote(
         self,
-        concept: str,
-        words: Iterable[str],
-        source_id: str = ""
-    ) -> None:
+        item_id: int,
+        useful: bool,
+    ) -> bool:
 
-        concept = normalize_text(concept)
+        for item in self.knowledge:
 
-        if not concept:
-            return
+            if item.id == item_id:
 
-        with self.lock:
-            record = self.data["concepts"].setdefault(
-                concept,
-                {
-                    "words": {},
-                    "count": 0,
-                    "sources": {},
-                    "confidence": 0.3,
-                    "created": now(),
-                    "last_seen": now(),
-                }
-            )
+                if useful:
+                    item.useful_votes += 1
+                else:
+                    item.bad_votes += 1
 
-            record["count"] += 1
-            record["last_seen"] = now()
+                self.save()
 
-            for word in words:
-                word = normalize_text(word)
-                if word:
-                    record["words"][word] = (
-                        record["words"].get(word, 0) + 1
-                    )
+                return True
 
-            if source_id:
-                record["sources"][source_id] = (
-                    record["sources"].get(source_id, 0) + 1
-                )
-
-            record["confidence"] = clamp(
-                record["confidence"] + 0.01
-            )
-
-            self.prune_concepts()
-
-    def prune_concepts(self) -> None:
-        if len(self.data["concepts"]) <= MAX_CONCEPTS:
-            return
-
-        items = sorted(
-            self.data["concepts"].items(),
-            key=lambda item: item[1].get("count", 0),
-            reverse=True
-        )
-
-        self.data["concepts"] = dict(items[:MAX_CONCEPTS])
+        return False
 
     # --------------------------------------------------------
-    # Associations
+    # FILE HASHES
     # --------------------------------------------------------
 
-    def associate(
+    def get_file_hash(
         self,
-        left: str,
-        right: str,
-        strength: float = 1.0,
-        source_id: str = ""
-    ) -> None:
+        path: str,
+    ) -> Optional[str]:
 
-        left = normalize_text(left)
-        right = normalize_text(right)
+        return self.file_hashes.get(path)
 
-        if not left or not right or left == right:
-            return
-
-        if len(left) > 80 or len(right) > 80:
-            return
-
-        key = f"{left}||{right}"
-
-        with self.lock:
-            record = self.data["associations"].setdefault(
-                key,
-                {
-                    "left": left,
-                    "right": right,
-                    "strength": 0.0,
-                    "count": 0,
-                    "sources": {},
-                    "last_seen": now(),
-                }
-            )
-
-            record["strength"] += strength
-            record["count"] += 1
-            record["last_seen"] = now()
-
-            if source_id:
-                record["sources"][source_id] = (
-                    record["sources"].get(source_id, 0) + 1
-                )
-
-            self.prune_associations()
-
-    def prune_associations(self) -> None:
-        if len(self.data["associations"]) <= MAX_ASSOCIATIONS:
-            return
-
-        items = sorted(
-            self.data["associations"].items(),
-            key=lambda item: item[1].get("strength", 0),
-            reverse=True
-        )
-
-        self.data["associations"] = dict(items[:MAX_ASSOCIATIONS])
-
-    # --------------------------------------------------------
-    # Source records
-    # --------------------------------------------------------
-
-    def add_source(
+    def set_file_hash(
         self,
-        source_id: str,
-        source_type: str,
-        location: str,
-        title: str = ""
-    ) -> None:
-
-        with self.lock:
-            self.data["sources"].setdefault(
-                source_id,
-                {
-                    "source_id": source_id,
-                    "source_type": source_type,
-                    "location": location,
-                    "title": title or location,
-                    "added": now(),
-                    "last_read": 0,
-                    "times_read": 0,
-                    "words_learned": 0,
-                    "active": True,
-                }
-            )
-
-    def mark_source_read(
-        self,
-        source_id: str,
-        words_learned: int = 0
-    ) -> None:
-
-        with self.lock:
-            if source_id not in self.data["sources"]:
-                return
-
-            source = self.data["sources"][source_id]
-
-            source["last_read"] = now()
-            source["times_read"] += 1
-            source["words_learned"] += words_learned
-
-            self.increment("sources_read")
+        path: str,
+        file_hash: str,
+    ):
+        self.file_hashes[path] = file_hash
 
     # --------------------------------------------------------
-    # Feedback
+    # STATISTICS
     # --------------------------------------------------------
 
-    def reinforce(
-        self,
-        user_input: str,
-        response: str,
-        correct: bool
-    ) -> None:
+    def stats(self) -> Dict[str, Any]:
 
-        key = normalize_text(user_input)
-
-        with self.lock:
-            record = self.data["inputs"].get(key)
-
-            if not record:
-                return
-
-            response_record = record["responses"].get(response)
-
-            if not response_record:
-                return
-
-            if correct:
-                response_record["correct"] += 1
-                self.increment("correct")
-
-                response_record["score"] = clamp(
-                    response_record["score"] + 0.10
-                )
-
-                record["confidence"] = clamp(
-                    record["confidence"] + 0.04
-                )
-
-            else:
-                response_record["incorrect"] += 1
-                self.increment("incorrect")
-
-                response_record["score"] = clamp(
-                    response_record["score"] - 0.15
-                )
-
-                record["confidence"] = clamp(
-                    record["confidence"] - 0.06
-                )
-
-    # --------------------------------------------------------
-    # Search
-    # --------------------------------------------------------
-
-    def search_inputs(
-        self,
-        query: str,
-        limit: int = MAX_CANDIDATES
-    ) -> List[Dict[str, Any]]:
-
-        results = []
-
-        for stored, memory in self.data["inputs"].items():
-            score = combined_similarity(query, stored)
-
-            if score >= MIN_MATCH_SCORE:
-                results.append({
-                    "input": stored,
-                    "score": score,
-                    "memory": memory,
-                })
-
-        results.sort(
-            key=lambda x: x["score"],
-            reverse=True
-        )
-
-        return results[:limit]
-
-    def search_facts(
-        self,
-        query: str,
-        limit: int = 10
-    ) -> List[Dict[str, Any]]:
-
-        qwords = word_set(query)
-        results = []
-
-        for fact in self.data["facts"].values():
-            text = (
-                fact["subject"] + " " +
-                fact["relation"] + " " +
-                fact["value"]
-            )
-
-            score = word_overlap(query, text)
-
-            if qwords & word_set(text):
-                score += fact.get("confidence", 0) * 0.25
-
-            if score > 0:
-                results.append({
-                    "score": score,
-                    "fact": fact,
-                })
-
-        results.sort(
-            key=lambda x: x["score"],
-            reverse=True
-        )
-
-        return results[:limit]
-
-    def search_sentences(
-        self,
-        query: str,
-        limit: int = 8
-    ) -> List[Dict[str, Any]]:
-
-        results = []
-
-        for record in self.data["sentences"].values():
-            score = combined_similarity(
-                query,
-                record["text"]
-            )
-
-            if score >= 0.30:
-                results.append({
-                    "score": score,
-                    "record": record,
-                })
-
-        results.sort(
-            key=lambda x: x["score"],
-            reverse=True
-        )
-
-        return results[:limit]
-
-    # --------------------------------------------------------
-    # Statistics
-    # --------------------------------------------------------
-
-    def statistics(self) -> Dict[str, Any]:
-        stats = dict(self.data["stats"])
-
-        stats["inputs"] = len(self.data["inputs"])
-        stats["words"] = len(self.data["words"])
-        stats["facts"] = len(self.data["facts"])
-        stats["concepts"] = len(self.data["concepts"])
-        stats["associations"] = len(
-            self.data["associations"]
-        )
-        stats["sentences"] = len(
-            self.data["sentences"]
-        )
-        stats["sources"] = len(self.data["sources"])
-
-        total_feedback = (
-            stats.get("correct", 0) +
-            stats.get("incorrect", 0)
-        )
-
-        stats["accuracy"] = (
-            stats.get("correct", 0) /
-            total_feedback * 100
-            if total_feedback else 0
-        )
-
-        return stats
+        return {
+            "knowledge": len(self.knowledge),
+            "words": len(self.word_counts),
+            "topics": len(self.topic_counts),
+            "memories": len(self.memories),
+            "conversations": len(self.conversations),
+            "questions": len(self.question_history),
+            "sources": len(self.source_counts),
+        }
 
 
 # ============================================================
@@ -1103,226 +1182,197 @@ class Brain:
 
 class KnowledgeExtractor:
     """
-    Turns documents into structured learning events.
+    Turns raw files into structured knowledge.
+
+    It recognizes labels such as:
+
+    FACT:
+    DEFINITION:
+    CONCEPT:
+    RULE:
+    EXAMPLE:
+    QUESTION:
+    ANSWER:
+    TERM:
+    RELATION:
+    PROJECT:
+    NOTE:
     """
 
-    SUBJECT_PATTERNS = [
-        re.compile(
-            r"^(.{2,80}?)\s+is\s+(.{2,400})[.!?]$",
-            re.I
-        ),
-        re.compile(
-            r"^(.{2,80}?)\s+are\s+(.{2,400})[.!?]$",
-            re.I
-        ),
-        re.compile(
-            r"^(.{2,80}?)\s+was\s+(.{2,400})[.!?]$",
-            re.I
-        ),
-        re.compile(
-            r"^(.{2,80}?)\s+has\s+(.{2,400})[.!?]$",
-            re.I
-        ),
-        re.compile(
-            r"^(.{2,80}?)\s+means\s+(.{2,400})[.!?]$",
-            re.I
-        ),
-        re.compile(
-            r"^(.{2,80}?)\s+refers to\s+(.{2,400})[.!?]$",
-            re.I
-        ),
-    ]
-
-    RELATIONS = {
-        "is": "definition",
-        "are": "definition",
-        "was": "description",
-        "has": "property",
-        "means": "meaning",
-        "refers to": "meaning",
+    LABELS = {
+        "FACT": "fact",
+        "DEFINITION": "definition",
+        "CONCEPT": "concept",
+        "RULE": "rule",
+        "EXAMPLE": "example",
+        "QUESTION": "question",
+        "ANSWER": "answer",
+        "TERM": "term",
+        "RELATION": "relation",
+        "PROJECT": "project",
+        "NOTE": "note",
     }
 
-    def __init__(self, brain: Brain):
-        self.brain = brain
+    DEFINITION_WORDS = {
+        "is",
+        "means",
+        "refers",
+        "defined",
+        "definition",
+        "used",
+    }
 
-    def extract(
-        self,
+    @classmethod
+    def infer_topic(
+        cls,
         text: str,
-        source_id: str
-    ) -> Dict[str, int]:
+        current_topic: str = "",
+    ) -> str:
 
-        text = text[:MAX_SOURCE_TEXT]
+        if current_topic:
+            return current_topic
 
-        sentences = sentence_split(text)
+        words = content_words(text)
 
-        counts = {
-            "sentences": 0,
-            "facts": 0,
-            "words": 0,
-            "associations": 0,
-            "concepts": 0,
-        }
+        if not words:
+            return ""
 
-        for sentence in sentences:
-            if len(sentence) < 8:
+        # The first meaningful word is often the subject
+        # in educational knowledge files.
+        return words[0]
+
+    @classmethod
+    def extract(
+        cls,
+        text: str,
+        source: str,
+    ) -> List[Dict[str, Any]]:
+
+        text = normalize_text(text)
+
+        if not text:
+            return []
+
+        results = []
+
+        current_topic = ""
+
+        lines = text.split("\n")
+
+        for line in lines:
+
+            stripped = line.strip()
+
+            if not stripped:
                 continue
 
-            self.brain.learn_sentence(
-                sentence,
-                source_id
+            # Markdown heading.
+            heading = re.match(
+                r"^#{1,6}\s+(.+)$",
+                stripped,
             )
 
-            self.brain.learn_words(
-                sentence,
-                source_id
-            )
+            if heading:
+                current_topic = clean_answer(
+                    heading.group(1)
+                )
 
-            self.brain.learn_ngrams(sentence)
-
-            counts["sentences"] += 1
-
-            facts = self.extract_facts(
-                sentence,
-                source_id
-            )
-
-            counts["facts"] += facts
-
-            associations = self.extract_associations(
-                sentence,
-                source_id
-            )
-
-            counts["associations"] += associations
-
-            concepts = self.extract_concepts(
-                sentence,
-                source_id
-            )
-
-            counts["concepts"] += concepts
-
-        counts["words"] = len(tokenize(text))
-
-        return counts
-
-    def extract_facts(
-        self,
-        sentence: str,
-        source_id: str
-    ) -> int:
-
-        sentence = sentence.strip()
-
-        for pattern in self.SUBJECT_PATTERNS:
-            match = pattern.match(sentence)
-
-            if not match:
                 continue
 
-            subject = match.group(1).strip()
-            value = match.group(2).strip()
-
-            relation_word = "is"
-
-            lower = sentence.lower()
-
-            if " are " in lower:
-                relation_word = "are"
-            elif " was " in lower:
-                relation_word = "was"
-            elif " has " in lower:
-                relation_word = "has"
-            elif " means " in lower:
-                relation_word = "means"
-            elif " refers to " in lower:
-                relation_word = "refers to"
-
-            relation = self.RELATIONS.get(
-                relation_word,
-                "description"
+            # Structured label.
+            match = re.match(
+                r"^\s*(FACT|DEFINITION|CONCEPT|RULE|EXAMPLE|QUESTION|ANSWER|TERM|RELATION|PROJECT|NOTE)\s*:\s*(.+)$",
+                stripped,
+                flags=re.IGNORECASE,
             )
 
-            if len(subject.split()) <= 12:
-                self.brain.add_fact(
-                    subject,
-                    relation,
-                    value,
-                    source_id,
-                    confidence=0.50
+            if match:
+
+                label = match.group(1).upper()
+                content = match.group(2).strip()
+
+                kind = cls.LABELS.get(
+                    label,
+                    "fact",
                 )
 
-                return 1
-
-        return 0
-
-    def extract_associations(
-        self,
-        sentence: str,
-        source_id: str
-    ) -> int:
-
-        words = useful_words(sentence)
-
-        if len(words) < 2:
-            return 0
-
-        unique = list(dict.fromkeys(words))
-
-        # Nearby words become associations.
-        count = 0
-
-        for index, left in enumerate(unique):
-            for right in unique[index + 1:index + 5]:
-                self.brain.associate(
-                    left,
-                    right,
-                    strength=1.0,
-                    source_id=source_id
+                topic = cls.infer_topic(
+                    content,
+                    current_topic,
                 )
-                count += 1
 
-        return count
+                results.append({
+                    "kind": kind,
+                    "text": content,
+                    "topic": topic,
+                    "keywords": content_words(
+                        content
+                    ),
+                })
 
-    def extract_concepts(
-        self,
-        sentence: str,
-        source_id: str
-    ) -> int:
+                continue
 
-        words = useful_words(sentence)
-
-        if len(words) < 3:
-            return 0
-
-        # High-frequency useful words act as emerging concepts.
-        counts = word_counter(sentence)
-
-        candidates = [
-            word for word, count in counts.items()
-            if len(word) >= 4 and count >= 1
-        ]
-
-        if not candidates:
-            return 0
-
-        created = 0
-
-        for concept in candidates[:5]:
-            related = [
-                word for word in words
-                if word != concept
-            ][:12]
-
-            self.brain.add_concept(
-                concept,
-                related,
-                source_id
+            # Term = definition format.
+            term_match = re.match(
+                r"^([A-Za-z][A-Za-z0-9_+#.-]{1,50})\s*[:=]\s*(.{10,})$",
+                stripped,
             )
 
-            created += 1
+            if term_match:
 
-        return created
+                term = term_match.group(1)
+                definition = term_match.group(2)
+
+                results.append({
+                    "kind": "definition",
+                    "text": (
+                        f"{term} is {definition}"
+                    ),
+                    "topic": term,
+                    "keywords": content_words(
+                        f"{term} {definition}"
+                    ),
+                })
+
+                continue
+
+            # Normal sentence.
+            sentences = split_sentences(
+                stripped
+            )
+
+            for sentence in sentences:
+
+                words = content_words(
+                    sentence
+                )
+
+                if len(words) < 3:
+                    continue
+
+                lowered = sentence.lower()
+
+                kind = "fact"
+
+                if (
+                    " is " in lowered
+                    or " are " in lowered
+                    or " means " in lowered
+                    or " refers to " in lowered
+                ):
+                    kind = "definition"
+
+                results.append({
+                    "kind": kind,
+                    "text": sentence,
+                    "topic": cls.infer_topic(
+                        sentence,
+                        current_topic,
+                    ),
+                    "keywords": words,
+                })
+
+        return results
 
 
 # ============================================================
@@ -1330,759 +1380,1175 @@ class KnowledgeExtractor:
 # ============================================================
 
 class FileLearner:
-    """
-    Learns from local documents.
-    """
 
-    SUPPORTED = {
-        ".txt",
-        ".md",
-        ".csv",
-        ".json",
-        ".log",
-    }
-
-    def __init__(
-        self,
-        brain: Brain,
-        extractor: KnowledgeExtractor
-    ):
+    def __init__(self, brain: Brain):
         self.brain = brain
-        self.extractor = extractor
 
-    def read_file(self, path: Path) -> str:
+    @staticmethod
+    def hash_file(path: Path) -> str:
+
+        hasher = hashlib.sha256()
+
         try:
-            return path.read_text(
-                encoding="utf-8",
-                errors="ignore"
-            )[:MAX_SOURCE_TEXT]
-        except OSError:
+            with path.open(
+                "rb"
+            ) as f:
+
+                while True:
+                    chunk = f.read(65536)
+
+                    if not chunk:
+                        break
+
+                    hasher.update(chunk)
+
+        except Exception:
             return ""
 
-    def csv_to_text(self, path: Path) -> str:
-        rows = []
+        return hasher.hexdigest()
+
+    def read_file(
+        self,
+        path: Path,
+    ) -> str:
+
+        extension = path.suffix.lower()
 
         try:
+
+            if extension == ".json":
+
+                with path.open(
+                    "r",
+                    encoding="utf-8",
+                ) as f:
+
+                    data = json.load(f)
+
+                return json.dumps(
+                    data,
+                    indent=2,
+                    ensure_ascii=False,
+                )
+
+            if extension == ".csv":
+
+                rows = []
+
+                with path.open(
+                    "r",
+                    encoding="utf-8",
+                    newline="",
+                ) as f:
+
+                    reader = csv.reader(f)
+
+                    for row in reader:
+                        rows.append(
+                            " | ".join(row)
+                        )
+
+                return "\n".join(rows)
+
             with path.open(
                 "r",
                 encoding="utf-8",
                 errors="ignore",
-                newline=""
-            ) as file:
+            ) as f:
 
-                reader = csv.reader(file)
+                return f.read()
 
-                for row in reader:
-                    rows.append(" ".join(row))
-
-        except OSError:
+        except Exception:
             return ""
 
-        return "\n".join(rows)
-
-    def json_to_text(self, path: Path) -> str:
-        try:
-            with path.open(
-                "r",
-                encoding="utf-8",
-                errors="ignore"
-            ) as file:
-
-                data = json.load(file)
-
-            return self.flatten_json(data)
-
-        except (OSError, json.JSONDecodeError):
-            return ""
-
-    def flatten_json(
+    def learn_file(
         self,
-        value: Any,
-        prefix: str = ""
-    ) -> str:
+        path: Path,
+        force: bool = False,
+    ) -> int:
 
-        output = []
+        if not path.exists():
+            return 0
 
-        if isinstance(value, dict):
+        if not path.is_file():
+            return 0
 
-            for key, child in value.items():
+        if path.suffix.lower() not in SUPPORTED_EXTENSIONS:
+            return 0
 
-                text = self.flatten_json(
-                    child,
-                    str(key)
-                )
+        path_string = str(path)
 
-                if text:
-                    output.append(
-                        f"{key}: {text}"
-                    )
+        file_hash = self.hash_file(path)
 
-        elif isinstance(value, list):
+        if (
+            not force
+            and file_hash
+            and self.brain.get_file_hash(
+                path_string
+            ) == file_hash
+        ):
+            return 0
 
-            for child in value:
-                output.append(
-                    self.flatten_json(child)
-                )
+        content = self.read_file(path)
 
-        else:
+        if not content:
+            return 0
 
-            output.append(str(value))
-
-        return " ".join(
-            item for item in output
-            if item
+        extracted = KnowledgeExtractor.extract(
+            content,
+            path_string,
         )
 
-    def learn_file(self, path: Path) -> Dict[str, Any]:
+        added = 0
 
-        suffix = path.suffix.lower()
+        for item in extracted:
 
-        if suffix not in self.SUPPORTED:
-            return {
-                "ok": False,
-                "reason": "unsupported"
-            }
+            created = self.brain.add_knowledge(
+                kind=item["kind"],
+                text=item["text"],
+                source=path_string,
+                topic=item["topic"],
+                keywords=item["keywords"],
+            )
 
-        source_id = "file:" + str(
-            path.resolve()
-        )
+            if created:
+                added += 1
 
-        self.brain.add_source(
-            source_id,
-            "file",
-            str(path.resolve()),
-            path.name
-        )
+        if file_hash:
+            self.brain.set_file_hash(
+                path_string,
+                file_hash,
+            )
 
-        if suffix == ".csv":
-            text = self.csv_to_text(path)
-        elif suffix == ".json":
-            text = self.json_to_text(path)
-        else:
-            text = self.read_file(path)
-
-        if not text:
-            return {
-                "ok": False,
-                "reason": "empty_or_unreadable"
-            }
-
-        result = self.extractor.extract(
-            text,
-            source_id
-        )
-
-        self.brain.mark_source_read(
-            source_id,
-            result["words"]
-        )
-
-        self.brain.data["documents"][source_id] = {
-            "path": str(path.resolve()),
-            "title": path.name,
-            "words": result["words"],
-            "sentences": result["sentences"],
-            "last_learned": now(),
-        }
-
-        return {
-            "ok": True,
-            "source": source_id,
-            **result
-        }
+        return added
 
     def learn_folder(
         self,
-        folder: str
-    ) -> Dict[str, int]:
+        folder: Path,
+        force: bool = False,
+    ) -> int:
 
-        path = Path(folder)
+        if not folder.exists():
+            return 0
 
-        totals = Counter()
+        total = 0
 
-        if not path.exists():
-            return {
-                "files": 0,
-                "words": 0,
-                "facts": 0,
-                "sentences": 0
-            }
+        for path in folder.rglob("*"):
 
-        for file_path in path.rglob("*"):
+            if path.is_file():
 
-            if not file_path.is_file():
-                continue
+                total += self.learn_file(
+                    path,
+                    force=force,
+                )
 
-            result = self.learn_file(
-                file_path
+        if total:
+            self.brain.save()
+
+        return total
+
+
+# ============================================================
+# SEARCH RESULT
+# ============================================================
+
+@dataclass
+class SearchResult:
+    item: KnowledgeItem
+    score: float
+    reasons: List[str]
+
+
+# ============================================================
+# SEARCH ENGINE
+# ============================================================
+
+class SearchEngine:
+    """
+    High-quality local retrieval.
+
+    Important rule:
+
+    A definition question strongly prefers:
+        definition
+        term
+        concept
+
+    over:
+        unrelated fact
+        example
+        project
+
+    This directly addresses the original failure.
+    """
+
+    KIND_WEIGHTS = {
+        "definition": 1.00,
+        "term": 0.92,
+        "concept": 0.85,
+        "fact": 0.68,
+        "rule": 0.62,
+        "relation": 0.58,
+        "example": 0.48,
+        "answer": 0.55,
+        "note": 0.40,
+        "project": 0.30,
+        "question": 0.15,
+    }
+
+    TYPE_KIND_PREFERENCES = {
+
+        "definition": {
+            "definition": 1.0,
+            "term": 0.95,
+            "concept": 0.85,
+            "fact": 0.55,
+            "relation": 0.45,
+            "example": 0.20,
+            "project": 0.05,
+        },
+
+        "explanation": {
+            "concept": 1.0,
+            "definition": 0.90,
+            "fact": 0.82,
+            "relation": 0.78,
+            "rule": 0.75,
+            "example": 0.70,
+        },
+
+        "how": {
+            "concept": 0.95,
+            "rule": 0.95,
+            "example": 0.90,
+            "fact": 0.70,
+            "definition": 0.60,
+        },
+
+        "why": {
+            "concept": 0.95,
+            "fact": 0.90,
+            "relation": 0.90,
+            "rule": 0.82,
+            "definition": 0.55,
+        },
+
+        "example": {
+            "example": 1.0,
+            "concept": 0.60,
+            "fact": 0.45,
+            "definition": 0.35,
+        },
+
+        "comparison": {
+            "relation": 1.0,
+            "concept": 0.90,
+            "fact": 0.85,
+            "definition": 0.75,
+        },
+
+        "general": {
+            "concept": 0.75,
+            "definition": 0.75,
+            "fact": 0.70,
+            "relation": 0.65,
+            "example": 0.55,
+        },
+    }
+
+    def __init__(self, brain: Brain):
+        self.brain = brain
+
+    # --------------------------------------------------------
+    # EXPANSION
+    # --------------------------------------------------------
+
+    def expand_terms(
+        self,
+        words: List[str],
+    ) -> List[str]:
+
+        expanded = list(words)
+
+        for word in words:
+
+            if word in RELATED_TERMS:
+
+                expanded.extend(
+                    RELATED_TERMS[word]
+                )
+
+            associated = self.brain.associations.get(
+                word,
+                {},
             )
 
-            if result.get("ok"):
-                totals["files"] += 1
-                totals["words"] += result.get(
-                    "words", 0
-                )
-                totals["facts"] += result.get(
-                    "facts", 0
-                )
-                totals["sentences"] += result.get(
-                    "sentences", 0
+            for related, count in associated.most_common(5):
+
+                if count >= 2:
+                    expanded.append(related)
+
+        return unique_preserve_order(
+            expanded
+        )
+
+    # --------------------------------------------------------
+    # SCORE
+    # --------------------------------------------------------
+
+    def score_item(
+        self,
+        item: KnowledgeItem,
+        parsed: ParsedQuestion,
+    ) -> SearchResult:
+
+        score = 0.0
+        reasons = []
+
+        item_words = set(
+            canonical_words(
+                tokenize(item.text)
+            )
+        )
+
+        item_keywords = set(
+            canonical_words(
+                item.keywords
+            )
+        )
+
+        subject_words = set(
+            parsed.subject_words
+        )
+
+        important_words = set(
+            parsed.important_words
+        )
+
+        # ----------------------------------------------------
+        # Subject matching
+        # ----------------------------------------------------
+
+        if subject_words:
+
+            subject_matches = (
+                subject_words
+                & (item_words | item_keywords)
+            )
+
+            if subject_matches:
+
+                ratio = (
+                    len(subject_matches)
+                    / len(subject_words)
                 )
 
-        self.brain.save()
+                score += 4.0 * ratio
 
-        return dict(totals)
+                reasons.append(
+                    f"subject {len(subject_matches)}/{len(subject_words)}"
+                )
+
+        # ----------------------------------------------------
+        # Exact subject phrase
+        # ----------------------------------------------------
+
+        if parsed.subject:
+
+            if phrase_contains(
+                item.text,
+                parsed.subject,
+            ):
+
+                score += 3.5
+
+                reasons.append(
+                    "exact subject phrase"
+                )
+
+        # ----------------------------------------------------
+        # Important-word overlap
+        # ----------------------------------------------------
+
+        if important_words:
+
+            matches = (
+                important_words
+                & (item_words | item_keywords)
+            )
+
+            ratio = (
+                len(matches)
+                / max(1, len(important_words))
+            )
+
+            score += 2.0 * ratio
+
+            if matches:
+                reasons.append(
+                    f"word overlap {len(matches)}"
+                )
+
+        # ----------------------------------------------------
+        # Phrase matching
+        # ----------------------------------------------------
+
+        for phrase in parsed.phrases:
+
+            if len(phrase.split()) < 2:
+                continue
+
+            if phrase_contains(
+                item.text,
+                phrase,
+            ):
+
+                score += 1.5
+
+                reasons.append(
+                    "phrase match"
+                )
+
+                break
+
+        # ----------------------------------------------------
+        # Expanded semantic terms
+        # ----------------------------------------------------
+
+        expanded = set(
+            self.expand_terms(
+                parsed.subject_words
+                + parsed.important_words
+            )
+        )
+
+        semantic_matches = (
+            expanded
+            & (item_words | item_keywords)
+        )
+
+        if semantic_matches:
+
+            score += min(
+                2.0,
+                len(semantic_matches) * 0.25,
+            )
+
+            reasons.append(
+                "related concepts"
+            )
+
+        # ----------------------------------------------------
+        # Topic match
+        # ----------------------------------------------------
+
+        if item.topic:
+
+            topic = canonical_word(
+                item.topic
+            )
+
+            if topic in subject_words:
+
+                score += 3.0
+
+                reasons.append(
+                    "topic match"
+                )
+
+        # ----------------------------------------------------
+        # Question type
+        # ----------------------------------------------------
+
+        preferences = self.TYPE_KIND_PREFERENCES.get(
+            parsed.question_type,
+            self.TYPE_KIND_PREFERENCES["general"],
+        )
+
+        kind_bonus = preferences.get(
+            item.kind,
+            0.25,
+        )
+
+        score += 3.0 * kind_bonus
+
+        # ----------------------------------------------------
+        # SPECIAL DEFINITION LOGIC
+        # ----------------------------------------------------
+
+        if parsed.question_type == "definition":
+
+            if item.kind == "definition":
+
+                score += 6.0
+
+                reasons.append(
+                    "definition requested"
+                )
+
+            elif item.kind == "term":
+
+                score += 5.0
+
+                reasons.append(
+                    "term definition"
+                )
+
+            elif item.kind == "concept":
+
+                score += 3.5
+
+                reasons.append(
+                    "concept definition"
+                )
+
+            elif item.kind == "example":
+
+                score -= 2.0
+
+            elif item.kind == "project":
+
+                score -= 2.5
+
+        # ----------------------------------------------------
+        # Example logic
+        # ----------------------------------------------------
+
+        if parsed.question_type == "example":
+
+            if item.kind == "example":
+                score += 5.0
+
+        # ----------------------------------------------------
+        # How logic
+        # ----------------------------------------------------
+
+        if parsed.question_type == "how":
+
+            if item.kind in {
+                "example",
+                "rule",
+                "concept",
+            }:
+                score += 2.0
+
+        # ----------------------------------------------------
+        # Comparison logic
+        # ----------------------------------------------------
+
+        if parsed.question_type == "comparison":
+
+            if item.kind == "relation":
+                score += 5.0
+
+        # ----------------------------------------------------
+        # Feedback
+        # ----------------------------------------------------
+
+        feedback = item.feedback_score()
+
+        score += feedback * 1.5
+
+        # ----------------------------------------------------
+        # Usage quality
+        # ----------------------------------------------------
+
+        if item.times_used > 0:
+
+            usage_bonus = min(
+                0.5,
+                math.log1p(
+                    item.times_used
+                ) / 10,
+            )
+
+            score += usage_bonus
+
+        # ----------------------------------------------------
+        # General quality
+        # ----------------------------------------------------
+
+        word_count = len(
+            content_words(item.text)
+        )
+
+        if 5 <= word_count <= 80:
+            score += 0.35
+
+        # Penalize extremely tiny fragments.
+        if word_count < 4:
+            score -= 1.0
+
+        return SearchResult(
+            item=item,
+            score=score,
+            reasons=reasons,
+        )
+
+    # --------------------------------------------------------
+    # SEARCH
+    # --------------------------------------------------------
+
+    def search(
+        self,
+        question: str,
+        limit: int = 12,
+    ) -> List[SearchResult]:
+
+        parsed = QuestionAnalyzer.analyze(
+            question
+        )
+
+        results = []
+
+        for item in self.brain.knowledge:
+
+            result = self.score_item(
+                item,
+                parsed,
+            )
+
+            if result.score > 0:
+                results.append(result)
+
+        results.sort(
+            key=lambda result: result.score,
+            reverse=True,
+        )
+
+        # Deduplicate near-identical answers.
+        final = []
+
+        for result in results:
+
+            duplicate = False
+
+            for existing in final:
+
+                if text_similarity(
+                    result.item.text,
+                    existing.item.text,
+                ) > 0.85:
+
+                    duplicate = True
+                    break
+
+            if not duplicate:
+                final.append(result)
+
+            if len(final) >= limit:
+                break
+
+        return final
 
 
 # ============================================================
-# WEB LEARNER
+# ANSWER BUILDER
 # ============================================================
 
-class WebLearner:
-    """
-    Reads web pages using urllib.
-
-    Web learning is disabled by default and must be explicitly
-    enabled in the application settings.
-    """
+class AnswerBuilder:
 
     def __init__(
         self,
         brain: Brain,
-        extractor: KnowledgeExtractor
+        search_engine: SearchEngine,
     ):
+
         self.brain = brain
-        self.extractor = extractor
+        self.search_engine = search_engine
 
-    def fetch(
+    # --------------------------------------------------------
+    # FIND SUBJECT
+    # --------------------------------------------------------
+
+    def find_subject_item(
         self,
-        url: str
-    ) -> Tuple[str, List[str]]:
+        results: List[SearchResult],
+        subject: str,
+    ) -> Optional[SearchResult]:
 
-        request = urllib.request.Request(
-            url,
-            headers={
-                "User-Agent": USER_AGENT
-            }
+        subject_words = set(
+            content_words(subject)
         )
 
-        try:
-            with urllib.request.urlopen(
-                request,
-                timeout=REQUEST_TIMEOUT
-            ) as response:
+        # First: exact topic.
+        for result in results:
 
-                content_type = response.headers.get(
-                    "Content-Type",
-                    ""
-                )
+            topic = canonical_word(
+                result.item.topic
+            )
 
-                raw = response.read(
-                    MAX_SOURCE_TEXT
-                )
+            if (
+                topic
+                and topic in subject_words
+            ):
+                return result
 
-                charset = response.headers.get_content_charset(
-                    "utf-8"
-                )
+        # Second: definition/term.
+        for result in results:
 
-                text = raw.decode(
-                    charset or "utf-8",
-                    errors="ignore"
-                )
+            if result.item.kind in {
+                "definition",
+                "term",
+                "concept",
+            }:
 
-                if "html" in content_type.lower():
-                    parser = TextExtractor()
-                    parser.feed(text)
-
-                    return (
-                        parser.text(),
-                        parser.links
+                item_words = set(
+                    content_words(
+                        result.item.text
                     )
-
-                return text, []
-
-        except (
-            urllib.error.URLError,
-            urllib.error.HTTPError,
-            TimeoutError,
-            OSError
-        ) as error:
-
-            print(
-                f"[web] Could not read {url}: {error}"
-            )
-
-            return "", []
-
-    def learn_url(
-        self,
-        url: str,
-        crawl: bool = False,
-        depth: int = 0,
-        visited: Optional[Set[str]] = None,
-        page_counter: Optional[List[int]] = None
-    ) -> int:
-
-        if visited is None:
-            visited = set()
-
-        if page_counter is None:
-            page_counter = [0]
-
-        if url in visited:
-            return 0
-
-        if page_counter[0] >= MAX_CRAWL_PAGES:
-            return 0
-
-        visited.add(url)
-        page_counter[0] += 1
-
-        text, links = self.fetch(url)
-
-        if not text:
-            return 0
-
-        source_id = "url:" + url
-
-        self.brain.add_source(
-            source_id,
-            "url",
-            url,
-            url
-        )
-
-        result = self.extractor.extract(
-            text,
-            source_id
-        )
-
-        self.brain.mark_source_read(
-            source_id,
-            result["words"]
-        )
-
-        learned_pages = 1
-
-        if (
-            crawl and
-            self.brain.data["settings"].get(
-                "allow_crawl",
-                False
-            ) and
-            depth < self.brain.data["settings"].get(
-                "crawl_depth",
-                MAX_CRAWL_DEPTH
-            )
-        ):
-
-            base = url
-
-            for link in links:
-
-                if learned_pages >= MAX_CRAWL_PAGES:
-                    break
-
-                absolute = urllib.parse.urljoin(
-                    base,
-                    link
                 )
 
-                parsed = urllib.parse.urlparse(
-                    absolute
+                if subject_words & item_words:
+                    return result
+
+        return None
+
+    # --------------------------------------------------------
+    # DEFINITION
+    # --------------------------------------------------------
+
+    def build_definition(
+        self,
+        parsed: ParsedQuestion,
+        results: List[SearchResult],
+    ) -> Tuple[str, Optional[int], float]:
+
+        subject = parsed.subject.strip()
+
+        best = self.find_subject_item(
+            results,
+            subject,
+        )
+
+        if best:
+
+            text = clean_answer(
+                best.item.text
+            )
+
+            # If the source contains a good definition,
+            # return it directly.
+            if text:
+
+                best.item.times_used += 1
+
+                confidence = self.confidence(
+                    best.score,
+                    results,
                 )
 
-                if parsed.scheme not in {
-                    "http",
-                    "https"
-                }:
-                    continue
-
-                # Keep crawling on the same host.
-                if parsed.netloc != urllib.parse.urlparse(
-                    url
-                ).netloc:
-                    continue
-
-                learned_pages += self.learn_url(
-                    absolute,
-                    crawl=True,
-                    depth=depth + 1,
-                    visited=visited,
-                    page_counter=page_counter
+                return (
+                    text,
+                    best.item.id,
+                    confidence,
                 )
 
-        self.brain.save()
+        # Fall back to highest-ranked result.
+        if results:
 
-        return learned_pages
+            result = results[0]
 
+            result.item.times_used += 1
 
-# ============================================================
-# LANGUAGE MODEL
-# ============================================================
-
-class LocalLanguageModel:
-    """
-    Small local n-gram model.
-
-    It does not understand language like a large neural model.
-    It learns statistical word transitions from the text it receives.
-    """
-
-    def __init__(self, brain: Brain):
-        self.brain = brain
-
-    def next_word_candidates(
-        self,
-        previous_words: List[str],
-        limit: int = 10
-    ) -> List[Tuple[str, float]]:
-
-        previous_words = [
-            clean_text(word)
-            for word in previous_words
-            if word
-        ]
-
-        candidates = Counter()
-
-        if len(previous_words) >= 2:
-
-            prefix = " ".join(
-                previous_words[-2:]
+            return (
+                clean_answer(
+                    result.item.text
+                ),
+                result.item.id,
+                self.confidence(
+                    result.score,
+                    results,
+                ),
             )
-
-            bucket = self.brain.data[
-                "ngrams"
-            ]["3"]
-
-            for gram, count in bucket.items():
-
-                parts = gram.split()
-
-                if len(parts) == 3 and (
-                    " ".join(parts[:2]) == prefix
-                ):
-
-                    candidates[parts[2]] += count
-
-        if not candidates and previous_words:
-
-            prefix = previous_words[-1]
-
-            bucket = self.brain.data[
-                "ngrams"
-            ]["2"]
-
-            for gram, count in bucket.items():
-
-                parts = gram.split()
-
-                if len(parts) == 2 and parts[0] == prefix:
-                    candidates[parts[1]] += count
-
-        return candidates.most_common(limit)
-
-    def generate(
-        self,
-        seed: str,
-        length: int = 20
-    ) -> str:
-
-        words = tokenize(seed)
-
-        if not words:
-            return ""
-
-        for _ in range(length):
-
-            candidates = self.next_word_candidates(
-                words
-            )
-
-            if not candidates:
-                break
-
-            total = sum(
-                count for _, count in candidates
-            )
-
-            if total <= 0:
-                break
-
-            # Weighted random choice.
-            roll = random.uniform(0, total)
-            current = 0.0
-            selected = candidates[0][0]
-
-            for word, count in candidates:
-                current += count
-
-                if roll <= current:
-                    selected = word
-                    break
-
-            words.append(selected)
-
-        return " ".join(words)
-
-
-# ============================================================
-# RESPONSE ENGINE
-# ============================================================
-
-class ResponseEngine:
-    """
-    Combines learned conversations, facts, sentences, concepts,
-    and the local n-gram model.
-    """
-
-    def __init__(self, brain: Brain):
-        self.brain = brain
-        self.language_model = LocalLanguageModel(
-            brain
-        )
-
-    def confidence_label(
-        self,
-        score: float
-    ) -> str:
-
-        if score >= VERY_GOOD_MATCH_SCORE:
-            return "high"
-
-        if score >= GOOD_MATCH_SCORE:
-            return "medium"
-
-        return "low"
-
-    def select_memory_response(
-        self,
-        memory: Dict[str, Any]
-    ) -> Optional[str]:
-
-        responses = memory.get("responses", {})
-
-        if not responses:
-            return None
-
-        weighted = []
-
-        for text, record in responses.items():
-
-            score = record.get("score", 0.5)
-
-            count = record.get("count", 1)
-
-            correct = record.get("correct", 0)
-
-            incorrect = record.get("incorrect", 0)
-
-            weight = (
-                max(score, 0.05) *
-                (1 + math.log1p(count)) *
-                (1 + correct) /
-                (1 + incorrect)
-            )
-
-            repetitions = min(
-                20,
-                max(1, int(weight * 5))
-            )
-
-            weighted.extend(
-                [text] * repetitions
-            )
-
-        if not weighted:
-            return None
-
-        return random.choice(weighted)
-
-    def fact_answer(
-        self,
-        query: str
-    ) -> Optional[Tuple[str, float]]:
-
-        matches = self.brain.search_facts(
-            query
-        )
-
-        if not matches:
-            return None
-
-        best = matches[0]
-
-        fact = best["fact"]
-
-        confidence = clamp(
-            best["score"] *
-            (0.6 + fact.get(
-                "confidence",
-                0.5
-            ) * 0.4)
-        )
-
-        answer = (
-            f"{fact['subject']} "
-            f"{fact['relation']}: "
-            f"{fact['value']}"
-        )
-
-        return answer, confidence
-
-    def sentence_answer(
-        self,
-        query: str
-    ) -> Optional[Tuple[str, float]]:
-
-        matches = self.brain.search_sentences(
-            query
-        )
-
-        if not matches:
-            return None
-
-        best = matches[0]
 
         return (
-            best["record"]["text"],
-            clamp(best["score"] * 0.85)
+            "I don't know that yet.",
+            None,
+            0.0,
         )
 
-    def concept_answer(
+    # --------------------------------------------------------
+    # GENERAL
+    # --------------------------------------------------------
+
+    def build_general(
         self,
-        query: str
-    ) -> Optional[Tuple[str, float]]:
+        parsed: ParsedQuestion,
+        results: List[SearchResult],
+    ) -> Tuple[str, Optional[int], float]:
 
-        qwords = word_set(query)
+        if not results:
 
-        candidates = []
+            return (
+                "I don't know that yet.",
+                None,
+                0.0,
+            )
 
-        for concept, record in (
-            self.brain.data["concepts"].items()
-        ):
+        best = results[0]
 
-            concept_words = set(
-                record.get("words", {}).keys()
+        best.item.times_used += 1
+
+        answer = clean_answer(
+            best.item.text
+        )
+
+        return (
+            answer,
+            best.item.id,
+            self.confidence(
+                best.score,
+                results,
+            ),
+        )
+
+    # --------------------------------------------------------
+    # EXAMPLE
+    # --------------------------------------------------------
+
+    def build_example(
+        self,
+        parsed: ParsedQuestion,
+        results: List[SearchResult],
+    ) -> Tuple[str, Optional[int], float]:
+
+        example_results = [
+            result
+            for result in results
+            if result.item.kind == "example"
+        ]
+
+        selected = (
+            example_results
+            or results
+        )
+
+        if not selected:
+
+            return (
+                "I don't know an example for that yet.",
+                None,
+                0.0,
+            )
+
+        result = selected[0]
+
+        result.item.times_used += 1
+
+        return (
+            clean_answer(
+                result.item.text
+            ),
+            result.item.id,
+            self.confidence(
+                result.score,
+                results,
+            ),
+        )
+
+    # --------------------------------------------------------
+    # COMPARISON
+    # --------------------------------------------------------
+
+    def build_comparison(
+        self,
+        parsed: ParsedQuestion,
+        results: List[SearchResult],
+    ) -> Tuple[str, Optional[int], float]:
+
+        if not results:
+
+            return (
+                "I don't have enough learned information to compare those yet.",
+                None,
+                0.0,
+            )
+
+        selected = [
+            result
+            for result in results
+            if result.item.kind
+            in {
+                "relation",
+                "concept",
+                "fact",
+                "definition",
+            }
+        ]
+
+        if not selected:
+            selected = results
+
+        pieces = []
+
+        ids = []
+
+        for result in selected[:3]:
+
+            text = clean_answer(
+                result.item.text
+            )
+
+            if text not in pieces:
+                pieces.append(text)
+
+            ids.append(
+                result.item.id
+            )
+
+        answer = " ".join(pieces)
+
+        for result in selected[:3]:
+            result.item.times_used += 1
+
+        return (
+            answer,
+            ids[0] if ids else None,
+            self.confidence(
+                selected[0].score,
+                results,
+            ),
+        )
+
+    # --------------------------------------------------------
+    # EXPLANATION
+    # --------------------------------------------------------
+
+    def build_explanation(
+        self,
+        parsed: ParsedQuestion,
+        results: List[SearchResult],
+    ) -> Tuple[str, Optional[int], float]:
+
+        if not results:
+
+            return (
+                "I don't know enough about that yet.",
+                None,
+                0.0,
+            )
+
+        selected = []
+
+        seen = set()
+
+        for result in results:
+
+            text = clean_answer(
+                result.item.text
+            )
+
+            if text in seen:
+                continue
+
+            seen.add(text)
+            selected.append(result)
+
+            if len(selected) >= 3:
+                break
+
+        answer_parts = [
+            clean_answer(
+                result.item.text
+            )
+            for result in selected
+        ]
+
+        for result in selected:
+            result.item.times_used += 1
+
+        answer = " ".join(answer_parts)
+
+        return (
+            answer,
+            selected[0].item.id,
+            self.confidence(
+                selected[0].score,
+                results,
+            ),
+        )
+
+    # --------------------------------------------------------
+    # MAIN BUILD
+    # --------------------------------------------------------
+
+    def build(
+        self,
+        question: str,
+    ) -> Tuple[
+        str,
+        Optional[int],
+        float,
+        ParsedQuestion,
+        List[SearchResult],
+    ]:
+
+        parsed = QuestionAnalyzer.analyze(
+            question
+        )
+
+        results = self.search_engine.search(
+            question,
+            limit=12,
+        )
+
+        if parsed.question_type == "definition":
+
+            answer, item_id, confidence = (
+                self.build_definition(
+                    parsed,
+                    results,
+                )
+            )
+
+        elif parsed.question_type == "example":
+
+            answer, item_id, confidence = (
+                self.build_example(
+                    parsed,
+                    results,
+                )
+            )
+
+        elif parsed.question_type == "comparison":
+
+            answer, item_id, confidence = (
+                self.build_comparison(
+                    parsed,
+                    results,
+                )
+            )
+
+        elif parsed.question_type in {
+            "explanation",
+            "how",
+            "why",
+        }:
+
+            answer, item_id, confidence = (
+                self.build_explanation(
+                    parsed,
+                    results,
+                )
+            )
+
+        else:
+
+            answer, item_id, confidence = (
+                self.build_general(
+                    parsed,
+                    results,
+                )
+            )
+
+        return (
+            answer,
+            item_id,
+            confidence,
+            parsed,
+            results,
+        )
+
+    # --------------------------------------------------------
+    # CONFIDENCE
+    # --------------------------------------------------------
+
+    @staticmethod
+    def confidence(
+        score: float,
+        results: List[SearchResult],
+    ) -> float:
+
+        if not results:
+            return 0.0
+
+        # Convert retrieval score to a readable
+        # confidence-like number.
+        value = 1.0 - math.exp(
+            -max(0.0, score) / 8.0
+        )
+
+        if len(results) >= 2:
+
+            gap = (
+                results[0].score
+                - results[1].score
+            )
+
+            value += min(
+                0.12,
+                max(0.0, gap) / 20,
+            )
+
+        return max(
+            0.0,
+            min(0.99, value),
+        )
+
+
+# ============================================================
+# MEMORY SEARCH
+# ============================================================
+
+class MemorySearch:
+
+    def __init__(self, brain: Brain):
+        self.brain = brain
+
+    def search(
+        self,
+        question: str,
+        limit: int = 5,
+    ) -> List[Dict[str, Any]]:
+
+        query_words = set(
+            content_words(question)
+        )
+
+        scored = []
+
+        for memory in self.brain.memories:
+
+            text = memory.get(
+                "text",
+                "",
+            )
+
+            words = set(
+                content_words(text)
             )
 
             overlap = len(
-                qwords & (
-                    concept_words | {concept}
-                )
+                query_words & words
             )
 
             if overlap:
 
                 score = (
-                    overlap /
-                    max(1, len(qwords))
+                    overlap
+                    / max(
+                        1,
+                        len(query_words),
+                    )
                 )
 
-                score *= (
-                    0.5 +
-                    record.get(
-                        "confidence",
-                        0.3
-                    ) * 0.5
+                scored.append(
+                    (
+                        score,
+                        memory,
+                    )
                 )
 
-                candidates.append(
-                    (score, concept, record)
-                )
-
-        if not candidates:
-            return None
-
-        candidates.sort(
-            key=lambda item: item[0],
-            reverse=True
+        scored.sort(
+            key=lambda x: x[0],
+            reverse=True,
         )
 
-        score, concept, record = candidates[0]
-
-        related = sorted(
-            record.get("words", {}).items(),
-            key=lambda item: item[1],
-            reverse=True
-        )[:8]
-
-        related_words = ", ".join(
-            word for word, _ in related
-        )
-
-        answer = (
-            f"I associate {concept} with "
-            f"{related_words}."
-        )
-
-        return answer, clamp(score)
-
-    def answer(
-        self,
-        query: str
-    ) -> Tuple[Optional[str], float, str]:
-
-        matches = self.brain.search_inputs(
-            query
-        )
-
-        if matches:
-
-            best = matches[0]
-
-            response = self.select_memory_response(
-                best["memory"]
-            )
-
-            if response:
-
-                score = best["score"]
-
-                # Feedback-adjusted confidence.
-                score = clamp(
-                    score * 0.75 +
-                    best["memory"].get(
-                        "confidence",
-                        0.5
-                    ) * 0.25
-                )
-
-                return (
-                    response,
-                    score,
-                    "conversation"
-                )
-
-        fact = self.fact_answer(query)
-
-        if fact:
-            return (
-                fact[0],
-                fact[1],
-                "fact"
-            )
-
-        sentence = self.sentence_answer(query)
-
-        if sentence:
-            return (
-                sentence[0],
-                sentence[1],
-                "knowledge"
-            )
-
-        concept = self.concept_answer(query)
-
-        if concept:
-            return (
-                concept[0],
-                concept[1],
-                "concept"
-            )
-
-        return None, 0.0, "unknown"
+        return [
+            item
+            for _, item in scored[:limit]
+        ]
 
 
 # ============================================================
@@ -2090,1927 +2556,997 @@ class ResponseEngine:
 # ============================================================
 
 class SelfLearningEngine:
-    """
-    The part that allows the program to keep learning without
-    requiring a new manual teaching event every time.
-
-    It watches the knowledge directory and configured source queue.
-    """
 
     def __init__(
         self,
         brain: Brain,
-        file_learner: FileLearner,
-        web_learner: WebLearner
+        learner: FileLearner,
     ):
+
         self.brain = brain
-        self.file_learner = file_learner
-        self.web_learner = web_learner
+        self.learner = learner
 
-        self.running = False
-        self.thread: Optional[threading.Thread] = None
+    def learn_local(self) -> int:
 
-        self.last_cycle = 0.0
-
-    def start(self) -> None:
-
-        if self.running:
-            return
-
-        self.running = True
-
-        self.thread = threading.Thread(
-            target=self._loop,
-            daemon=True
+        KNOWLEDGE_DIR.mkdir(
+            parents=True,
+            exist_ok=True,
         )
 
-        self.thread.start()
-
-    def stop(self) -> None:
-
-        self.running = False
-
-        if self.thread and self.thread.is_alive():
-            self.thread.join(timeout=2)
-
-    def _loop(self) -> None:
-
-        while self.running:
-
-            try:
-
-                if self.brain.data["settings"].get(
-                    "auto_learn",
-                    True
-                ):
-
-                    interval = self.brain.data[
-                        "settings"
-                    ].get(
-                        "learn_interval",
-                        AUTO_LEARN_INTERVAL
-                    )
-
-                    if now() - self.last_cycle >= interval:
-
-                        self.run_cycle()
-
-            except Exception as error:
-
-                print(
-                    f"[self-learning] {error}"
-                )
-
-            time.sleep(2)
-
-    def run_cycle(self) -> Dict[str, Any]:
-
-        self.last_cycle = now()
-
-        results = {
-            "files": 0,
-            "words": 0,
-            "facts": 0,
-            "sentences": 0,
-            "web_pages": 0,
-        }
-
-        folder_result = (
-            self.file_learner.learn_folder(
-                KNOWLEDGE_DIR
-            )
+        return self.learner.learn_folder(
+            KNOWLEDGE_DIR,
+            force=False,
         )
 
-        results["files"] = folder_result.get(
-            "files",
-            0
-        )
+    def learn_from_memories(self) -> int:
 
-        results["words"] = folder_result.get(
-            "words",
-            0
-        )
+        added = 0
 
-        results["facts"] = folder_result.get(
-            "facts",
-            0
-        )
+        for memory in self.brain.memories[-100:]:
 
-        results["sentences"] = folder_result.get(
-            "sentences",
-            0
-        )
-
-        if self.brain.data["settings"].get(
-            "allow_web",
-            False
-        ):
-
-            queue = self.brain.data.get(
-                "queue",
-                []
+            text = memory.get(
+                "text",
+                "",
             )
 
-            remaining = []
-
-            for item in queue:
-
-                if not item.get("active", True):
-                    continue
-
-                url = item.get("url", "")
-
-                if not url:
-                    continue
-
-                pages = self.web_learner.learn_url(
-                    url,
-                    crawl=item.get(
-                        "crawl",
-                        False
-                    )
-                )
-
-                results["web_pages"] += pages
-
-            self.brain.data["queue"] = remaining
-
-        self.consolidate()
-
-        self.brain.increment(
-            "self_cycles"
-        )
-
-        self.brain.save()
-
-        return results
-
-    def consolidate(self) -> None:
-        """
-        Strengthens knowledge that repeatedly appears across
-        sentences and sources.
-        """
-
-        words = self.brain.data["words"]
-
-        if not words:
-            return
-
-        common_words = [
-            word for word, record in sorted(
-                words.items(),
-                key=lambda item: item[1].get(
-                    "count",
-                    0
-                ),
-                reverse=True
-            )[:500]
-        ]
-
-        # Rebuild a small number of strong associations.
-        for index, left in enumerate(common_words):
-
-            left_record = words[left]
-
-            source_set = set(
-                left_record.get(
-                    "sources",
-                    {}
-                ).keys()
-            )
-
-            if not source_set:
+            if len(text) < 20:
                 continue
 
-            for right in common_words[
-                index + 1:index + 12
-            ]:
+            item = self.brain.add_knowledge(
+                kind="note",
+                text=text,
+                source="conversation_memory",
+                topic="memory",
+                keywords=content_words(text),
+            )
 
-                right_record = words[right]
+            if item:
+                added += 1
 
-                right_sources = set(
-                    right_record.get(
-                        "sources",
-                        {}
-                    ).keys()
-                )
+        return added
 
-                shared = source_set & right_sources
+    def cycle(self) -> int:
 
-                if shared:
+        total = 0
 
-                    strength = (
-                        math.log1p(
-                            len(shared)
-                        ) *
-                        0.2
-                    )
+        total += self.learn_local()
 
-                    self.brain.associate(
-                        left,
-                        right,
-                        strength=strength,
-                        source_id=(
-                            "consolidation"
-                        )
-                    )
+        total += self.learn_from_memories()
+
+        if total:
+            self.brain.save()
+
+        return total
 
 
 # ============================================================
-# COMMAND SYSTEM
+# STATISTICS
 # ============================================================
 
-class CommandSystem:
+class Statistics:
 
-    def __init__(
-        self,
-        app: "AutonomousAI"
-    ):
-        self.app = app
+    @staticmethod
+    def display(brain: Brain):
 
-    def execute(
-        self,
-        command: str
-    ) -> Optional[str]:
+        stats = brain.stats()
 
-        command = command.strip()
+        print()
+        print("=" * 60)
+        print("AI STATISTICS")
+        print("=" * 60)
 
-        lower = command.lower()
-
-        if lower == "/help":
-            return self.help()
-
-        if lower == "/stats":
-            return self.stats()
-
-        if lower == "/memory":
-            return self.memory()
-
-        if lower == "/facts":
-            return self.facts()
-
-        if lower == "/sources":
-            return self.sources()
-
-        if lower == "/words":
-            return self.words()
-
-        if lower == "/topics":
-            return self.topics()
-
-        if lower == "/associations":
-            return self.associations()
-
-        if lower == "/brain":
-            return self.brain_info()
-
-        if lower == "/selflearn":
-            return self.selflearn()
-
-        if lower == "/save":
-            self.app.brain.save()
-            return "Brain saved."
-
-        if lower == "/auto on":
-            self.app.brain.data[
-                "settings"
-            ]["auto_learn"] = True
-            return "Automatic learning is ON."
-
-        if lower == "/auto off":
-            self.app.brain.data[
-                "settings"
-            ]["auto_learn"] = False
-            return "Automatic learning is OFF."
-
-        if lower == "/web on":
-            self.app.brain.data[
-                "settings"
-            ]["allow_web"] = True
-            return "Web learning is ON."
-
-        if lower == "/web off":
-            self.app.brain.data[
-                "settings"
-            ]["allow_web"] = False
-            return "Web learning is OFF."
-
-        if lower == "/crawl on":
-            self.app.brain.data[
-                "settings"
-            ]["allow_crawl"] = True
-            return "Crawling is ON."
-
-        if lower == "/crawl off":
-            self.app.brain.data[
-                "settings"
-            ]["allow_crawl"] = False
-            return "Crawling is OFF."
-
-        if lower.startswith("/learn "):
-            target = command[7:].strip()
-            return self.learn_target(target)
-
-        if lower.startswith("/learnurl "):
-            url = command[10:].strip()
-            return self.learn_url(url)
-
-        if lower.startswith("/addsource "):
-            url = command[11:].strip()
-            return self.add_source(url)
-
-        if lower.startswith("/forget "):
-            text = command[8:].strip()
-            return self.forget(text)
-
-        if lower == "/clear":
-            return self.clear()
-
-        if lower.startswith("/search "):
-            query = command[8:].strip()
-            return self.search(query)
-
-        if lower.startswith("/generate "):
-            seed = command[10:].strip()
-            return self.generate(seed)
-
-        if lower == "/export":
-            return self.export()
-
-        return None
-
-    def help(self) -> str:
-        return """
-============================================================
-COMMANDS
-============================================================
-
-/help
-    Show this help.
-
-/stats
-    Show learning statistics.
-
-/memory
-    Show learned conversation patterns.
-
-/facts
-    Show learned facts.
-
-/sources
-    Show files and web sources.
-
-/words
-    Show frequently learned words.
-
-/topics
-    Show emerging concepts.
-
-/associations
-    Show strong word relationships.
-
-/brain
-    Show brain information.
-
-/learn <path>
-    Learn one file or an entire folder.
-
-/learnurl <url>
-    Learn one web page. Web learning must be ON.
-
-/addsource <url>
-    Add a URL to the automatic learning queue.
-
-/selflearn
-    Run a learning cycle immediately.
-
-/auto on
-/auto off
-    Enable/disable automatic background learning.
-
-/web on
-/web off
-    Enable/disable web learning.
-
-/crawl on
-/crawl off
-    Enable/disable same-site crawling.
-
-/search <text>
-    Search learned knowledge.
-
-/generate <text>
-    Generate a small local n-gram continuation.
-
-/save
-    Save the brain.
-
-/forget <text>
-    Forget a learned conversation input.
-
-/clear
-    Delete learned data after confirmation.
-
-/export
-    Create a backup brain file.
-
-Type quit to exit.
-============================================================
-"""
-
-    def stats(self) -> str:
-        stats = self.app.brain.statistics()
-
-        return f"""
-============================================================
-BRAIN STATISTICS
-============================================================
-
-Messages:       {stats['messages']}
-Learning events:{stats['learn_events']}
-Self cycles:    {stats['self_cycles']}
-
-Inputs:         {stats['inputs']}
-Words:          {stats['words']}
-Facts:          {stats['facts']}
-Concepts:       {stats['concepts']}
-Sentences:      {stats['sentences']}
-Associations:   {stats['associations']}
-Sources:        {stats['sources']}
-
-Correct:        {stats['correct']}
-Incorrect:      {stats['incorrect']}
-Feedback rate:  {stats['accuracy']:.1f}%
-
-Last update:
-{timestamp_string(self.app.brain.data['updated'])}
-============================================================
-"""
-
-    def memory(self) -> str:
-        memories = self.app.brain.data["inputs"]
-
-        if not memories:
-            return "No conversation memories yet."
-
-        lines = [
-            "LEARNED CONVERSATIONS",
-            ""
-        ]
-
-        for question, record in list(
-            memories.items()
-        )[-40:]:
-
-            lines.append(
-                f"INPUT: {question}"
-            )
-
-            for response, info in record[
-                "responses"
-            ].items():
-
-                lines.append(
-                    f"  -> {response}"
-                    f"  [score={info.get('score', 0.5):.2f}]"
-                )
-
-            lines.append("")
-
-        return "\n".join(lines)
-
-    def facts(self) -> str:
-        facts = self.app.brain.data["facts"]
-
-        if not facts:
-            return "No structured facts yet."
-
-        lines = [
-            "LEARNED FACTS",
-            ""
-        ]
-
-        sorted_facts = sorted(
-            facts.values(),
-            key=lambda x: (
-                x.get("confidence", 0),
-                x.get("times_seen", 0)
-            ),
-            reverse=True
+        print(
+            f"Knowledge items: {stats['knowledge']}"
         )
 
-        for fact in sorted_facts[:40]:
-
-            lines.append(
-                f"- {fact['subject']} "
-                f"[{fact['relation']}] "
-                f"{fact['value']}"
-            )
-
-            lines.append(
-                f"  confidence={fact.get('confidence', 0):.2f} "
-                f"sources={len(fact.get('sources', {}))}"
-            )
-
-        return "\n".join(lines)
-
-    def sources(self) -> str:
-        sources = self.app.brain.data["sources"]
-
-        if not sources:
-            return "No sources have been learned yet."
-
-        lines = [
-            "SOURCES",
-            ""
-        ]
-
-        for source in list(
-            sources.values()
-        )[-50:]:
-
-            state = (
-                "active"
-                if source.get("active", True)
-                else "inactive"
-            )
-
-            lines.append(
-                f"- {source.get('source_type')}: "
-                f"{source.get('location')}"
-            )
-
-            lines.append(
-                f"  reads={source.get('times_read', 0)} "
-                f"words={source.get('words_learned', 0)} "
-                f"{state}"
-            )
-
-        return "\n".join(lines)
-
-    def words(self) -> str:
-        words = self.app.brain.data["words"]
-
-        if not words:
-            return "No words learned yet."
-
-        items = sorted(
-            words.items(),
-            key=lambda item: item[1].get(
-                "count",
-                0
-            ),
-            reverse=True
-        )[:50]
-
-        lines = [
-            "MOST FREQUENT WORDS",
-            ""
-        ]
-
-        for word, record in items:
-
-            lines.append(
-                f"{word:<20} "
-                f"{record.get('count', 0):>7} "
-                f"sources={len(record.get('sources', {}))}"
-            )
-
-        return "\n".join(lines)
-
-    def topics(self) -> str:
-        concepts = self.app.brain.data["concepts"]
-
-        if not concepts:
-            return "No concepts learned yet."
-
-        items = sorted(
-            concepts.items(),
-            key=lambda item: (
-                item[1].get("count", 0),
-                item[1].get("confidence", 0)
-            ),
-            reverse=True
-        )[:40]
-
-        lines = [
-            "EMERGING CONCEPTS",
-            ""
-        ]
-
-        for concept, record in items:
-
-            related = sorted(
-                record.get(
-                    "words",
-                    {}
-                ).items(),
-                key=lambda item: item[1],
-                reverse=True
-            )[:6]
-
-            related_text = ", ".join(
-                word for word, _ in related
-            )
-
-            lines.append(
-                f"- {concept}: {related_text}"
-            )
-
-        return "\n".join(lines)
-
-    def associations(self) -> str:
-        associations = (
-            self.app.brain.data[
-                "associations"
-            ]
+        print(
+            f"Known words:     {stats['words']}"
         )
 
-        if not associations:
-            return "No associations yet."
-
-        items = sorted(
-            associations.items(),
-            key=lambda item: item[1].get(
-                "strength",
-                0
-            ),
-            reverse=True
-        )[:50]
-
-        lines = [
-            "STRONG ASSOCIATIONS",
-            ""
-        ]
-
-        for _, record in items:
-
-            lines.append(
-                f"- {record['left']} <-> "
-                f"{record['right']} "
-                f"strength={record['strength']:.2f}"
-            )
-
-        return "\n".join(lines)
-
-    def brain_info(self) -> str:
-        data = self.app.brain.data
-
-        return (
-            f"Brain version: {data.get('version')}\n"
-            f"Created: {timestamp_string(data.get('created'))}\n"
-            f"Updated: {timestamp_string(data.get('updated'))}\n"
-            f"File: {self.app.brain.path}"
+        print(
+            f"Topics:          {stats['topics']}"
         )
 
-    def selflearn(self) -> str:
-        result = self.app.self_learning.run_cycle()
-
-        return (
-            "Self-learning cycle complete.\n"
-            f"Files: {result.get('files', 0)}\n"
-            f"Web pages: {result.get('web_pages', 0)}\n"
-            f"Words: {result.get('words', 0)}\n"
-            f"Facts: {result.get('facts', 0)}\n"
-            f"Sentences: {result.get('sentences', 0)}"
+        print(
+            f"Memories:        {stats['memories']}"
         )
 
-    def learn_target(self, target: str) -> str:
-        path = Path(target)
-
-        if path.is_dir():
-
-            result = (
-                self.app.file_learner.learn_folder(
-                    target
-                )
-            )
-
-            return (
-                f"Learned folder.\n"
-                f"Files: {result.get('files', 0)}\n"
-                f"Words: {result.get('words', 0)}\n"
-                f"Facts: {result.get('facts', 0)}\n"
-                f"Sentences: {result.get('sentences', 0)}"
-            )
-
-        if path.is_file():
-
-            result = (
-                self.app.file_learner.learn_file(
-                    path
-                )
-            )
-
-            if not result.get("ok"):
-                return (
-                    "I could not learn that file: "
-                    + result.get(
-                        "reason",
-                        "unknown"
-                    )
-                )
-
-            return (
-                f"Learned {path.name}.\n"
-                f"Words: {result.get('words', 0)}\n"
-                f"Facts: {result.get('facts', 0)}\n"
-                f"Sentences: {result.get('sentences', 0)}"
-            )
-
-        return "That file or folder does not exist."
-
-    def learn_url(self, url: str) -> str:
-        if not self.app.brain.data[
-            "settings"
-        ].get("allow_web", False):
-            return (
-                "Web learning is OFF. "
-                "Use /web on first."
-            )
-
-        pages = self.app.web_learner.learn_url(
-            url,
-            crawl=False
+        print(
+            f"Conversations:   {stats['conversations']}"
         )
 
-        return f"Learned {pages} web page(s)."
-
-    def add_source(self, url: str) -> str:
-        if not url.startswith(
-            ("http://", "https://")
-        ):
-            return "That does not look like a web URL."
-
-        queue = self.app.brain.data[
-            "queue"
-        ]
-
-        queue.append({
-            "url": url,
-            "crawl": False,
-            "active": True,
-            "added": now(),
-        })
-
-        self.app.brain.save()
-
-        return (
-            "Added the URL to the learning queue. "
-            "The background learner can process it "
-            "when web learning is enabled."
+        print(
+            f"Questions:       {stats['questions']}"
         )
 
-    def forget(self, text: str) -> str:
-        key = normalize_text(text)
-
-        if key in self.app.brain.data["inputs"]:
-
-            del self.app.brain.data[
-                "inputs"
-            ][key]
-
-            self.app.brain.save()
-
-            return "Forgot that conversation memory."
-
-        return "I couldn't find that memory."
-
-    def clear(self) -> str:
-        answer = input(
-            "Type DELETE EVERYTHING to confirm: "
+        print(
+            f"Sources:         {stats['sources']}"
         )
 
-        if answer != "DELETE EVERYTHING":
-            return "Nothing was deleted."
-
-        self.app.brain.data[
-            "inputs"
-        ] = {}
-
-        self.app.brain.data[
-            "words"
-        ] = {}
-
-        self.app.brain.data[
-            "ngrams"
-        ] = {
-            "1": {},
-            "2": {},
-            "3": {},
-        }
-
-        self.app.brain.data[
-            "facts"
-        ] = {}
-
-        self.app.brain.data[
-            "concepts"
-        ] = {}
-
-        self.app.brain.data[
-            "associations"
-        ] = {}
-
-        self.app.brain.data[
-            "sentences"
-        ] = {}
-
-        self.app.brain.data[
-            "documents"
-        ] = {}
-
-        self.app.brain.data[
-            "stats"
-        ] = self.app.brain.default_data()[
-            "stats"
-        ]
-
-        self.app.brain.save()
-
-        return "All learned knowledge was deleted."
-
-    def search(self, query: str) -> str:
-        facts = self.app.brain.search_facts(
-            query,
-            limit=5
-        )
-
-        sentences = self.app.brain.search_sentences(
-            query,
-            limit=5
-        )
-
-        inputs = self.app.brain.search_inputs(
-            query,
-            limit=5
-        )
-
-        lines = [
-            "SEARCH RESULTS",
-            ""
-        ]
-
-        if inputs:
-            lines.append("CONVERSATIONS")
-
-            for item in inputs:
-                lines.append(
-                    f"{item['score']:.2f} "
-                    f"{item['input']}"
-                )
-
-        if facts:
-            lines.append("")
-            lines.append("FACTS")
-
-            for item in facts:
-                fact = item["fact"]
-
-                lines.append(
-                    f"{item['score']:.2f} "
-                    f"{fact['subject']} "
-                    f"{fact['value']}"
-                )
-
-        if sentences:
-            lines.append("")
-            lines.append("SENTENCES")
-
-            for item in sentences:
-                lines.append(
-                    f"{item['score']:.2f} "
-                    f"{item['record']['text']}"
-                )
-
-        if len(lines) == 2:
-            return "No matching knowledge found."
-
-        return "\n".join(lines)
-
-    def generate(self, seed: str) -> str:
-        text = self.app.response_engine.language_model.generate(
-            seed,
-            length=30
-        )
-
-        if not text:
-            return "I haven't learned enough word patterns yet."
-
-        return text
-
-    def export(self) -> str:
-        filename = (
-            "autonomous_brain_backup_"
-            + time.strftime("%Y%m%d_%H%M%S")
-            + ".json"
-        )
-
-        try:
-            with open(
-                filename,
-                "w",
-                encoding="utf-8"
-            ) as file:
-
-                json.dump(
-                    self.app.brain.data,
-                    file,
-                    indent=2,
-                    ensure_ascii=False
-                )
-
-            return f"Backup created: {filename}"
-
-        except OSError as error:
-            return f"Backup failed: {error}"
+        print("=" * 60)
+        print()
 
 
 # ============================================================
-# AUTONOMOUS AI APPLICATION
+# MAIN AI
 # ============================================================
 
 class AutonomousAI:
 
     def __init__(self):
 
-        self.brain = Brain()
+        KNOWLEDGE_DIR.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
 
-        self.extractor = KnowledgeExtractor(
+        self.config = ConfigManager(
+            CONFIG_FILE
+        )
+
+        self.brain = Brain(
+            BRAIN_FILE
+        )
+
+        self.learner = FileLearner(
             self.brain
         )
 
-        self.file_learner = FileLearner(
-            self.brain,
-            self.extractor
+        self.search_engine = SearchEngine(
+            self.brain
         )
 
-        self.web_learner = WebLearner(
+        self.answer_builder = AnswerBuilder(
             self.brain,
-            self.extractor
+            self.search_engine,
         )
 
-        self.response_engine = ResponseEngine(
+        self.memory_search = MemorySearch(
             self.brain
         )
 
         self.self_learning = SelfLearningEngine(
             self.brain,
-            self.file_learner,
-            self.web_learner
-        )
-
-        self.commands = CommandSystem(
-            self
+            self.learner,
         )
 
         self.running = True
 
-        self.last_save = now()
+        self.background_thread = None
 
     # --------------------------------------------------------
-    # Startup
+    # STARTUP
     # --------------------------------------------------------
 
-    def startup(self) -> None:
-
-        Path(KNOWLEDGE_DIR).mkdir(
-            parents=True,
-            exist_ok=True
-        )
+    def startup(self):
 
         print()
-        print("=" * 70)
-        print("                 AUTONOMOUS LEARNING AI")
-        print("=" * 70)
-        print()
-        print("Python-only local learning engine")
-        print()
+        print("=" * 64)
+        print("AUTONOMOUS LEARNING AI")
+        print(f"Version {VERSION}")
+        print("=" * 64)
+
         print(
-            "I learn from conversations, files, "
-            "and optionally web sources."
+            f"Knowledge items loaded: "
+            f"{len(self.brain.knowledge)}"
         )
+
         print(
-            "Put documents in the 'knowledge' folder "
-            "and I can learn them automatically."
+            f"Known words: "
+            f"{len(self.brain.word_counts)}"
         )
+
+        if self.config.get(
+            "auto_learning",
+            True,
+        ):
+
+            self.start_background_learning()
+
+        # Immediately scan for new knowledge.
+        learned = self.self_learning.learn_local()
+
+        if learned:
+
+            print(
+                f"Learned {learned} new knowledge items."
+            )
+
         print()
         print(
             "Type /help for commands."
         )
-        print(
-            "Type quit to save and exit."
-        )
-        print()
-        print("=" * 70)
+
         print()
 
-        stats = self.brain.statistics()
+    # --------------------------------------------------------
+    # BACKGROUND LEARNING
+    # --------------------------------------------------------
 
-        print(
-            f"Loaded brain: "
-            f"{stats['words']} words, "
-            f"{stats['facts']} facts, "
-            f"{stats['sources']} sources."
-        )
+    def start_background_learning(self):
 
-        if self.brain.data["settings"].get(
-            "auto_learn",
-            True
+        if (
+            self.background_thread
+            and self.background_thread.is_alive()
         ):
-            self.self_learning.start()
+            return
+
+        self.background_thread = threading.Thread(
+            target=self.background_learning_loop,
+            daemon=True,
+        )
+
+        self.background_thread.start()
+
+    def background_learning_loop(self):
+
+        while self.running:
+
+            interval = self.config.get(
+                "learning_interval_seconds",
+                60,
+            )
+
+            try:
+                interval = max(
+                    10,
+                    int(interval),
+                )
+            except Exception:
+                interval = 60
+
+            for _ in range(interval):
+
+                if not self.running:
+                    return
+
+                time.sleep(1)
+
+            try:
+                if self.config.get(
+                    "auto_learning",
+                    True,
+                ):
+                    self.self_learning.cycle()
+
+            except Exception:
+                pass
 
     # --------------------------------------------------------
-    # Learn conversation
+    # ANSWER
     # --------------------------------------------------------
 
-    def learn_conversation(
+    def answer(
         self,
-        user_input: str,
-        response: str
-    ) -> None:
+        question: str,
+    ) -> bool:
 
-        self.brain.remember_input(
-            user_input,
-            response,
-            "conversation"
+        question = question.strip()
+
+        if not question:
+            return True
+
+        (
+            answer,
+            item_id,
+            confidence,
+            parsed,
+            results,
+        ) = self.answer_builder.build(
+            question
         )
 
-        self.extractor.extract(
-            user_input,
-            "conversation"
+        self.brain.record_question(
+            question,
+            parsed.question_type,
+            parsed.subject,
         )
 
-        self.extractor.extract(
-            response,
-            "conversation"
-        )
+        if self.config.get(
+            "remember_conversations",
+            True,
+        ):
 
-    # --------------------------------------------------------
-    # Handle unknown input
-    # --------------------------------------------------------
+            self.brain.add_conversation(
+                question,
+                answer,
+            )
 
-    def handle_unknown(
-        self,
-        user_input: str
-    ) -> None:
+            self.brain.add_memory(
+                f"Question: {question} Answer: {answer}",
+                category="conversation",
+            )
+
+        self.brain.save()
+
+        # ----------------------------------------------------
+        # Confidence label
+        # ----------------------------------------------------
+
+        if confidence >= 0.72:
+            label = "high"
+
+        elif confidence >= 0.42:
+            label = "medium"
+
+        else:
+            label = "low"
 
         print()
+
         print(
-            "I don't have a reliable answer for that yet."
+            f"AI [{label} {confidence:.2f}]:"
         )
 
         print(
-            "You can teach me a response, "
-            "or type /learn <file/folder> "
-            "to give me knowledge."
+            answer
         )
 
-        answer = input(
-            "Teach a response? [y/n]: "
-        ).strip().lower()
+        # Show interpretation when useful.
+        if parsed.question_type != "general":
 
-        if answer == "y":
+            print(
+                f"\n[understood: "
+                f"{parsed.question_type}"
+                f" | subject: "
+                f"{parsed.subject or 'unknown'}]"
+            )
 
-            response = input(
-                "What should I say? "
-            ).strip()
+        print()
 
-            if response:
-
-                self.learn_conversation(
-                    user_input,
-                    response
-                )
-
-                self.brain.save()
-
-                print(
-                    "Learned and saved."
-                )
-
-    # --------------------------------------------------------
-    # Feedback
-    # --------------------------------------------------------
-
-    def feedback(
-        self,
-        user_input: str,
-        response: str
-    ) -> None:
-
-        answer = input(
+        feedback = input(
             "Was that useful? [y/n/enter]: "
         ).strip().lower()
 
-        if answer == "y":
+        if (
+            feedback == "y"
+            and item_id is not None
+        ):
 
-            self.brain.reinforce(
-                user_input,
-                response,
-                True
+            self.brain.vote(
+                item_id,
+                True,
             )
 
             print(
-                "Reinforced that response."
+                "Learned from your positive feedback."
             )
 
-        elif answer == "n":
+        elif (
+            feedback == "n"
+            and item_id is not None
+        ):
 
-            self.brain.reinforce(
-                user_input,
-                response,
-                False
+            self.brain.vote(
+                item_id,
+                False,
             )
 
-            print()
+            print(
+                "Recorded negative feedback."
+            )
 
-            correction = input(
-                "What would be better? "
-            ).strip()
-
-            if correction:
-
-                self.learn_conversation(
-                    user_input,
-                    correction
-                )
-
-                self.brain.reinforce(
-                    user_input,
-                    correction,
-                    True
-                )
-
-                print(
-                    "Learned the correction."
-                )
+        return True
 
     # --------------------------------------------------------
-    # Process normal message
+    # HELP
     # --------------------------------------------------------
 
-    def process(self, user_input: str) -> None:
+    def help(self):
 
-        stripped = user_input.strip()
+        print()
+        print("=" * 64)
+        print("COMMANDS")
+        print("=" * 64)
 
-        if not stripped:
+        commands = [
+            (
+                "/help",
+                "Show this help menu",
+            ),
+            (
+                "/stats",
+                "Show learning statistics",
+            ),
+            (
+                "/learn",
+                "Learn the knowledge folder",
+            ),
+            (
+                "/learn <path>",
+                "Learn a specific file or folder",
+            ),
+            (
+                "/forcelearn",
+                "Force relearning of knowledge files",
+            ),
+            (
+                "/selflearn",
+                "Run a complete learning cycle",
+            ),
+            (
+                "/search <text>",
+                "Search learned knowledge",
+            ),
+            (
+                "/topics",
+                "Show learned topics",
+            ),
+            (
+                "/words",
+                "Show common learned words",
+            ),
+            (
+                "/facts",
+                "Show recent knowledge",
+            ),
+            (
+                "/memory",
+                "Show conversation memories",
+            ),
+            (
+                "/config",
+                "Show configuration",
+            ),
+            (
+                "/autolearn on",
+                "Enable automatic learning",
+            ),
+            (
+                "/autolearn off",
+                "Disable automatic learning",
+            ),
+            (
+                "/clear",
+                "Clear the terminal",
+            ),
+            (
+                "/quit",
+                "Exit",
+            ),
+        ]
+
+        for command, description in commands:
+
+            print(
+                f"{command:<22} {description}"
+            )
+
+        print("=" * 64)
+        print()
+
+    # --------------------------------------------------------
+    # COMMAND: SEARCH
+    # --------------------------------------------------------
+
+    def command_search(
+        self,
+        query: str,
+    ):
+
+        if not query:
+
+            print(
+                "Usage: /search <text>"
+            )
+
             return
 
-        if normalize_text(stripped) in {
-            "quit",
-            "exit",
-            "stop"
+        results = self.search_engine.search(
+            query,
+            limit=10,
+        )
+
+        print()
+
+        if not results:
+
+            print(
+                "No matching knowledge found."
+            )
+
+            return
+
+        print(
+            f"Search results for: {query}"
+        )
+
+        print("-" * 64)
+
+        for index, result in enumerate(
+            results,
+            start=1,
+        ):
+
+            print(
+                f"{index}. "
+                f"[{result.item.kind}] "
+                f"{result.item.text}"
+            )
+
+            print(
+                f"   score={result.score:.2f} "
+                f"topic={result.item.topic}"
+            )
+
+        print()
+
+    # --------------------------------------------------------
+    # COMMAND: TOPICS
+    # --------------------------------------------------------
+
+    def command_topics(self):
+
+        print()
+
+        if not self.brain.topic_counts:
+
+            print(
+                "No topics learned yet."
+            )
+
+            return
+
+        print("TOP LEARNED TOPICS")
+        print("-" * 40)
+
+        for topic, count in (
+            self.brain.topic_counts
+            .most_common(30)
+        ):
+
+            print(
+                f"{topic:<25} {count}"
+            )
+
+        print()
+
+    # --------------------------------------------------------
+    # COMMAND: WORDS
+    # --------------------------------------------------------
+
+    def command_words(self):
+
+        print()
+
+        if not self.brain.word_counts:
+
+            print(
+                "No words learned yet."
+            )
+
+            return
+
+        print("MOST COMMON LEARNED WORDS")
+        print("-" * 40)
+
+        for word, count in (
+            self.brain.word_counts
+            .most_common(50)
+        ):
+
+            print(
+                f"{word:<25} {count}"
+            )
+
+        print()
+
+    # --------------------------------------------------------
+    # COMMAND: FACTS
+    # --------------------------------------------------------
+
+    def command_facts(self):
+
+        print()
+
+        if not self.brain.knowledge:
+
+            print(
+                "No knowledge learned yet."
+            )
+
+            return
+
+        print("RECENT KNOWLEDGE")
+        print("-" * 64)
+
+        for item in self.brain.knowledge[-30:]:
+
+            print(
+                f"[{item.kind}] "
+                f"{item.text}"
+            )
+
+        print()
+
+    # --------------------------------------------------------
+    # COMMAND: MEMORY
+    # --------------------------------------------------------
+
+    def command_memory(self):
+
+        print()
+
+        if not self.brain.memories:
+
+            print(
+                "No memories yet."
+            )
+
+            return
+
+        print("RECENT MEMORIES")
+        print("-" * 64)
+
+        for memory in (
+            self.brain.memories[-20:]
+        ):
+
+            print(
+                f"[{memory.get('category', 'general')}] "
+                f"{memory.get('text', '')}"
+            )
+
+        print()
+
+    # --------------------------------------------------------
+    # COMMAND: CONFIG
+    # --------------------------------------------------------
+
+    def command_config(self):
+
+        print()
+        print("CONFIGURATION")
+        print("-" * 40)
+
+        for key, value in (
+            self.config.data.items()
+        ):
+
+            print(
+                f"{key:<35} {value}"
+            )
+
+        print()
+
+    # --------------------------------------------------------
+    # COMMAND: LEARN
+    # --------------------------------------------------------
+
+    def command_learn(
+        self,
+        argument: str,
+    ):
+
+        argument = argument.strip()
+
+        if not argument:
+
+            count = self.self_learning.learn_local()
+
+            print(
+                f"Learned {count} new knowledge items."
+            )
+
+            return
+
+        path = Path(argument)
+
+        if not path.exists():
+
+            print(
+                f"Path does not exist: {path}"
+            )
+
+            return
+
+        if path.is_file():
+
+            count = self.learner.learn_file(
+                path,
+                force=False,
+            )
+
+        else:
+
+            count = self.learner.learn_folder(
+                path,
+                force=False,
+            )
+
+        self.brain.save()
+
+        print(
+            f"Learned {count} new knowledge items."
+        )
+
+    # --------------------------------------------------------
+    # FORCE LEARN
+    # --------------------------------------------------------
+
+    def command_forcelearn(self):
+
+        count = self.learner.learn_folder(
+            KNOWLEDGE_DIR,
+            force=True,
+        )
+
+        self.brain.save()
+
+        print(
+            f"Force learned {count} knowledge items."
+        )
+
+    # --------------------------------------------------------
+    # SELF LEARN
+    # --------------------------------------------------------
+
+    def command_selflearn(self):
+
+        print(
+            "Running self-learning cycle..."
+        )
+
+        count = self.self_learning.cycle()
+
+        print(
+            f"Self-learning added {count} items."
+        )
+
+    # --------------------------------------------------------
+    # AUTOLEARN
+    # --------------------------------------------------------
+
+    def command_autolearn(
+        self,
+        value: str,
+    ):
+
+        value = value.lower().strip()
+
+        if value == "on":
+
+            self.config.set(
+                "auto_learning",
+                True,
+            )
+
+            self.start_background_learning()
+
+            print(
+                "Automatic learning enabled."
+            )
+
+        elif value == "off":
+
+            self.config.set(
+                "auto_learning",
+                False,
+            )
+
+            print(
+                "Automatic learning disabled."
+            )
+
+        else:
+
+            print(
+                "Usage: /autolearn on"
+            )
+
+            print(
+                "       /autolearn off"
+            )
+
+    # --------------------------------------------------------
+    # COMMAND HANDLER
+    # --------------------------------------------------------
+
+    def command(
+        self,
+        text: str,
+    ) -> bool:
+
+        parts = text.split(
+            maxsplit=1
+        )
+
+        command = parts[0].lower()
+
+        argument = (
+            parts[1]
+            if len(parts) > 1
+            else ""
+        )
+
+        if command in {
+            "/quit",
+            "/exit",
+            "/q",
         }:
 
             self.running = False
-            return
+            self.brain.save()
 
-        if stripped.startswith("/"):
-
-            result = self.commands.execute(
-                stripped
+            print(
+                "Goodbye."
             )
 
-            if result is not None:
+            return False
+
+        if command in {
+            "/help",
+            "/h",
+        }:
+
+            self.help()
+            return True
+
+        if command == "/stats":
+
+            Statistics.display(
+                self.brain
+            )
+
+            return True
+
+        if command == "/learn":
+
+            self.command_learn(
+                argument
+            )
+
+            return True
+
+        if command == "/forcelearn":
+
+            self.command_forcelearn()
+
+            return True
+
+        if command == "/selflearn":
+
+            self.command_selflearn()
+
+            return True
+
+        if command == "/search":
+
+            self.command_search(
+                argument
+            )
+
+            return True
+
+        if command == "/topics":
+
+            self.command_topics()
+
+            return True
+
+        if command == "/words":
+
+            self.command_words()
+
+            return True
+
+        if command == "/facts":
+
+            self.command_facts()
+
+            return True
+
+        if command == "/memory":
+
+            self.command_memory()
+
+            return True
+
+        if command == "/config":
+
+            self.command_config()
+
+            return True
+
+        if command == "/autolearn":
+
+            self.command_autolearn(
+                argument
+            )
+
+            return True
+
+        if command == "/clear":
+
+            os.system("clear")
+
+            return True
+
+        print(
+            "Unknown command. Type /help."
+        )
+
+        return True
+
+    # --------------------------------------------------------
+    # MAIN LOOP
+    # --------------------------------------------------------
+
+    def run(self):
+
+        self.startup()
+
+        while self.running:
+
+            try:
+
+                user_input = input(
+                    "You: "
+                ).strip()
+
+            except (
+                KeyboardInterrupt,
+                EOFError,
+            ):
 
                 print()
-                print(result)
-                print()
 
-                return
+                self.running = False
+                self.brain.save()
 
-        self.brain.increment(
-            "messages"
-        )
+                break
 
-        # Learn from the message itself.
-        self.brain.learn_words(
-            stripped,
-            "conversation"
-        )
+            if not user_input:
+                continue
 
-        self.brain.learn_ngrams(
-            stripped
-        )
+            if user_input.startswith("/"):
 
-        response, score, mode = (
-            self.response_engine.answer(
-                stripped
-            )
-        )
+                if not self.command(
+                    user_input
+                ):
+                    break
 
-        if response is None:
+                continue
 
-            self.handle_unknown(
-                stripped
+            self.answer(
+                user_input
             )
 
-            return
 
-        label = (
-            self.response_engine.confidence_label(
-                score
-            )
+# ============================================================
+# SAFE STARTUP
+# ============================================================
+
+def main():
+
+    try:
+
+        ai = AutonomousAI()
+
+        ai.run()
+
+    except KeyboardInterrupt:
+
+        print(
+            "\nStopped."
+        )
+
+    except Exception as exc:
+
+        print()
+        print(
+            "The AI encountered an error:"
+        )
+
+        print(
+            repr(exc)
         )
 
         print()
         print(
-            f"AI [{mode} | {label} {score:.2f}]:"
-        )
-        print(response)
-        print()
-
-        self.brain.increment(
-            "responses"
+            "Your brain file was not intentionally deleted."
         )
 
-        self.feedback(
-            stripped,
-            response
-        )
-
-        self.brain.save_if_needed()
-
-    # --------------------------------------------------------
-    # Save scheduling
-    # --------------------------------------------------------
-
-    def save_if_needed(self) -> None:
-
-        if not self.brain.data[
-            "settings"
-        ].get(
-            "auto_save",
-            True
-        ):
-            return
-
-        interval = self.brain.data[
-            "settings"
-        ].get(
-            "save_interval",
-            AUTO_SAVE_INTERVAL
-        )
-
-        if now() - self.last_save >= interval:
-
-            self.brain.save()
-
-            self.last_save = now()
-
-    # --------------------------------------------------------
-    # Main loop
-    # --------------------------------------------------------
-
-    def run(self) -> None:
-
-        self.startup()
-
-        try:
-
-            while self.running:
-
-                try:
-
-                    user_input = input(
-                        "You: "
-                    )
-
-                    self.process(
-                        user_input
-                    )
-
-                except KeyboardInterrupt:
-
-                    print()
-                    print(
-                        "Saving..."
-                    )
-                    break
-
-                except EOFError:
-
-                    print()
-                    break
-
-                except Exception as error:
-
-                    print()
-                    print(
-                        f"[error] {error}"
-                    )
-                    print()
-
-                self.save_if_needed()
-
-        finally:
-
-            self.running = False
-
-            self.self_learning.stop()
-
-            self.brain.save()
-
-            print(
-                "Brain saved. Goodbye."
-            )
-
-
-# ============================================================
-# BRAIN MIGRATION
-# ============================================================
-
-def migrate_old_brain() -> None:
-    """
-    If the older program's brain.json exists, copy basic
-    conversation knowledge into the new format.
-
-    This allows the program to continue using knowledge from
-    the earlier version.
-    """
-
-    old_file = "brain.json"
-
-    if not os.path.exists(old_file):
-        return
-
-    if os.path.exists(BRAIN_FILE):
-        return
-
-    try:
-
-        with open(
-            old_file,
-            "r",
-            encoding="utf-8"
-        ) as file:
-
-            old = json.load(file)
-
-    except (
-        OSError,
-        json.JSONDecodeError
-    ):
-        return
-
-    brain = Brain()
-
-    old_inputs = old.get(
-        "inputs",
-        {}
-    )
-
-    for question, record in old_inputs.items():
-
-        responses = record.get(
-            "responses",
-            []
-        )
-
-        for response in responses:
-
-            brain.remember_input(
-                question,
-                response,
-                "migrated:brain.json"
-            )
-
-    old_words = old.get(
-        "words",
-        {}
-    )
-
-    for word, record in old_words.items():
-
-        brain.data["words"][word] = {
-            "count": record.get(
-                "count",
-                1
-            ),
-            "first_seen": record.get(
-                "first_seen",
-                now()
-            ),
-            "last_seen": record.get(
-                "last_seen",
-                now()
-            ),
-            "sources": {
-                "migrated:brain.json": record.get(
-                    "count",
-                    1
-                )
-            }
-        }
-
-    brain.save()
-
-    print(
-        "Migrated knowledge from old brain.json."
-    )
-
-
-# ============================================================
-# BUILT-IN STARTER KNOWLEDGE
-# ============================================================
-
-def create_starter_knowledge() -> None:
-    """
-    Creates a small optional starter file.
-
-    This is deliberately not a huge hard-coded knowledge base.
-    The system is intended to learn from sources you provide.
-    """
-
-    folder = Path(KNOWLEDGE_DIR)
-
-    folder.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    starter = folder / "starter.txt"
-
-    if starter.exists():
-        return
-
-    text = """
-Python is a programming language.
-A computer is an electronic machine that processes information.
-Programming is the process of writing instructions for computers.
-Machine learning is a method where software learns patterns from data.
-Data is information that can be stored and processed.
-A file is a collection of information stored on a computer.
-A program is a set of instructions executed by a computer.
-An algorithm is a sequence of steps used to solve a problem.
-A variable is a named place used to store a value in a program.
-A function is a reusable block of program instructions.
-"""
-
-    try:
-        starter.write_text(
-            text.strip(),
-            encoding="utf-8"
-        )
-
-    except OSError:
-        pass
-
-
-# ============================================================
-# CONFIGURATION HELPERS
-# ============================================================
-
-def load_external_config(
-    brain: Brain
-) -> None:
-
-    if not os.path.exists(CONFIG_FILE):
-        return
-
-    try:
-
-        with open(
-            CONFIG_FILE,
-            "r",
-            encoding="utf-8"
-        ) as file:
-
-            config = json.load(file)
-
-        if isinstance(config, dict):
-
-            for key, value in config.items():
-
-                if key in brain.data[
-                    "settings"
-                ]:
-                    brain.data[
-                        "settings"
-                    ][key] = value
-
-    except (
-        OSError,
-        json.JSONDecodeError
-    ):
-        pass
-
-
-def create_config_file(
-    brain: Brain
-) -> None:
-
-    if os.path.exists(CONFIG_FILE):
-        return
-
-    try:
-
-        with open(
-            CONFIG_FILE,
-            "w",
-            encoding="utf-8"
-        ) as file:
-
-            json.dump(
-                brain.data["settings"],
-                file,
-                indent=2
-            )
-
-    except OSError:
-        pass
-
-
-# ============================================================
-# ADVANCED SELF-LEARNING UTILITIES
-# ============================================================
-
-class KnowledgeGraph:
-    """
-    Lightweight graph view over learned concepts.
-    """
-
-    def __init__(self, brain: Brain):
-        self.brain = brain
-
-    def neighbors(
-        self,
-        concept: str,
-        limit: int = 15
-    ) -> List[Tuple[str, float]]:
-
-        concept = normalize_text(concept)
-
-        found = []
-
-        for record in (
-            self.brain.data[
-                "associations"
-            ].values()
-        ):
-
-            if record["left"] == concept:
-
-                found.append(
-                    (
-                        record["right"],
-                        record["strength"]
-                    )
-                )
-
-            elif record["right"] == concept:
-
-                found.append(
-                    (
-                        record["left"],
-                        record["strength"]
-                    )
-                )
-
-        found.sort(
-            key=lambda item: item[1],
-            reverse=True
-        )
-
-        return found[:limit]
-
-    def expand(
-        self,
-        words: Iterable[str],
-        depth: int = 2
-    ) -> Set[str]:
-
-        frontier = set(
-            normalize_text(word)
-            for word in words
-            if word
-        )
-
-        visited = set(frontier)
-
-        for _ in range(depth):
-
-            next_frontier = set()
-
-            for word in frontier:
-
-                for neighbor, _ in self.neighbors(
-                    word,
-                    limit=10
-                ):
-
-                    if neighbor not in visited:
-
-                        visited.add(
-                            neighbor
-                        )
-
-                        next_frontier.add(
-                            neighbor
-                        )
-
-            frontier = next_frontier
-
-            if not frontier:
-                break
-
-        return visited
-
-
-class MemoryDecay:
-    """
-    Allows stale, low-value conversation memories to gradually
-    lose priority without immediately deleting them.
-    """
-
-    def __init__(self, brain: Brain):
-        self.brain = brain
-
-    def apply(self) -> None:
-
-        current = now()
-
-        for record in (
-            self.brain.data[
-                "inputs"
-            ].values()
-        ):
-
-            last_seen = record.get(
-                "last_seen",
-                current
-            )
-
-            age_days = (
-                current - last_seen
-            ) / 86400
-
-            decay = min(
-                0.20,
-                age_days * 0.002
-            )
-
-            record["confidence"] = clamp(
-                record.get(
-                    "confidence",
-                    0.5
-                ) - decay
-            )
-
-
-class SourceAgreement:
-    """
-    Measures how strongly a fact is supported by multiple
-    independent sources.
-    """
-
-    def __init__(self, brain: Brain):
-        self.brain = brain
-
-    def score_fact(
-        self,
-        fact: Dict[str, Any]
-    ) -> float:
-
-        confidence = fact.get(
-            "confidence",
-            0.5
-        )
-
-        sources = len(
-            fact.get(
-                "sources",
-                {}
-            )
-        )
-
-        agreement_bonus = min(
-            0.30,
-            max(0, sources - 1) * 0.05
-        )
-
-        return clamp(
-            confidence +
-            agreement_bonus
-        )
-
-
-class AutoCurator:
-    """
-    Periodically cleans and reorganizes learned knowledge.
-    """
-
-    def __init__(
-        self,
-        brain: Brain
-    ):
-        self.brain = brain
-        self.decay = MemoryDecay(
-            brain
-        )
-        self.agreement = SourceAgreement(
-            brain
-        )
-
-    def run(self) -> None:
-
-        self.decay.apply()
-
-        for fact in (
-            self.brain.data[
-                "facts"
-            ].values()
-        ):
-
-            fact["confidence"] = (
-                self.agreement.score_fact(
-                    fact
-                )
-            )
-
-        self.remove_duplicate_sentences()
-
-    def remove_duplicate_sentences(self) -> None:
-
-        sentences = list(
-            self.brain.data[
-                "sentences"
-            ].items()
-        )
-
-        if len(sentences) < 2:
-            return
-
-        # Only compare a limited window to avoid O(n^2) behavior
-        # over huge brains.
-        sample = sentences[-1000:]
-
-        removed = set()
-
-        for i in range(len(sample)):
-
-            key_a, a = sample[i]
-
-            if key_a in removed:
-                continue
-
-            for j in range(
-                i + 1,
-                min(i + 80, len(sample))
-            ):
-
-                key_b, b = sample[j]
-
-                if key_b in removed:
-                    continue
-
-                score = combined_similarity(
-                    a["text"],
-                    b["text"]
-                )
-
-                if score >= 0.94:
-
-                    # Keep the one with more sources.
-                    sources_a = len(
-                        a.get("sources", {})
-                    )
-
-                    sources_b = len(
-                        b.get("sources", {})
-                    )
-
-                    if sources_a >= sources_b:
-
-                        a["count"] += b.get(
-                            "count",
-                            0
-                        )
-
-                        removed.add(
-                            key_b
-                        )
-
-                    else:
-
-                        b["count"] += a.get(
-                            "count",
-                            0
-                        )
-
-                        removed.add(
-                            key_a
-                        )
-
-        for key in removed:
-            self.brain.data[
-                "sentences"
-            ].pop(
-                key,
-                None
-            )
-
-
-# ============================================================
-# PATCH SELF-LEARNING ENGINE WITH CURATION
-# ============================================================
-
-def attach_advanced_learning(
-    app: AutonomousAI
-) -> None:
-
-    app.graph = KnowledgeGraph(
-        app.brain
-    )
-
-    app.curator = AutoCurator(
-        app.brain
-    )
-
-    original_cycle = (
-        app.self_learning.run_cycle
-    )
-
-    def enhanced_cycle():
-
-        result = original_cycle()
-
-        app.curator.run()
-
-        app.brain.save()
-
-        return result
-
-    app.self_learning.run_cycle = enhanced_cycle
-
-
-# ============================================================
-# STARTUP
-# ============================================================
-
-def main() -> None:
-
-    migrate_old_brain()
-
-    create_starter_knowledge()
-
-    brain = Brain()
-
-    load_external_config(
-        brain
-    )
-
-    create_config_file(
-        brain
-    )
-
-    brain.save()
-
-    app = AutonomousAI()
-
-    # Replace the newly created brain with the configured one
-    # only when configuration was loaded before app creation.
-    app.brain = brain
-
-    app.extractor = KnowledgeExtractor(
-        app.brain
-    )
-
-    app.file_learner = FileLearner(
-        app.brain,
-        app.extractor
-    )
-
-    app.web_learner = WebLearner(
-        app.brain,
-        app.extractor
-    )
-
-    app.response_engine = ResponseEngine(
-        app.brain
-    )
-
-    app.self_learning = SelfLearningEngine(
-        app.brain,
-        app.file_learner,
-        app.web_learner
-    )
-
-    app.commands = CommandSystem(
-        app
-    )
-
-    attach_advanced_learning(
-        app
-    )
-
-    app.run()
-
-
-# ============================================================
-# END
-# ============================================================
 
 if __name__ == "__main__":
     main()
