@@ -1,1472 +1,2461 @@
-PYTHON PROGRAMMING KNOWLEDGE BASE
-
-Python is a high-level, general-purpose programming language.
-Python is known for readable syntax and is used for automation,
-web development, data analysis, scientific computing, scripting,
-education, software development, and artificial intelligence.
-
-Python source files normally use the .py extension.
-
-Python uses indentation to define blocks of code. Indentation is
-therefore part of Python syntax.
-
-A comment begins with the # character.
-
-Variables
-
-A variable is a name that refers to a value.
-
-Example:
-x = 10
-
-A variable can later be changed:
-
-x = 20
-
-Python variables do not require a type declaration.
-
-Common Python data types include:
-
-int - whole numbers
-float - decimal numbers
-str - text
-bool - True or False
-list - ordered mutable collection
-tuple - ordered immutable collection
-set - collection of unique values
-dict - collection of key-value pairs
-None - represents the absence of a value
-
-Numbers
-
-Python supports several arithmetic operations.
-
-Addition:
-10 + 5
-
-Subtraction:
-10 - 5
-
-Multiplication:
-10 * 5
-
-Division:
-10 / 5
-
-Floor division:
-10 // 3
-
-Remainder:
-10 % 3
-
-Exponentiation:
-2 ** 8
-
-The division operator / normally produces a floating-point
-number.
-
-The floor division operator // performs floor division.
-
-The modulo operator % returns the remainder.
-
-Strings
-
-A string represents text.
-
-Examples:
-
-"Hello"
-'Hello'
-"""Hello"""
-
-Strings can be combined using concatenation.
-
-Example:
-
-"Hello " + "world"
-
-Useful string methods include:
-
-upper()
-lower()
-strip()
-replace()
-split()
-join()
-startswith()
-endswith()
-find()
-count()
-
-String indexes start at zero.
-
-Example:
-
-text = "Python"
-
-text[0] is "P".
-
-Negative indexes count from the end.
-
-text[-1] is "n".
-
-String slicing can select part of a string.
-
-Example:
-
-text[0:3]
-
-This produces "Pyt".
-
-F-strings allow values to be inserted into text.
-
-Example:
-
-name = "Alex"
-age = 15
-message = f"{name} is {age} years old."
-
-Lists
-
-A list is an ordered, mutable collection.
-
-Example:
-
-numbers = [1, 2, 3, 4, 5]
-
-Lists can contain different types of values.
-
-Useful list methods include:
-
-append()
-extend()
-insert()
-remove()
-pop()
-clear()
-sort()
-reverse()
-copy()
-
-append adds an item to the end.
-
-insert adds an item at a specific position.
-
-remove removes a matching value.
-
-pop removes and returns an item.
-
-sort sorts a list.
-
-reverse reverses a list.
-
-Lists support indexes and slices.
-
-Example:
-
-numbers[0]
-
-numbers[-1]
-
-numbers[1:4]
-
-List comprehensions
-
-A list comprehension creates a list using an expression.
-
-Example:
-
-squares = [x * x for x in range(10)]
-
-A condition can be included.
-
-Example:
-
-even_numbers = [x for x in range(20) if x % 2 == 0]
-
-Tuples
-
-A tuple is an ordered collection that normally cannot be changed
-after creation.
-
-Example:
-
-point = (10, 20)
-
-Tuples are useful for representing fixed groups of values.
-
-Tuples can be unpacked.
-
-Example:
-
-x, y = point
-
-Sets
-
-A set is a collection containing unique values.
-
-Example:
-
-numbers = {1, 2, 3, 3}
-
-The resulting set contains only one copy of 3.
-
-Sets are useful when uniqueness and membership testing are
-important.
-
-Important set operations include:
-
-union
-intersection
-difference
-symmetric difference
-
-Example:
-
-a = {1, 2, 3}
-b = {3, 4, 5}
-
-a | b means union.
-
-a & b means intersection.
-
-a - b means difference.
-
-Dictionaries
-
-A dictionary stores key-value pairs.
-
-Example:
-
-person = {
-    "name": "Alex",
-    "age": 15,
-    "student": True
-}
-
-A dictionary value can be retrieved using its key.
-
-Example:
-
-person["name"]
-
-Useful dictionary methods include:
-
-get()
-keys()
-values()
-items()
-update()
-pop()
-setdefault()
-
-get() is useful when a key might not exist.
-
-Example:
-
-person.get("name")
-
-Dictionaries are useful for structured information and fast
-lookup by key.
-
-Conditional statements
-
-Conditional statements allow a program to make decisions.
-
-Basic structure:
-
-if condition:
-    code
-
-elif another_condition:
-    code
-
+PYTHON KNOWLEDGE BASE
+VERSION: 3.0
+SUBJECT: Python Programming
+PURPOSE: Structured knowledge for an autonomous text-learning system
+
+============================================================
+SECTION 1: PYTHON OVERVIEW
+============================================================
+
+FACT: Python is a high-level general-purpose programming language.
+FACT: Python is widely used for automation, web development, data analysis, scientific computing, scripting, education, testing, and artificial intelligence.
+FACT: Python was created by Guido van Rossum.
+FACT: Python emphasizes readability and relatively simple syntax.
+FACT: Python programs are commonly stored in files ending with .py.
+FACT: Python source code is normally executed by a Python interpreter.
+FACT: Python is dynamically typed.
+FACT: Python uses strong type rules even though variable types do not normally need to be declared.
+FACT: Python supports procedural programming.
+FACT: Python supports object-oriented programming.
+FACT: Python supports functional programming techniques.
+FACT: Python includes a large standard library.
+FACT: Python packages can extend the standard library.
+FACT: Python uses indentation to define blocks of code.
+FACT: Python comments begin with the hash character.
+FACT: A Python statement usually represents an operation performed by the program.
+FACT: A Python expression produces a value.
+FACT: A Python variable is a name associated with an object.
+FACT: Python objects have identity, type, and value.
+FACT: Everything represented as a value in Python is an object.
+
+CONCEPT: Programming is the process of giving a computer precise instructions.
+CONCEPT: A programming language provides rules for expressing instructions and data.
+CONCEPT: Syntax describes how valid Python code must be written.
+CONCEPT: Semantics describes what valid Python code means or does.
+CONCEPT: An interpreter executes Python code.
+CONCEPT: Readability is important because programs are maintained and modified by humans.
+
+RELATION: Python uses indentation to represent code blocks.
+RELATION: Python variables refer to objects.
+RELATION: Python expressions produce values.
+RELATION: Python statements perform actions or control execution.
+RELATION: Python has dynamic typing.
+RELATION: Python has strong typing.
+RELATION: Python supports multiple programming paradigms.
+
+============================================================
+SECTION 2: BASIC SYNTAX
+============================================================
+
+FACT: Python statements can be written one per line.
+FACT: Python normally does not require semicolons at the end of statements.
+FACT: Python uses indentation instead of braces to define blocks.
+FACT: Consistent indentation is required.
+FACT: Four spaces are the conventional indentation amount.
+FACT: A colon commonly introduces an indented block.
+FACT: Function definitions use the def keyword.
+FACT: Class definitions use the class keyword.
+FACT: Conditional blocks use if, elif, and else.
+FACT: Loop blocks use for and while.
+FACT: Exception handling blocks use try, except, else, and finally.
+FACT: Context managers commonly use the with keyword.
+
+EXAMPLE: A simple Python statement is print("Hello").
+EXAMPLE: A variable assignment is name = "Alice".
+EXAMPLE: A conditional begins with if condition:.
+EXAMPLE: A function begins with def function_name():.
+
+RULE: Code belonging to a block must be indented consistently.
+RULE: A colon after a block header indicates that an indented block follows.
+RULE: Python identifiers should normally use descriptive names.
+
+============================================================
+SECTION 3: COMMENTS
+============================================================
+
+FACT: A Python single-line comment begins with #.
+FACT: Comments are ignored by the Python interpreter.
+FACT: Comments can explain why code exists.
+FACT: Comments can document assumptions and unusual behavior.
+FACT: Excessive comments can make code harder to read if they merely repeat obvious code.
+FACT: Python does not have a dedicated multiline comment syntax.
+FACT: Triple-quoted strings can be used as multiline strings.
+FACT: Triple-quoted strings can serve as documentation strings when placed appropriately.
+
+EXAMPLE: # This is a Python comment.
+EXAMPLE: """This is a triple-quoted string."""
+
+CONCEPT: A docstring is documentation stored in a string associated with a module, class, or function.
+RELATION: Comments explain code to humans.
+RELATION: Docstrings provide structured documentation for Python objects.
+
+============================================================
+SECTION 4: VARIABLES
+============================================================
+
+FACT: A variable name can refer to an object.
+FACT: Assignment binds a name to a value.
+FACT: Python variables do not require explicit type declarations in ordinary code.
+FACT: A variable can be rebound to an object of another type.
+FACT: Variable names are case-sensitive.
+FACT: Python identifiers can contain letters, digits, and underscores.
+FACT: An identifier cannot normally begin with a digit.
+FACT: Python keywords cannot be used as ordinary variable names.
+FACT: Descriptive variable names improve readability.
+
+EXAMPLE: age = 15
+EXAMPLE: name = "Milo"
+EXAMPLE: score = 95
+EXAMPLE: active = True
+
+RELATION: age can refer to an integer object.
+RELATION: name can refer to a string object.
+RELATION: score can refer to a numeric object.
+RELATION: active can refer to a Boolean object.
+
+RULE: Use snake_case for ordinary Python variable and function names.
+RULE: Avoid single-letter variable names except in small, obvious contexts.
+RULE: Avoid naming variables after built-in functions such as list, str, id, or sum.
+
+============================================================
+SECTION 5: PYTHON DATA TYPES
+============================================================
+
+FACT: Python has built-in numeric types including int, float, and complex.
+FACT: Python has the Boolean type bool.
+FACT: Python has the string type str.
+FACT: Python has the bytes type.
+FACT: Python has the NoneType type with the value None.
+FACT: Python has sequence types including list, tuple, range, str, bytes, and bytearray.
+FACT: Python has mapping types including dict.
+FACT: Python has set types including set and frozenset.
+
+CONCEPT: A data type determines the kind of value an object represents and the operations supported by that object.
+CONCEPT: Type checking can be performed with type().
+CONCEPT: isinstance() can test whether an object is an instance of a specified type or class.
+
+EXAMPLE: type(5) returns int.
+EXAMPLE: type(3.14) returns float.
+EXAMPLE: type("hello") returns str.
+EXAMPLE: type(True) returns bool.
+EXAMPLE: type(None) returns NoneType.
+
+============================================================
+SECTION 6: INTEGERS
+============================================================
+
+FACT: int represents integers.
+FACT: Python integers can represent arbitrarily large integers subject to available memory.
+FACT: Integer literals can be positive, negative, or zero.
+FACT: Python supports decimal integer literals.
+FACT: Python supports binary integer literals using the 0b prefix.
+FACT: Python supports octal integer literals using the 0o prefix.
+FACT: Python supports hexadecimal integer literals using the 0x prefix.
+
+EXAMPLE: 10 is an integer.
+EXAMPLE: -10 is an integer.
+EXAMPLE: 0b1010 represents the integer 10.
+EXAMPLE: 0xFF represents the integer 255.
+
+============================================================
+SECTION 7: FLOATING-POINT NUMBERS
+============================================================
+
+FACT: float represents floating-point numbers.
+FACT: Floating-point arithmetic can contain small precision errors.
+FACT: A decimal literal containing a decimal point normally creates a float.
+FACT: Scientific notation can represent floating-point values.
+FACT: math.isclose() can be useful when comparing floating-point values.
+
+EXAMPLE: 3.14 is a float.
+EXAMPLE: 1.0 is a float.
+EXAMPLE: 1e3 represents 1000.0.
+
+RULE: Do not assume every decimal floating-point calculation is exactly represented in binary.
+RULE: Use an appropriate tolerance when comparing calculated floating-point values.
+
+============================================================
+SECTION 8: BOOLEAN VALUES
+============================================================
+
+FACT: Python has two Boolean values: True and False.
+FACT: bool is a subclass of int.
+FACT: Boolean expressions commonly result from comparisons.
+FACT: and performs logical conjunction.
+FACT: or performs logical disjunction.
+FACT: not negates a Boolean value.
+
+EXAMPLE: 5 > 3 evaluates to True.
+EXAMPLE: 5 == 3 evaluates to False.
+EXAMPLE: True and False evaluates to False.
+EXAMPLE: True or False evaluates to True.
+EXAMPLE: not True evaluates to False.
+
+RELATION: True represents a true Boolean condition.
+RELATION: False represents a false Boolean condition.
+
+============================================================
+SECTION 9: NONE
+============================================================
+
+FACT: None is a special Python singleton representing the absence of a value.
+FACT: A function that reaches the end without returning a value returns None.
+FACT: None is commonly used to represent missing, unknown, or intentionally absent data.
+FACT: None should normally be compared using is or is not.
+
+EXAMPLE: result = None
+EXAMPLE: if result is None: print("No result")
+
+RULE: Prefer value is None over value == None.
+
+============================================================
+SECTION 10: STRINGS
+============================================================
+
+FACT: str represents text.
+FACT: Python strings are sequences of Unicode characters.
+FACT: Python strings are immutable.
+FACT: Strings can be enclosed in single quotes.
+FACT: Strings can be enclosed in double quotes.
+FACT: Triple quotes can represent multiline strings.
+FACT: Strings support indexing.
+FACT: Strings support slicing.
+FACT: Strings support iteration.
+FACT: Strings support many useful methods.
+FACT: f-strings provide formatted string literals.
+
+EXAMPLE: "hello" is a string.
+EXAMPLE: 'hello' is a string.
+EXAMPLE: """hello""" is a multiline string.
+EXAMPLE: f"Score: {score}" is an f-string.
+
+RELATION: Strings are sequences.
+RELATION: Strings are immutable.
+RELATION: String indexing returns characters.
+RELATION: String slicing returns substrings.
+
+============================================================
+SECTION 11: STRING OPERATIONS
+============================================================
+
+FACT: len(string) returns the number of characters.
+FACT: string.lower() returns a lowercase version.
+FACT: string.upper() returns an uppercase version.
+FACT: string.strip() removes surrounding whitespace.
+FACT: string.split() splits a string into a list.
+FACT: separator.join(items) combines strings.
+FACT: string.replace(old, new) replaces occurrences.
+FACT: string.startswith(prefix) checks a prefix.
+FACT: string.endswith(suffix) checks a suffix.
+FACT: string.find(value) searches for a substring.
+FACT: string.count(value) counts occurrences.
+FACT: string.isdigit() tests whether characters are digits.
+FACT: string.isalpha() tests whether characters are alphabetic.
+FACT: string.isalnum() tests whether characters are alphanumeric.
+
+EXAMPLE: "HELLO".lower() produces "hello".
+EXAMPLE: "hello".upper() produces "HELLO".
+EXAMPLE: " hello ".strip() produces "hello".
+EXAMPLE: "a,b,c".split(",") produces ["a", "b", "c"].
+EXAMPLE: "-".join(["a", "b", "c"]) produces "a-b-c".
+
+============================================================
+SECTION 12: STRING FORMATTING
+============================================================
+
+FACT: f-strings are commonly used for readable string formatting.
+FACT: Expressions can appear inside curly braces in f-strings.
+FACT: Format specifications can control width, precision, alignment, and representation.
+FACT: str.format() provides another formatting mechanism.
+FACT: Percent formatting is an older formatting mechanism.
+
+EXAMPLE: f"Hello {name}"
+EXAMPLE: f"Score: {score:.2f}"
+EXAMPLE: f"{name:>10}"
+
+RULE: Prefer f-strings for most modern Python string formatting.
+
+============================================================
+SECTION 13: LISTS
+============================================================
+
+FACT: list represents an ordered mutable collection.
+FACT: Lists can contain objects of different types.
+FACT: Lists support indexing.
+FACT: Lists support slicing.
+FACT: Lists can be changed after creation.
+FACT: Lists can contain duplicate values.
+FACT: Lists preserve insertion order.
+FACT: Lists can be nested.
+
+EXAMPLE: numbers = [1, 2, 3]
+EXAMPLE: names = ["Alice", "Bob", "Charlie"]
+EXAMPLE: mixed = [1, "hello", True, None]
+
+RELATION: A list is mutable.
+RELATION: A list is ordered.
+RELATION: A list can contain duplicate values.
+RELATION: A list supports indexing.
+RELATION: A list supports slicing.
+
+============================================================
+SECTION 14: LIST METHODS
+============================================================
+
+FACT: append(value) adds one item to the end of a list.
+FACT: extend(iterable) adds multiple items.
+FACT: insert(index, value) inserts an item.
+FACT: remove(value) removes the first matching value.
+FACT: pop() removes and returns the last item by default.
+FACT: pop(index) removes and returns an item at an index.
+FACT: clear() removes all items.
+FACT: index(value) finds the first matching index.
+FACT: count(value) counts occurrences.
+FACT: sort() sorts a list in place.
+FACT: reverse() reverses a list in place.
+FACT: copy() creates a shallow copy of a list.
+
+RULE: list.sort() changes the existing list.
+RULE: sorted(list) creates and returns a new sorted list.
+
+============================================================
+SECTION 15: TUPLES
+============================================================
+
+FACT: tuple represents an ordered immutable collection.
+FACT: Tuples support indexing.
+FACT: Tuples support slicing.
+FACT: Tuples can contain duplicate values.
+FACT: Tuples can contain mutable objects even though the tuple itself is immutable.
+FACT: Tuples can be unpacked into variables.
+FACT: A one-item tuple requires a trailing comma.
+
+EXAMPLE: point = (10, 20)
+EXAMPLE: single = (5,)
+
+RELATION: A tuple is immutable.
+RELATION: A tuple is similar to a list but cannot have its elements reassigned or removed directly.
+
+============================================================
+SECTION 16: SETS
+============================================================
+
+FACT: set represents a collection of unique hashable objects.
+FACT: Sets do not provide indexing by position.
+FACT: Sets are useful for membership testing.
+FACT: Sets support union.
+FACT: Sets support intersection.
+FACT: Sets support difference.
+FACT: Sets support symmetric difference.
+FACT: Sets automatically eliminate duplicate values.
+
+EXAMPLE: numbers = {1, 2, 3}
+EXAMPLE: set([1, 1, 2, 2, 3]) produces a set containing 1, 2, and 3.
+
+RELATION: Sets contain unique elements.
+RELATION: Sets are useful for removing duplicates.
+RELATION: Sets are useful for fast membership testing.
+
+============================================================
+SECTION 17: DICTIONARIES
+============================================================
+
+FACT: dict represents a mapping of keys to values.
+FACT: Dictionary keys must be hashable.
+FACT: Dictionary values can be any normal Python object.
+FACT: Dictionaries preserve insertion order.
+FACT: Dictionaries can be modified.
+FACT: Dictionaries can store nested dictionaries.
+FACT: Dictionaries can store lists as values.
+FACT: Dictionaries provide efficient key-based lookup.
+
+EXAMPLE: person = {"name": "Alice", "age": 15}
+EXAMPLE: person["name"] accesses the value associated with "name".
+
+FACT: dict.get(key) retrieves a value and can provide a default.
+FACT: dict.keys() provides dictionary keys.
+FACT: dict.values() provides dictionary values.
+FACT: dict.items() provides key-value pairs.
+FACT: dict.update() updates entries.
+FACT: dict.pop() removes an entry.
+FACT: dict.setdefault() retrieves or creates an entry.
+
+RELATION: A dictionary maps keys to values.
+RELATION: Dictionary lookup is based on keys rather than numeric positions.
+
+============================================================
+SECTION 18: INDEXING
+============================================================
+
+FACT: Python sequences use zero-based indexing.
+FACT: The first item normally has index 0.
+FACT: Negative indexes count from the end.
+FACT: Index -1 refers to the last item.
+FACT: Index -2 refers to the second-to-last item.
+
+EXAMPLE: ["a", "b", "c"][0] produces "a".
+EXAMPLE: ["a", "b", "c"][-1] produces "c".
+
+============================================================
+SECTION 19: SLICING
+============================================================
+
+FACT: Sequence slicing uses start:stop:step syntax.
+FACT: The stop position is normally excluded.
+FACT: Omitting start begins from the beginning.
+FACT: Omitting stop continues to the end.
+FACT: A negative step can reverse traversal.
+
+EXAMPLE: numbers[1:4] selects positions 1 through 3.
+EXAMPLE: numbers[:3] selects the first three elements.
+EXAMPLE: numbers[3:] selects from position 3 onward.
+EXAMPLE: numbers[::2] selects every second element.
+EXAMPLE: text[::-1] can reverse a string.
+
+============================================================
+SECTION 20: MUTABILITY
+============================================================
+
+FACT: Mutable objects can be changed after creation.
+FACT: Immutable objects cannot be changed after creation.
+FACT: Lists are mutable.
+FACT: Dictionaries are mutable.
+FACT: Sets are mutable.
+FACT: Strings are immutable.
+FACT: Tuples are immutable.
+FACT: Integers are immutable.
+FACT: Floats are immutable.
+FACT: Boolean values are immutable.
+
+RELATION: list is mutable.
+RELATION: dict is mutable.
+RELATION: set is mutable.
+RELATION: str is immutable.
+RELATION: tuple is immutable.
+RELATION: int is immutable.
+RELATION: float is immutable.
+
+============================================================
+SECTION 21: OPERATORS
+============================================================
+
+FACT: + performs addition or sequence concatenation depending on operands.
+FACT: - performs subtraction.
+FACT: * performs multiplication or repetition depending on operands.
+FACT: / performs true division.
+FACT: // performs floor division.
+FACT: % calculates the remainder.
+FACT: ** performs exponentiation.
+FACT: == compares values.
+FACT: != tests inequality.
+FACT: < tests whether the left value is smaller.
+FACT: > tests whether the left value is larger.
+FACT: <= tests less-than-or-equal.
+FACT: >= tests greater-than-or-equal.
+FACT: = performs assignment.
+FACT: += performs augmented addition assignment.
+FACT: -= performs augmented subtraction assignment.
+FACT: *= performs augmented multiplication assignment.
+FACT: /= performs augmented division assignment.
+
+EXAMPLE: 10 / 4 produces 2.5.
+EXAMPLE: 10 // 4 produces 2.
+EXAMPLE: 10 % 4 produces 2.
+EXAMPLE: 2 ** 3 produces 8.
+
+============================================================
+SECTION 22: IDENTITY AND MEMBERSHIP
+============================================================
+
+FACT: is tests object identity.
+FACT: is not tests that two references do not refer to the same object.
+FACT: in tests membership.
+FACT: not in tests non-membership.
+FACT: == tests value equality.
+FACT: is does not generally mean value equality.
+
+EXAMPLE: "a" in "cat" evaluates to True.
+EXAMPLE: 3 in [1, 2, 3] evaluates to True.
+
+RULE: Use == for value comparison.
+RULE: Use is when identity matters, especially for None.
+
+============================================================
+SECTION 23: CONDITIONALS
+============================================================
+
+FACT: if executes a block when a condition is true.
+FACT: elif checks additional conditions.
+FACT: else executes when preceding conditions are false.
+FACT: Conditions can use comparison operators.
+FACT: Conditions can use Boolean operators.
+FACT: Conditional expressions can select between two values.
+
+EXAMPLE:
+if score >= 90:
+    grade = "A"
 else:
-    code
+    grade = "B"
 
-Comparison operators include:
+RELATION: if controls conditional execution.
+RELATION: elif provides additional conditional branches.
+RELATION: else provides a fallback branch.
 
-==
-!=
->
-<
->=
-<=
+============================================================
+SECTION 24: TRUTHINESS
+============================================================
 
-Logical operators include:
+FACT: Python uses truth-value testing in conditions.
+FACT: False is falsey.
+FACT: None is falsey.
+FACT: Numeric zero is falsey.
+FACT: Empty strings are falsey.
+FACT: Empty lists are falsey.
+FACT: Empty tuples are falsey.
+FACT: Empty dictionaries are falsey.
+FACT: Empty sets are falsey.
+FACT: Most non-empty objects are truthy.
 
-and
-or
-not
+EXAMPLE: if items: checks whether items is truthy.
+EXAMPLE: if not items: checks whether items is falsey.
 
-Example:
+============================================================
+SECTION 25: FOR LOOPS
+============================================================
 
-age = 15
+FACT: A for loop iterates over an iterable.
+FACT: Lists are iterable.
+FACT: Strings are iterable.
+FACT: Tuples are iterable.
+FACT: Dictionaries are iterable.
+FACT: Sets are iterable.
+FACT: range objects are iterable.
+FACT: for loops can unpack tuples.
+FACT: for loops can use enumerate().
+FACT: for loops can use zip().
 
-if age >= 18:
-    result = "adult"
-elif age >= 13:
-    result = "teenager"
-else:
-    result = "child"
+EXAMPLE:
+for name in names:
+    print(name)
 
-Loops
+EXAMPLE:
+for index, name in enumerate(names):
+    print(index, name)
 
-A for loop repeats code for values in an iterable.
+EXAMPLE:
+for a, b in zip(list_a, list_b):
+    print(a, b)
 
-Example:
+============================================================
+SECTION 26: WHILE LOOPS
+============================================================
 
-for number in range(5):
-    print(number)
+FACT: A while loop repeats while its condition remains true.
+FACT: A while loop should normally have a way to eventually terminate.
+FACT: Infinite loops can occur when a loop condition never becomes false.
 
-range(5) produces 0, 1, 2, 3, and 4.
+EXAMPLE:
+count = 0
+while count < 5:
+    count += 1
 
-A while loop repeats while a condition is true.
+RULE: Check loop conditions carefully to avoid unintended infinite loops.
 
-Example:
+============================================================
+SECTION 27: BREAK CONTINUE PASS
+============================================================
 
-counter = 0
+FACT: break exits the nearest enclosing loop.
+FACT: continue skips to the next loop iteration.
+FACT: pass performs no operation and can act as a placeholder.
 
-while counter < 5:
-    counter += 1
+RELATION: break changes loop control by terminating the loop.
+RELATION: continue changes loop control by skipping the remaining body.
+RELATION: pass does not terminate or repeat a loop.
 
-The break statement exits a loop.
+============================================================
+SECTION 28: RANGE
+============================================================
 
-The continue statement skips the rest of the current iteration
-and continues with the next iteration.
+FACT: range() produces a range object.
+FACT: range can specify stop.
+FACT: range can specify start and stop.
+FACT: range can specify start, stop, and step.
+FACT: The stop value is excluded.
+FACT: range is commonly used for numeric iteration.
 
-Functions
+EXAMPLE: range(5) represents 0 through 4.
+EXAMPLE: range(2, 6) represents 2 through 5.
+EXAMPLE: range(0, 10, 2) represents 0, 2, 4, 6, and 8.
 
-A function is a reusable block of code.
+============================================================
+SECTION 29: FUNCTIONS
+============================================================
 
-Functions are defined with def.
+FACT: A function is a reusable block of code.
+FACT: Functions are defined using def.
+FACT: Functions can accept parameters.
+FACT: Functions can return values.
+FACT: return ends the current function execution.
+FACT: A function without an explicit return returns None.
+FACT: Functions create local scopes.
+FACT: Function parameters receive arguments when the function is called.
 
-Example:
-
+EXAMPLE:
 def add(a, b):
     return a + b
 
-Parameters are the values listed when defining a function.
+RELATION: Parameters belong to a function definition.
+RELATION: Arguments are values supplied when calling a function.
+RELATION: return sends a value from a function to its caller.
 
-Arguments are the actual values supplied when calling a function.
+============================================================
+SECTION 30: FUNCTION PARAMETERS
+============================================================
 
-Example:
+FACT: Positional arguments are matched by position.
+FACT: Keyword arguments are matched by parameter name.
+FACT: Functions can have default parameter values.
+FACT: *args collects extra positional arguments.
+FACT: **kwargs collects extra keyword arguments.
+FACT: Parameters can be positional-only.
+FACT: Parameters can be keyword-only.
 
-result = add(5, 10)
+EXAMPLE:
+def greet(name, message="Hello"):
+    return f"{message}, {name}"
 
-The return statement sends a value back to the caller.
-
-Functions help break large programs into smaller reusable pieces.
-
-Default parameters
-
-Functions can have default values.
-
-Example:
-
-def greet(name="friend"):
-    return f"Hello, {name}!"
-
-Calling greet() uses "friend".
-
-Calling greet("Alex") uses "Alex".
-
-Variable arguments
-
-*args collects extra positional arguments.
-
-Example:
-
-def add_many(*numbers):
+EXAMPLE:
+def total(*numbers):
     return sum(numbers)
 
-**kwargs collects extra keyword arguments into a dictionary.
+EXAMPLE:
+def configure(**options):
+    return options
 
-Example:
+RULE: Avoid mutable objects as default parameter values when mutation would persist across calls.
 
-def describe(**information):
-    return information
+============================================================
+SECTION 31: SCOPE
+============================================================
 
-Lambda functions
+FACT: Local variables normally belong to the current function scope.
+FACT: Global variables belong to module scope.
+FACT: Python resolves names according to nested scopes.
+FACT: The LEGB rule describes common name lookup order.
+FACT: LEGB stands for Local, Enclosing, Global, Built-in.
+FACT: The global keyword can assign to a module-level variable from inside a function.
+FACT: The nonlocal keyword can assign to a variable in an enclosing function scope.
 
-A lambda is a small anonymous function.
+RULE: Prefer passing data into functions and returning results rather than relying heavily on global state.
 
-Example:
+============================================================
+SECTION 32: LAMBDA
+============================================================
 
-double = lambda x: x * 2
+FACT: A lambda expression creates a small anonymous function.
+FACT: Lambda functions contain a single expression.
+FACT: Lambdas are commonly used for short callbacks and sorting keys.
 
-Lambdas are often used when a short function is needed for
-operations such as sorting, mapping, or filtering.
+EXAMPLE: square = lambda x: x * x
+EXAMPLE: sorted(names, key=lambda name: len(name))
 
-Map
+RULE: Prefer normal def functions when logic becomes complicated.
 
-map() applies a function to every item in an iterable.
+============================================================
+SECTION 33: COMPREHENSIONS
+============================================================
 
-Example:
+FACT: List comprehensions create lists from iterable data.
+FACT: Set comprehensions create sets.
+FACT: Dictionary comprehensions create dictionaries.
+FACT: Comprehensions can contain filtering conditions.
+FACT: Comprehensions can transform each element.
 
-numbers = [1, 2, 3]
+EXAMPLE: [x * 2 for x in numbers]
+EXAMPLE: [x for x in numbers if x > 0]
+EXAMPLE: {x * x for x in numbers}
+EXAMPLE: {name: len(name) for name in names}
 
-doubled = list(map(lambda x: x * 2, numbers))
+RELATION: A comprehension often replaces a simple loop used to construct a collection.
 
-Filter
+============================================================
+SECTION 34: BUILT-IN FUNCTIONS
+============================================================
 
-filter() keeps items for which a condition is true.
+FACT: len() returns a size or length.
+FACT: print() writes output.
+FACT: input() reads text input.
+FACT: type() returns an object's type.
+FACT: isinstance() checks type membership.
+FACT: int() converts a value to an integer when possible.
+FACT: float() converts a value to a float when possible.
+FACT: str() converts a value to a string.
+FACT: bool() converts a value to a Boolean.
+FACT: list() creates a list from an iterable.
+FACT: tuple() creates a tuple from an iterable.
+FACT: set() creates a set from an iterable.
+FACT: dict() creates a dictionary.
+FACT: sum() adds numeric values.
+FACT: min() returns a minimum value.
+FACT: max() returns a maximum value.
+FACT: abs() returns absolute value.
+FACT: round() rounds a number.
+FACT: sorted() returns sorted data.
+FACT: reversed() returns a reverse iterator.
+FACT: enumerate() adds indexes to iteration.
+FACT: zip() combines iterables.
+FACT: range() creates a range object.
+FACT: any() tests whether any item is truthy.
+FACT: all() tests whether every item is truthy.
+FACT: map() applies a function to items.
+FACT: filter() selects items according to a condition.
 
-Example:
+============================================================
+SECTION 35: ENUMERATE
+============================================================
 
-numbers = [1, 2, 3, 4]
+FACT: enumerate() produces pairs containing an index and an item.
+FACT: enumerate() is useful when both position and value are needed.
+EXAMPLE:
+for index, value in enumerate(values):
+    print(index, value)
 
-even = list(filter(lambda x: x % 2 == 0, numbers))
+RULE: Prefer enumerate() over manually maintaining an index in many loops.
 
-Exceptions
+============================================================
+SECTION 36: ZIP
+============================================================
 
-Exceptions represent errors or unusual conditions.
+FACT: zip() combines elements from multiple iterables.
+FACT: zip iteration normally stops when the shortest input is exhausted.
+FACT: zip() is useful for processing related sequences together.
 
-Python commonly handles exceptions using try and except.
+EXAMPLE:
+for name, score in zip(names, scores):
+    print(name, score)
 
-Example:
+============================================================
+SECTION 37: SORTING
+============================================================
 
+FACT: sorted() returns a new sorted list.
+FACT: list.sort() sorts a list in place.
+FACT: Both sorted() and sort() accept a key function.
+FACT: reverse=True sorts in descending order.
+FACT: Python sorting is stable.
+FACT: Sorting can be based on multiple criteria using tuple keys.
+
+EXAMPLE: sorted(words, key=len)
+EXAMPLE: sorted(numbers, reverse=True)
+
+RELATION: sorted() does not modify the original list.
+RELATION: sort() modifies the original list.
+
+============================================================
+SECTION 38: EXCEPTIONS
+============================================================
+
+FACT: An exception represents an error or unusual condition during execution.
+FACT: Python can handle exceptions with try and except.
+FACT: finally runs after exception handling whether or not an exception occurred.
+FACT: else in exception handling runs when no exception occurs in the try block.
+FACT: raise explicitly raises an exception.
+FACT: Exception is the base class for many ordinary exceptions.
+FACT: ValueError indicates an inappropriate value.
+FACT: TypeError indicates an inappropriate type or operation between types.
+FACT: IndexError indicates an invalid sequence index.
+FACT: KeyError indicates a missing dictionary key.
+FACT: FileNotFoundError indicates that a requested file was not found.
+FACT: ZeroDivisionError occurs when dividing by zero.
+FACT: NameError occurs when a name is not defined.
+FACT: AttributeError occurs when an object lacks a requested attribute.
+FACT: ImportError and ModuleNotFoundError can occur when imports fail.
+
+EXAMPLE:
 try:
-    result = 10 / 0
-except ZeroDivisionError:
-    result = None
-
-finally can contain code that should run whether an exception
-occurred or not.
-
-Example:
-
-try:
-    operation()
+    number = int(user_input)
 except ValueError:
-    handle_error()
-finally:
-    cleanup()
+    print("Invalid number")
 
-The raise statement can deliberately create an exception.
+RULE: Catch specific exceptions when possible.
+RULE: Avoid using bare except unless there is a strong reason.
+RULE: Do not silently ignore important exceptions.
 
-Example:
+============================================================
+SECTION 39: CUSTOM EXCEPTIONS
+============================================================
 
-raise ValueError("Invalid value")
+FACT: Custom exceptions can be created by subclassing Exception.
+EXAMPLE:
+class InvalidScoreError(Exception):
+    pass
 
-Common Python exceptions include:
+RELATION: Custom exceptions allow programs to communicate domain-specific errors.
+RELATION: Custom exceptions can be caught with except.
 
-SyntaxError - invalid Python syntax
+============================================================
+SECTION 40: FILE HANDLING
+============================================================
 
-NameError - a name was used before it was defined
+FACT: Python can read and write files.
+FACT: open() opens a file.
+FACT: File mode "r" means read.
+FACT: File mode "w" means write and replaces existing contents.
+FACT: File mode "a" means append.
+FACT: File mode "x" attempts to create a new file.
+FACT: Binary mode uses b.
+FACT: Text encoding can be specified.
+FACT: with is recommended when opening files because it closes the file automatically.
 
-TypeError - an operation received an incompatible type
-
-ValueError - a value is invalid
-
-IndexError - a sequence index is outside its range
-
-KeyError - a dictionary key does not exist
-
-AttributeError - an object does not have the requested attribute
-
-FileNotFoundError - a requested file does not exist
-
-ZeroDivisionError - division by zero was attempted
-
-File handling
-
-Python can read and write files.
-
-The with statement is recommended for file operations because it
-automatically closes the file.
-
-Example:
-
-with open("data.txt", "r", encoding="utf-8") as file:
+EXAMPLE:
+with open("notes.txt", "r", encoding="utf-8") as file:
     text = file.read()
 
-Common file modes include:
+FACT: read() reads the entire file.
+FACT: readline() reads one line.
+FACT: readlines() reads lines into a list.
+FACT: write() writes text.
+FACT: writelines() writes multiple strings.
 
-r - read
-w - write
-a - append
-rb - read binary
-wb - write binary
+RULE: Prefer with open(...) as file for ordinary file handling.
+RULE: Specify encoding="utf-8" when appropriate for text files.
 
-read() reads the entire file.
+============================================================
+SECTION 41: PATHLIB
+============================================================
 
-readline() reads one line.
+FACT: pathlib provides object-oriented filesystem paths.
+FACT: Path represents a filesystem path.
+FACT: Path.exists() tests whether a path exists.
+FACT: Path.is_file() tests whether a path is a file.
+FACT: Path.is_dir() tests whether a path is a directory.
+FACT: Path.mkdir() creates a directory.
+FACT: Path.read_text() reads text.
+FACT: Path.write_text() writes text.
+FACT: Path.iterdir() iterates through directory contents.
+FACT: Path.rglob() recursively searches for matching paths.
+FACT: Path.glob() searches using patterns.
+FACT: Path.name gives the final name.
+FACT: Path.suffix gives a file extension.
+FACT: Path.parent gives the parent path.
 
-readlines() reads multiple lines.
+RELATION: pathlib provides a modern interface for filesystem paths.
+RELATION: Path objects can be used with many standard library APIs.
 
-write() writes text.
+============================================================
+SECTION 42: JSON
+============================================================
 
-Pathlib
+FACT: JSON is a common text format for structured data.
+FACT: Python's json module can encode Python data into JSON.
+FACT: json.load() reads JSON from a file.
+FACT: json.loads() reads JSON from a string.
+FACT: json.dump() writes JSON to a file.
+FACT: json.dumps() converts Python data to a JSON string.
+FACT: JSON commonly represents objects, arrays, strings, numbers, booleans, and null.
+FACT: Python dictionaries commonly correspond to JSON objects.
+FACT: Python lists commonly correspond to JSON arrays.
+FACT: Python None corresponds to JSON null.
+FACT: Python True corresponds to JSON true.
+FACT: Python False corresponds to JSON false.
 
-The pathlib module provides object-oriented filesystem paths.
-
-Example:
-
-from pathlib import Path
-
-path = Path("knowledge")
-
-Useful Path methods include:
-
-exists()
-is_file()
-is_dir()
-mkdir()
-glob()
-rglob()
-read_text()
-write_text()
-
-rglob("*") can recursively search through directories.
-
-JSON
-
-JSON is a common format for storing structured information.
-
-Python provides the json module.
-
-json.dumps() converts a Python object into JSON text.
-
-json.loads() converts JSON text into a Python object.
-
-json.dump() writes JSON to a file.
-
-json.load() reads JSON from a file.
-
-Example:
-
+EXAMPLE:
 import json
 
-data = {
-    "name": "Alex",
-    "age": 15
-}
+data = {"name": "Alice", "score": 95}
 
-text = json.dumps(data)
+============================================================
+SECTION 43: CSV
+============================================================
 
-Modules
+FACT: CSV stands for comma-separated values.
+FACT: Python provides the csv module for reading and writing CSV data.
+FACT: csv.reader() reads CSV rows.
+FACT: csv.writer() writes CSV rows.
+FACT: csv.DictReader() reads rows as dictionaries.
+FACT: csv.DictWriter() writes dictionaries as rows.
 
-A module is a Python file that can be imported.
+RELATION: CSV is useful for tabular data.
+RELATION: CSV is commonly used with spreadsheets and data analysis.
 
-Example:
+============================================================
+SECTION 44: MODULES
+============================================================
 
+FACT: A module is a Python file containing definitions and executable statements.
+FACT: import loads a module.
+FACT: from module import name imports a specific name.
+FACT: Modules help organize code.
+FACT: Modules can contain functions.
+FACT: Modules can contain classes.
+FACT: Modules can contain constants.
+FACT: Modules can contain executable initialization code.
+
+EXAMPLE:
 import math
 
-A specific item can be imported.
-
-Example:
-
+EXAMPLE:
 from pathlib import Path
 
-An alias can be created.
+RULE: Avoid unnecessary wildcard imports such as from module import *.
 
-Example:
+============================================================
+SECTION 45: STANDARD LIBRARY
+============================================================
 
-import datetime as dt
+FACT: Python includes a large standard library.
+FACT: math provides mathematical functions.
+FACT: random provides pseudo-random number generation.
+FACT: statistics provides statistical functions.
+FACT: datetime provides dates and times.
+FACT: pathlib provides filesystem paths.
+FACT: os provides operating-system interfaces.
+FACT: sys provides interpreter and system-related functionality.
+FACT: json handles JSON.
+FACT: csv handles CSV.
+FACT: re provides regular expressions.
+FACT: collections provides specialized containers.
+FACT: itertools provides iterator-building tools.
+FACT: functools provides higher-order utilities.
+FACT: logging provides application logging.
+FACT: sqlite3 provides SQLite database access.
+FACT: argparse provides command-line argument parsing.
+FACT: unittest provides unit testing tools.
+FACT: subprocess can run external processes.
+FACT: threading provides thread-based concurrency.
+FACT: queue provides thread-safe queues.
 
-Python's standard library contains many modules.
+============================================================
+SECTION 46: CLASSES
+============================================================
 
-Important standard-library modules include:
+FACT: A class defines a type and can describe data and behavior.
+FACT: An object is an instance of a class.
+FACT: Classes can contain attributes.
+FACT: Classes can contain methods.
+FACT: __init__ is commonly used to initialize an object.
+FACT: self refers to the instance for ordinary instance methods.
+FACT: Methods are functions defined inside classes.
+FACT: Objects can have their own state.
 
-os - operating system functionality
-
-sys - Python interpreter and system information
-
-math - mathematical functions
-
-random - pseudo-random number generation
-
-json - JSON processing
-
-csv - CSV processing
-
-re - regular expressions
-
-pathlib - filesystem paths
-
-datetime - dates and times
-
-time - time-related operations
-
-threading - threads
-
-queue - queues
-
-collections - specialized data structures
-
-itertools - iterator tools
-
-functools - higher-order functions and utilities
-
-statistics - statistical calculations
-
-urllib - URL and HTTP functionality
-
-zipfile - ZIP archive handling
-
-Classes
-
-A class is a blueprint for creating objects.
-
-An object is an instance of a class.
-
-Example:
-
-class Person:
-
-    def __init__(self, name, age):
+EXAMPLE:
+class Student:
+    def __init__(self, name):
         self.name = name
-        self.age = age
 
-    def introduce(self):
-        return f"My name is {self.name}."
+RELATION: A class is a blueprint or definition for instances.
+RELATION: An object is an instance of a class.
+RELATION: An instance attribute belongs to a particular object.
+RELATION: A method usually operates on an object.
 
-The __init__ method initializes an object.
+============================================================
+SECTION 47: OBJECT-ORIENTED PROGRAMMING
+============================================================
 
-self refers to the current object.
+FACT: Object-oriented programming organizes software around objects and classes.
+FACT: Encapsulation groups data and behavior.
+FACT: Inheritance allows one class to derive from another.
+FACT: Polymorphism allows different objects to respond to a common operation.
+FACT: Abstraction focuses on important interfaces while hiding unnecessary implementation details.
+FACT: Composition builds objects from other objects.
+FACT: Composition is often preferable to deep inheritance hierarchies.
 
-Attributes store information about an object.
+============================================================
+SECTION 48: INHERITANCE
+============================================================
 
-Methods are functions associated with a class.
+FACT: A class can inherit from another class.
+FACT: The inherited class is commonly called the base class or parent class.
+FACT: The inheriting class is commonly called the derived class or child class.
+FACT: super() can access behavior from a parent class.
+FACT: A child class can override inherited methods.
 
-Inheritance
+EXAMPLE:
+class Animal:
+    def speak(self):
+        return "sound"
 
-Inheritance allows one class to derive behavior from another.
+class Dog(Animal):
+    def speak(self):
+        return "bark"
 
-Example:
+RELATION: Dog inherits from Animal.
+RELATION: Dog can override Animal.speak.
 
-class Student(Person):
+============================================================
+SECTION 49: PROPERTIES
+============================================================
 
-    def __init__(self, name, age, grade):
-        super().__init__(name, age)
-        self.grade = grade
+FACT: The @property decorator can expose a method through attribute-like syntax.
+FACT: Properties can control access to computed or validated data.
+FACT: A property can have a getter.
+FACT: A property can have a setter.
+FACT: A property can have a deleter.
 
-Student inherits from Person.
+RELATION: Properties can preserve a simple interface while controlling internal behavior.
 
-super() can call behavior from the parent class.
+============================================================
+SECTION 50: CLASS METHODS
+============================================================
 
-Object-oriented programming
+FACT: @classmethod creates a method that receives the class as its first argument.
+FACT: The conventional first parameter of a class method is cls.
+FACT: Class methods can act as alternative constructors.
 
-Important object-oriented programming concepts include:
+============================================================
+SECTION 51: STATIC METHODS
+============================================================
 
-class
-object
-attribute
-method
-inheritance
-encapsulation
-polymorphism
-abstraction
+FACT: @staticmethod creates a method that does not automatically receive self or cls.
+FACT: Static methods can group utility behavior inside a class when that organization is useful.
 
-A class defines a structure and behavior.
+============================================================
+SECTION 52: DATACLASSES
+============================================================
 
-An object is an instance of a class.
+FACT: The dataclasses module can reduce boilerplate for classes primarily storing data.
+FACT: @dataclass can automatically generate methods such as __init__ and __repr__.
+FACT: Dataclasses can contain type annotations.
+FACT: Dataclasses can have default values.
+FACT: Dataclasses can be frozen to discourage mutation.
 
-Encapsulation groups related data and behavior.
+============================================================
+SECTION 53: TYPE HINTS
+============================================================
 
-Inheritance allows classes to reuse behavior.
+FACT: Python supports optional type hints.
+FACT: Type hints document expected types.
+FACT: Type hints can improve editor support.
+FACT: Type hints can help static type checkers.
+FACT: Python normally does not enforce ordinary type hints at runtime.
+FACT: list[int] can describe a list of integers.
+FACT: dict[str, int] can describe a dictionary with string keys and integer values.
+FACT: str | None can describe a value that may be a string or None in modern Python syntax.
 
-Polymorphism allows different objects to provide compatible
-behavior.
+EXAMPLE:
+def add(a: int, b: int) -> int:
+    return a + b
 
-Abstraction focuses on important behavior while hiding
-unnecessary implementation details.
+RELATION: Type hints improve documentation.
+RELATION: Static type checking is different from runtime type enforcement.
 
-Dataclasses
+============================================================
+SECTION 54: GENERICS
+============================================================
 
-The dataclasses module can reduce repetitive code in classes
-used mainly for storing data.
+FACT: Generic type hints describe reusable type relationships.
+FACT: TypeVar can represent a type variable.
+FACT: Generic classes can work with multiple types while preserving type relationships.
+FACT: Modern Python typing provides generic collection syntax.
 
-Example:
+============================================================
+SECTION 55: ITERABLES
+============================================================
 
-from dataclasses import dataclass
+FACT: An iterable is an object that can provide its values one at a time.
+FACT: for loops operate on iterables.
+FACT: Lists are iterable.
+FACT: Tuples are iterable.
+FACT: Strings are iterable.
+FACT: Dictionaries are iterable.
+FACT: Sets are iterable.
+FACT: Iterators implement the iterator protocol.
+FACT: iter() obtains an iterator from an iterable when possible.
+FACT: next() requests the next item from an iterator.
+FACT: StopIteration signals the end of an iterator.
 
-@dataclass
-class Point:
-    x: float
-    y: float
+RELATION: Every iterator is iterable.
+RELATION: Not every iterable is itself an iterator.
 
-Type hints
+============================================================
+SECTION 56: GENERATORS
+============================================================
 
-Type hints describe expected types.
+FACT: A generator produces values lazily.
+FACT: Generator functions use yield.
+FACT: yield pauses a generator and preserves its state.
+FACT: Generators can save memory when processing large streams of data.
+FACT: Generator expressions resemble list comprehensions but use parentheses.
 
-Example:
-
-def multiply(a: int, b: int) -> int:
-    return a * b
-
-Type hints improve readability and help development tools.
-
-Type hints normally do not enforce types at runtime.
-
-Common type hints include:
-
-int
-float
-str
-bool
-list
-dict
-tuple
-set
-
-Enumerations
-
-The enum module provides named constants.
-
-Example:
-
-from enum import Enum
-
-class Status(Enum):
-    WAITING = 1
-    RUNNING = 2
-    FINISHED = 3
-
-Enums are useful when a variable should represent one of a fixed
-set of possible states.
-
-Iterators
-
-An iterator produces values one at a time.
-
-iter() creates an iterator.
-
-next() retrieves the next value.
-
-Example:
-
-numbers = iter([1, 2, 3])
-
-first = next(numbers)
-
-When an iterator has no more values, it normally raises
-StopIteration.
-
-Generators
-
-A generator produces values lazily using yield.
-
-Example:
-
+EXAMPLE:
 def count_up_to(limit):
     number = 1
-
     while number <= limit:
         yield number
         number += 1
 
-Generators can save memory because they do not need to create
-the entire result at once.
-
-Decorators
-
-A decorator modifies or wraps the behavior of a function.
-
-Example:
-
-def announce(function):
-
-    def wrapper(*args, **kwargs):
-        print("Calling function")
-        result = function(*args, **kwargs)
-        return result
-
-    return wrapper
-
-A decorator can be applied using @ syntax.
-
-Example:
-
-@announce
-def hello():
-    return "Hello"
-
-Decorators are commonly used for logging, caching,
-authentication, validation, timing, and framework behavior.
-
-Regular expressions
-
-The re module provides regular expressions.
-
-Regular expressions are patterns used to search, match, and
-modify text.
-
-Useful functions include:
-
-search()
-match()
-fullmatch()
-findall()
-finditer()
-sub()
-compile()
-
-Regular expressions are useful for finding patterns in text.
-
-Collections
-
-The collections module provides specialized data structures.
-
-Counter counts values.
-
-Example:
-
-from collections import Counter
-
-counts = Counter(["python", "python", "code"])
-
-defaultdict provides default values for missing dictionary keys.
-
-deque is an efficient double-ended queue.
-
-Stacks
-
-A stack follows LIFO:
-
-Last In, First Out.
-
-A Python list can be used as a stack.
-
-Example:
-
-stack = []
-
-stack.append("A")
-stack.append("B")
-
-item = stack.pop()
-
-The most recently added item is removed first.
-
-Queues
-
-A queue normally follows FIFO:
-
-First In, First Out.
-
-The collections.deque class is useful for implementing queues.
-
-Example:
-
-from collections import deque
-
-queue = deque()
-
-queue.append("A")
-queue.append("B")
-
-item = queue.popleft()
-
-The first inserted item is removed first.
-
-Searching
-
-Linear search checks elements one at a time.
-
-Example:
-
-def linear_search(values, target):
-
-    for index, value in enumerate(values):
-
-        if value == target:
-            return index
-
-    return -1
-
-Linear search normally has O(n) time complexity.
-
-Binary search repeatedly divides a sorted search range in half.
-
-Binary search requires sorted data.
-
-Binary search normally has O(log n) time complexity.
-
-Sorting
-
-Python provides sorted() and list.sort().
-
-sorted() creates a new sorted list.
-
-list.sort() changes the existing list.
-
-The key parameter determines the value used for sorting.
-
-Example:
-
-students = [
-    ("Alice", 95),
-    ("Bob", 82),
-    ("Charlie", 91)
-]
-
-students.sort(key=lambda student: student[1])
-
-Algorithms
-
-An algorithm is a defined sequence of steps for solving a
-problem.
-
-Important algorithm concepts include:
-
-searching
-sorting
-recursion
-traversal
-dynamic programming
-greedy algorithms
-divide and conquer
-graph traversal
-
-Big O notation
-
-Big O notation describes how an algorithm's resource usage
-grows as input size increases.
-
-O(1) means constant time.
-
-O(log n) means logarithmic time.
-
-O(n) means linear time.
-
-O(n log n) commonly appears in efficient sorting algorithms.
-
-O(n²) means quadratic time and commonly appears in simple
-nested-loop algorithms.
-
-Recursion
-
-Recursion occurs when a function calls itself.
-
-A recursive function normally requires a base case.
-
-Example:
-
+RELATION: A generator produces values on demand.
+RELATION: A generator avoids constructing all results at once.
+
+============================================================
+SECTION 57: DECORATORS
+============================================================
+
+FACT: A decorator modifies or wraps a function or class.
+FACT: Decorators use the @ syntax.
+FACT: Functions are first-class objects in Python.
+FACT: A decorator commonly accepts a function and returns a wrapped function.
+FACT: functools.wraps helps preserve metadata of wrapped functions.
+
+RELATION: Decorators are built on Python's support for higher-order functions.
+
+============================================================
+SECTION 58: CLOSURES
+============================================================
+
+FACT: A closure is a function that remembers values from an enclosing scope.
+FACT: Nested functions can access variables from enclosing functions.
+FACT: nonlocal can modify a variable in an enclosing function scope.
+
+============================================================
+SECTION 59: FUNCTIONAL PROGRAMMING
+============================================================
+
+FACT: Functions can be stored in variables.
+FACT: Functions can be passed as arguments.
+FACT: Functions can be returned from other functions.
+FACT: map() transforms iterable values.
+FACT: filter() selects iterable values.
+FACT: functools.reduce() combines values into one result.
+FACT: Lambda expressions can create short functions.
+
+============================================================
+SECTION 60: RECURSION
+============================================================
+
+FACT: Recursion occurs when a function calls itself.
+FACT: A recursive function needs a base case.
+FACT: The base case stops recursion.
+FACT: Recursive calls should move toward the base case.
+FACT: Excessive recursion can cause RecursionError.
+FACT: Many recursive problems can be converted into iterative algorithms.
+
+EXAMPLE:
 def factorial(n):
-
     if n <= 1:
         return 1
-
     return n * factorial(n - 1)
 
-The base case stops the recursive calls.
-
-Trees
-
-A tree is a hierarchical data structure.
-
-A binary tree is a tree where each node can have at most two
-children.
-
-The children are commonly called left and right.
-
-Trees are useful for representing hierarchical information.
-
-Graphs
-
-A graph consists of vertices and edges.
-
-Graphs can represent:
-
-maps
-networks
-relationships
-dependencies
-connections
-
-An adjacency list can represent a graph using a dictionary.
-
-Example:
-
-graph = {
-    "A": ["B", "C"],
-    "B": ["A", "D"],
-    "C": ["A"],
-    "D": ["B"]
-}
-
-Breadth-first search
-
-Breadth-first search is commonly abbreviated BFS.
-
-BFS explores a graph level by level.
-
-BFS normally uses a queue.
-
-BFS can find shortest paths in unweighted graphs.
-
-Depth-first search
-
-Depth-first search is commonly abbreviated DFS.
-
-DFS explores one branch before moving to another.
-
-DFS can be implemented recursively or with a stack.
-
-Datetime
-
-Python provides the datetime module for working with dates and
-times.
-
-Example:
-
-from datetime import datetime, timedelta
-
-now = datetime.now()
-
-tomorrow = now + timedelta(days=1)
-
-timedelta represents a duration.
-
-Random
-
-The random module provides pseudo-random operations.
-
-randint(a, b) produces a random integer between a and b
-inclusive.
-
-choice(sequence) chooses an item from a sequence.
-
-shuffle() randomly rearranges a mutable sequence.
-
-Copying objects
-
-Python variables refer to objects.
-
-Mutable objects can be changed.
-
-Examples of commonly mutable objects include:
-
-list
-dict
-set
-
-Immutable objects include:
-
-str
-tuple
-int
-float
-
-copy.copy() creates a shallow copy.
-
-copy.deepcopy() creates a deep copy.
-
-A shallow copy may still share nested objects.
-
-A deep copy recursively copies nested objects.
-
-Environment variables
-
-Environment variables are values provided by the operating
-system environment.
-
-Python can access environment variables using os.environ.
-
-Environment variables are commonly used for configuration.
-
-Sensitive credentials should not normally be hard-coded into
-source code.
-
-Logging
-
-The logging module provides structured application logging.
-
-Common logging levels are:
-
-DEBUG
-INFO
-WARNING
-ERROR
-CRITICAL
-
-Logging is useful for understanding what a program is doing.
-
-Debugging
-
-Debugging is the process of finding and fixing software problems.
-
-Useful debugging methods include:
-
-reading tracebacks
-printing values
-using breakpoints
-using the pdb debugger
-writing tests
-checking inputs
-checking outputs
-creating smaller test cases
-examining assumptions
-
-A traceback usually shows where an exception occurred and the
-chain of function calls that led to it.
-
-Testing
-
-Tests verify that software behaves as expected.
-
-Python includes the unittest module.
-
-The assert statement can check an expected condition.
-
-Example:
-
-assert 2 + 3 == 5
-
-Tests help find bugs and prevent regressions.
-
-Clean code
-
-Useful clean-code principles include:
-
-Use descriptive names.
-
-Keep functions focused.
-
-Avoid unnecessary duplication.
-
-Keep related code together.
-
-Handle errors intentionally.
-
-Use consistent formatting.
-
-Prefer simple solutions when they are sufficient.
-
-Test important behavior.
-
-Refactor code when complexity becomes difficult to manage.
-
-Performance
-
-Performance describes how efficiently a program uses resources.
-
-Useful performance improvements can include:
-
-choosing better data structures
-using better algorithms
-avoiding repeated calculations
-using caching
-processing large files incrementally
-using generators
-profiling slow sections
-
-A program should normally be measured before making complex
-performance optimizations.
-
-Caching
-
-Caching stores previously calculated results so they can be
-reused.
-
-Python provides functools.lru_cache.
-
-Caching is useful when the same expensive calculation occurs
-repeatedly with the same inputs.
-
-APIs
-
-API stands for Application Programming Interface.
-
-An API defines how software components communicate.
-
-Web APIs commonly use HTTP.
-
-Common HTTP methods include:
-
-GET
-POST
-PUT
-PATCH
-DELETE
-
-JSON is commonly used as the data format for web APIs.
-
-HTTP status codes
-
-200 means OK.
-
-201 means Created.
-
-204 means No Content.
-
-400 means Bad Request.
-
-401 means Unauthorized.
-
-403 means Forbidden.
-
-404 means Not Found.
-
-500 means Internal Server Error.
-
-Databases
-
-A database stores structured information.
-
-SQLite is included in Python's standard library through the
-sqlite3 module.
-
-SQL is commonly used with relational databases.
-
-Common SQL commands include:
-
-SELECT
-INSERT
-UPDATE
-DELETE
-CREATE TABLE
-
-Parameterized SQL queries should be used instead of directly
-concatenating untrusted input into SQL statements.
-
-Command-line programs
-
-Python programs can receive command-line arguments.
-
-sys.argv contains command-line arguments.
-
-The argparse module provides a structured way to create
-command-line interfaces.
-
-Context managers
-
-A context manager controls setup and cleanup around a block of
-code.
-
-The with statement commonly uses context managers.
-
-Files are a common example.
-
-A custom context manager can implement __enter__ and __exit__.
-
-Properties
-
-The @property decorator allows a method to behave like an
-attribute.
-
-Properties can provide controlled access to internal values.
-
-Static methods
-
-A static method does not automatically receive self or cls.
-
-The @staticmethod decorator creates a static method.
-
-Class methods
-
-A class method receives the class as its first argument,
-normally named cls.
-
-The @classmethod decorator creates a class method.
-
-Serialization
-
-Serialization converts data into a format that can be stored
-or transmitted.
-
-Deserialization converts stored data back into objects.
-
-JSON is a common serialization format.
-
-Pickle is another Python serialization mechanism.
-
-Untrusted pickle data should never be loaded because pickle can
-execute arbitrary code during deserialization.
-
-Security
-
-Software should treat user input as untrusted.
-
-Programs should validate input.
-
-Programs should avoid executing arbitrary user-provided code.
-
-Passwords and API keys should not normally be hard-coded into
-source code.
-
-Secrets should be stored using appropriate secure mechanisms.
-
-SQL queries should use parameters instead of string
-concatenation with untrusted input.
-
-File paths supplied by users should be validated when programs
-access the filesystem.
-
-Python project structure
-
-A simple Python project might contain:
-
-project/
-    main.py
-    utilities.py
-    config.py
-    data/
-    tests/
-    README.md
-
-Large applications can divide functionality into multiple
-modules and packages.
-
-A module is generally a Python file.
-
-A package is a collection of related Python modules.
-
-The main program often coordinates the other modules.
-
-Virtual environments
-
-A virtual environment provides an isolated Python environment
-for a project.
-
-Virtual environments help prevent dependencies from different
-projects from interfering with each other.
-
-A common command is:
-
+RELATION: Recursion requires a termination condition.
+
+============================================================
+SECTION 61: REGULAR EXPRESSIONS
+============================================================
+
+FACT: The re module provides regular expressions.
+FACT: Regular expressions describe text patterns.
+FACT: re.search() searches for a pattern.
+FACT: re.match() attempts a match at the beginning.
+FACT: re.fullmatch() requires the entire string to match.
+FACT: re.findall() returns matching substrings.
+FACT: re.sub() replaces matching text.
+FACT: Compiled patterns can be created with re.compile().
+
+CONCEPT: A regular expression is a pattern language for searching and manipulating text.
+
+============================================================
+SECTION 62: COLLECTIONS MODULE
+============================================================
+
+FACT: collections provides specialized container types.
+FACT: Counter counts hashable objects.
+FACT: defaultdict provides automatic default values.
+FACT: deque supports efficient additions and removals at both ends.
+FACT: namedtuple provides tuple-like records with named fields.
+
+RELATION: Counter is useful for frequency analysis.
+RELATION: deque is useful for queues and double-ended operations.
+RELATION: defaultdict simplifies grouped or accumulated data.
+
+============================================================
+SECTION 63: STACKS
+============================================================
+
+FACT: A stack follows last-in-first-out behavior.
+FACT: LIFO means last in, first out.
+FACT: A Python list can implement a stack using append() and pop().
+FACT: Stacks are useful for undo operations, parsing, recursion simulation, and depth-first search.
+
+RELATION: append() can push an item onto a list-based stack.
+RELATION: pop() can remove the most recently added item.
+
+============================================================
+SECTION 64: QUEUES
+============================================================
+
+FACT: A queue follows first-in-first-out behavior.
+FACT: FIFO means first in, first out.
+FACT: collections.deque is useful for efficient queues.
+FACT: queue.Queue provides thread-safe queue operations.
+
+RELATION: Queues are useful for breadth-first search.
+RELATION: Queues process older entries before newer entries.
+
+============================================================
+SECTION 65: ALGORITHMS
+============================================================
+
+CONCEPT: An algorithm is a finite procedure for solving a problem.
+FACT: An algorithm should have clear inputs and outputs.
+FACT: Algorithm efficiency can be analyzed using time and space complexity.
+FACT: Big O notation describes asymptotic growth.
+FACT: O(1) describes constant-time growth.
+FACT: O(log n) describes logarithmic growth.
+FACT: O(n) describes linear growth.
+FACT: O(n log n) is common for efficient comparison sorting.
+FACT: O(n^2) describes quadratic growth.
+FACT: O(2^n) describes exponential growth.
+FACT: O(n!) describes factorial growth.
+
+RELATION: O(1) generally grows slower than O(n).
+RELATION: O(n) generally grows slower than O(n^2).
+RELATION: O(n log n) generally grows slower than O(n^2) for large n.
+
+============================================================
+SECTION 66: SEARCHING
+============================================================
+
+FACT: Linear search checks elements sequentially.
+FACT: Linear search has O(n) worst-case time complexity.
+FACT: Binary search repeatedly divides a sorted search space.
+FACT: Binary search has O(log n) search complexity.
+FACT: Binary search requires an appropriate ordered search space.
+
+RELATION: Binary search is generally faster than linear search on large sorted collections.
+RULE: Do not use binary search without satisfying its ordering assumptions.
+
+============================================================
+SECTION 67: SORTING ALGORITHMS
+============================================================
+
+FACT: Bubble sort repeatedly compares adjacent elements.
+FACT: Bubble sort has O(n^2) worst-case time complexity.
+FACT: Selection sort repeatedly selects the smallest or largest remaining element.
+FACT: Selection sort has O(n^2) time complexity.
+FACT: Insertion sort builds a sorted section one element at a time.
+FACT: Insertion sort has O(n^2) worst-case time complexity.
+FACT: Merge sort uses divide and conquer.
+FACT: Merge sort has O(n log n) time complexity.
+FACT: Quicksort uses partitioning and has average O(n log n) time complexity.
+FACT: Python's built-in sorting is highly optimized and should usually be preferred over hand-written sorting algorithms for ordinary tasks.
+
+============================================================
+SECTION 68: TREES
+============================================================
+
+CONCEPT: A tree is a hierarchical data structure.
+FACT: A tree contains nodes connected by edges.
+FACT: A root is a top-level node.
+FACT: A leaf is a node with no children.
+FACT: A binary tree allows at most two children per node.
+FACT: A binary search tree organizes values according to ordering rules.
+FACT: Tree traversal can be preorder, inorder, postorder, or level-order.
+
+============================================================
+SECTION 69: GRAPHS
+============================================================
+
+CONCEPT: A graph consists of vertices and edges.
+FACT: A graph can be directed.
+FACT: A graph can be undirected.
+FACT: A graph can be weighted.
+FACT: Graphs can represent networks, roads, relationships, dependencies, and connections.
+FACT: Breadth-first search is commonly implemented with a queue.
+FACT: Depth-first search is commonly implemented with a stack or recursion.
+
+RELATION: BFS explores by layers.
+RELATION: DFS explores deeply before backtracking.
+RELATION: BFS can find shortest paths in unweighted graphs when edges have equal cost.
+
+============================================================
+SECTION 70: DYNAMIC PROGRAMMING
+============================================================
+
+CONCEPT: Dynamic programming solves problems by reusing results of overlapping subproblems.
+FACT: Dynamic programming commonly uses memoization or tabulation.
+FACT: Memoization stores results of previously solved states.
+FACT: Tabulation builds solutions from smaller states.
+FACT: Dynamic programming can reduce repeated computation.
+
+RELATION: Memoization is top-down dynamic programming.
+RELATION: Tabulation is bottom-up dynamic programming.
+
+============================================================
+SECTION 71: HASHING
+============================================================
+
+CONCEPT: Hashing maps data to hash values.
+FACT: Python dictionaries use hashing internally for key lookup.
+FACT: Python sets use hashing internally.
+FACT: Hashable objects can be used as dictionary keys or set elements.
+FACT: Immutable built-in objects such as strings and integers are commonly hashable.
+FACT: Mutable containers such as lists are not hashable.
+
+============================================================
+SECTION 72: MEMORY AND REFERENCES
+============================================================
+
+FACT: Variables in Python hold references to objects.
+FACT: Multiple variables can refer to the same object.
+FACT: Mutable shared objects can cause changes to be visible through multiple references.
+FACT: id() can identify an object's identity during its lifetime.
+FACT: Python manages memory automatically.
+FACT: Reference counting is an important component of CPython memory management.
+FACT: Python also has garbage collection for reference cycles.
+
+EXAMPLE:
+a = [1, 2]
+b = a
+b.append(3)
+
+RELATION: After b = a, both names refer to the same list object.
+
+============================================================
+SECTION 73: COPYING
+============================================================
+
+FACT: Assignment does not automatically copy an object.
+FACT: A shallow copy copies the outer container but may retain references to nested objects.
+FACT: A deep copy recursively copies nested objects when possible.
+FACT: The copy module provides copy() and deepcopy().
+
+RELATION: Shallow copying and deep copying differ when nested mutable objects exist.
+
+============================================================
+SECTION 74: CONTEXT MANAGERS
+============================================================
+
+FACT: A context manager controls setup and cleanup around a block.
+FACT: with is commonly used with context managers.
+FACT: Files are common context manager examples.
+FACT: Context managers can be implemented with __enter__ and __exit__.
+FACT: contextlib provides tools for creating context managers.
+
+RELATION: with helps ensure cleanup occurs even when an exception happens.
+
+============================================================
+SECTION 75: ASYNC PROGRAMMING
+============================================================
+
+FACT: Python supports asynchronous programming with async and await.
+FACT: An async function is defined with async def.
+FACT: await pauses an async function while waiting for an awaitable operation.
+FACT: asyncio provides infrastructure for asynchronous programming.
+FACT: Async programming is useful for many I/O-bound workloads.
+FACT: Async programming does not automatically make CPU-heavy code faster.
+
+============================================================
+SECTION 76: THREADING
+============================================================
+
+FACT: threading provides thread-based concurrency.
+FACT: Threads can be useful for I/O-bound tasks.
+FACT: CPython has a Global Interpreter Lock that affects execution of Python bytecode in many CPU-bound threaded workloads.
+FACT: Threads share process memory.
+FACT: Shared mutable state can create race conditions.
+FACT: Locks can protect critical sections.
+FACT: concurrent.futures provides higher-level concurrency tools.
+
+============================================================
+SECTION 77: MULTIPROCESSING
+============================================================
+
+FACT: multiprocessing runs work in separate processes.
+FACT: Separate processes have separate memory spaces.
+FACT: Multiprocessing can be useful for CPU-bound parallel workloads.
+FACT: Inter-process communication is required when processes need to exchange data.
+FACT: Process-based parallelism has additional startup and communication costs.
+
+============================================================
+SECTION 78: DATETIME
+============================================================
+
+FACT: datetime provides date and time classes.
+FACT: date represents a calendar date.
+FACT: time represents a time of day.
+FACT: datetime represents date and time together.
+FACT: timedelta represents a duration.
+FACT: timezone can represent timezone information.
+FACT: datetime.now() can obtain the current local date and time.
+FACT: datetime.now(timezone.utc) can obtain an aware UTC datetime.
+
+RELATION: timedelta represents a difference or duration between dates or times.
+RELATION: Timezone-aware datetimes are safer for many cross-timezone applications.
+
+============================================================
+SECTION 79: RANDOMNESS
+============================================================
+
+FACT: The random module provides pseudo-random number generation.
+FACT: random.randint(a, b) produces an integer in an inclusive range.
+FACT: random.choice(sequence) selects an item.
+FACT: random.shuffle(sequence) shuffles a mutable sequence in place.
+FACT: random.random() produces a floating-point value in a range from 0 up to but not including 1.
+FACT: Pseudo-randomness is deterministic in principle when the seed is controlled.
+FACT: The secrets module is preferable for security-sensitive random values.
+
+============================================================
+SECTION 80: MATH
+============================================================
+
+FACT: math provides mathematical functions and constants.
+FACT: math.sqrt() calculates square roots.
+FACT: math.floor() rounds downward.
+FACT: math.ceil() rounds upward.
+FACT: math.factorial() calculates factorials.
+FACT: math.gcd() calculates greatest common divisors.
+FACT: math.pi represents pi.
+FACT: math.e represents Euler's number.
+
+============================================================
+SECTION 81: LOGGING
+============================================================
+
+FACT: The logging module provides structured application logging.
+FACT: Logging levels include DEBUG, INFO, WARNING, ERROR, and CRITICAL.
+FACT: logging can write to the console or files.
+FACT: Logging is generally better than print() for long-running applications that need diagnostic records.
+
+RELATION: DEBUG is more detailed than INFO.
+RELATION: ERROR represents a problem requiring attention.
+RELATION: CRITICAL represents a severe problem.
+
+============================================================
+SECTION 82: TESTING
+============================================================
+
+FACT: Automated tests verify program behavior.
+FACT: Unit tests test small components.
+FACT: Integration tests test interactions between components.
+FACT: End-to-end tests test larger user workflows.
+FACT: Python includes unittest.
+FACT: pytest is a popular third-party testing framework.
+FACT: Assertions check expected conditions.
+
+EXAMPLE:
+assert 2 + 2 == 4
+
+RULE: Good tests should be repeatable.
+RULE: Tests should clearly identify what behavior they verify.
+
+============================================================
+SECTION 83: DEBUGGING
+============================================================
+
+CONCEPT: Debugging is the process of finding and correcting program problems.
+FACT: Tracebacks show information about many runtime errors.
+FACT: The final line of a traceback often identifies the exception type and message.
+FACT: Python includes the pdb debugger.
+FACT: Breakpoints can pause execution for inspection.
+FACT: Logging can help diagnose behavior.
+FACT: Small reproducible examples make debugging easier.
+
+RULE: Read the traceback from the bottom upward to identify the final exception and location, then inspect the preceding calls for context.
+
+============================================================
+SECTION 84: COMMON ERRORS
+============================================================
+
+FACT: SyntaxError indicates invalid Python syntax.
+FACT: IndentationError indicates invalid indentation.
+FACT: NameError often means a name has not been defined.
+FACT: TypeError often means an operation received an inappropriate type.
+FACT: ValueError often means the type is acceptable but the value is inappropriate.
+FACT: IndexError occurs when a sequence index is out of range.
+FACT: KeyError occurs when a dictionary key is missing.
+FACT: AttributeError occurs when an object lacks an attribute.
+FACT: ZeroDivisionError occurs when division by zero is attempted.
+FACT: FileNotFoundError occurs when a requested file does not exist.
+FACT: ModuleNotFoundError occurs when Python cannot find an imported module.
+
+============================================================
+SECTION 85: ARGPARSE
+============================================================
+
+FACT: argparse provides command-line argument parsing.
+FACT: A command-line interface can accept options and positional arguments.
+FACT: argparse can generate help messages.
+FACT: argparse can validate certain argument formats.
+
+EXAMPLE CONCEPT:
+A Python program can accept a filename from the command line and process it.
+
+============================================================
+SECTION 86: ENVIRONMENT VARIABLES
+============================================================
+
+FACT: Environment variables are configuration values provided by the operating environment.
+FACT: os.environ provides access to environment variables.
+FACT: Environment variables can store configuration outside source code.
+FACT: Environment variables are commonly used for API keys and deployment configuration.
+FACT: Secrets should not normally be hard-coded into source code.
+
+============================================================
+SECTION 87: HTTP AND APIS
+============================================================
+
+CONCEPT: An API is an interface that allows software systems to communicate.
+FACT: HTTP is a common protocol used by web APIs.
+FACT: GET commonly retrieves data.
+FACT: POST commonly sends data to create or process something.
+FACT: PUT commonly replaces a resource.
+FACT: PATCH commonly partially updates a resource.
+FACT: DELETE commonly removes a resource.
+FACT: HTTP status 200 generally indicates success.
+FACT: HTTP status 201 generally indicates successful creation.
+FACT: HTTP status 400 indicates a client-side request problem.
+FACT: HTTP status 401 indicates missing or invalid authentication.
+FACT: HTTP status 403 indicates that access is forbidden.
+FACT: HTTP status 404 indicates that a resource was not found.
+FACT: HTTP status 500 indicates a server-side error.
+FACT: JSON is commonly used as an API data format.
+
+============================================================
+SECTION 88: DATABASES
+============================================================
+
+CONCEPT: A database stores structured information for persistent access.
+FACT: SQLite is a lightweight relational database included with Python.
+FACT: The sqlite3 module provides SQLite database access.
+FACT: SQL is a language used to query and manipulate relational databases.
+FACT: SELECT retrieves data.
+FACT: INSERT adds rows.
+FACT: UPDATE changes rows.
+FACT: DELETE removes rows.
+FACT: CREATE TABLE creates a table.
+FACT: A primary key identifies rows.
+FACT: Indexes can improve query performance.
+FACT: Transactions group database operations into logical units.
+
+RULE: Use parameterized SQL queries instead of constructing SQL from untrusted strings.
+
+============================================================
+SECTION 89: SECURITY
+============================================================
+
+FACT: Untrusted input should be treated as potentially dangerous.
+FACT: User input should be validated when appropriate.
+FACT: Secrets should not be committed to public repositories.
+FACT: API keys should be stored securely.
+FACT: SQL injection can occur when untrusted input is inserted directly into SQL.
+FACT: Parameterized queries help prevent SQL injection.
+FACT: Command injection can occur when untrusted input is passed unsafely to shell commands.
+FACT: subprocess calls should be designed carefully when inputs are untrusted.
+FACT: Pickle is unsafe for loading untrusted data.
+FACT: eval() executes Python expressions and can be dangerous with untrusted input.
+FACT: exec() executes Python code and can be dangerous with untrusted input.
+FACT: Never assume external data is trustworthy.
+
+RULE: Validate input.
+RULE: Minimize privileges.
+RULE: Protect credentials.
+RULE: Avoid executing untrusted code.
+
+============================================================
+SECTION 90: VIRTUAL ENVIRONMENTS
+============================================================
+
+FACT: A virtual environment isolates Python packages for a project.
+FACT: Python can create virtual environments with the venv module.
+FACT: A virtual environment helps prevent dependency conflicts between projects.
+FACT: Packages can be installed into a virtual environment.
+FACT: pip is commonly used to install Python packages.
+
+EXAMPLE COMMAND CONCEPT:
 python -m venv .venv
 
-Packages
+============================================================
+SECTION 91: PACKAGES
+============================================================
 
-Python packages provide reusable functionality.
+FACT: A package organizes related Python modules.
+FACT: Third-party packages can be installed from package indexes such as PyPI.
+FACT: requirements files can record project dependencies.
+FACT: pyproject.toml is a modern Python project configuration format.
+FACT: Package versions matter for reproducibility.
 
-pip is commonly used to install third-party Python packages.
+============================================================
+SECTION 92: PROJECT STRUCTURE
+============================================================
 
-Third-party packages should be installed only when needed and
-from trustworthy sources.
+FACT: A Python project can contain multiple modules.
+FACT: Separating code into modules can improve maintainability.
+FACT: A README commonly documents a project.
+FACT: Tests are commonly placed in a tests directory.
+FACT: Configuration should be separated from core logic when practical.
+FACT: Data files should be kept separate from source code when appropriate.
 
-Standard library
+EXAMPLE PROJECT STRUCTURE:
+project/
+    README.md
+    pyproject.toml
+    src/
+    tests/
+    data/
 
-Python's standard library provides many features without
-requiring additional package installation.
+============================================================
+SECTION 93: MAIN GUARD
+============================================================
 
-Examples include:
+FACT: Python modules can check whether __name__ equals "__main__".
+FACT: Code inside if __name__ == "__main__": runs when the file is executed directly.
+FACT: The main guard helps prevent command-line behavior from running automatically when the module is imported.
 
-pathlib
-json
-csv
-math
-random
-datetime
-collections
-itertools
-functools
-sqlite3
-urllib
-threading
-logging
-argparse
-re
-zipfile
+EXAMPLE:
+if __name__ == "__main__":
+    main()
 
-Python programming mindset
+RELATION: The main guard separates direct execution from importing.
 
-A good Python programmer should:
+============================================================
+SECTION 94: PERFORMANCE
+============================================================
 
-break large problems into smaller problems
-identify inputs and outputs
-choose suitable data structures
-write reusable functions
-test assumptions
-handle errors
-read tracebacks
-measure performance
-keep code understandable
-document important decisions
-avoid unnecessary complexity
+FACT: Performance depends on algorithm choice, data structures, I/O, memory use, and implementation details.
+FACT: Choosing a better algorithm can have a larger effect than micro-optimizing syntax.
+FACT: Profiling measures where a program spends time.
+FACT: The timeit module can measure small pieces of code.
+FACT: Caching can avoid repeated expensive computation.
+FACT: Generators can reduce memory usage for streaming workloads.
+FACT: Appropriate data structures can improve lookup and insertion performance.
 
-Problem-solving process
+RULE: Measure before optimizing when possible.
+RULE: Prefer clear code unless performance requirements justify complexity.
 
-A useful programming process is:
+============================================================
+SECTION 95: CACHING
+============================================================
 
-1. Understand the problem.
-2. Identify inputs.
-3. Identify expected outputs.
-4. Break the problem into smaller tasks.
-5. Choose appropriate data structures.
-6. Design an algorithm.
-7. Implement the solution.
-8. Test normal cases.
-9. Test edge cases.
-10. Debug failures.
-11. Improve the design if necessary.
-12. Document important behavior.
+FACT: Caching stores results so future requests can avoid repeating expensive work.
+FACT: functools.lru_cache provides a common function result cache.
+FACT: functools.cache provides an unbounded cache in supported Python versions.
+FACT: Cache invalidation is the process of determining when stored results are no longer valid.
 
-Python learning progression
+RELATION: Caching can improve speed at the cost of additional memory and possible stale data.
 
-A beginner should first learn:
+============================================================
+SECTION 96: CLEAN CODE
+============================================================
 
-variables
-strings
-numbers
-booleans
-lists
-dictionaries
-conditions
-loops
-functions
+FACT: Clear names improve code readability.
+FACT: Small focused functions are often easier to test.
+FACT: Repeated code can often be extracted into reusable functions.
+FACT: Complex functions can be split into smaller responsibilities.
+FACT: Consistent formatting improves readability.
+FACT: Python commonly follows PEP 8 style guidance.
+FACT: Documentation is valuable for public interfaces and non-obvious behavior.
+FACT: Simplicity is usually preferable to unnecessary complexity.
 
-Next learn:
+RULE: Functions should generally have a clear responsibility.
+RULE: Avoid duplicating complicated logic unnecessarily.
+RULE: Prefer readable code over clever code.
 
-exceptions
-files
-modules
-classes
-object-oriented programming
-JSON
-comprehensions
-iterators
-generators
+============================================================
+SECTION 97: PROGRAM DESIGN
+============================================================
 
-More advanced topics include:
+CONCEPT: Program architecture describes how parts of a program are organized.
+CONCEPT: Separation of concerns means different parts of a program handle different responsibilities.
+CONCEPT: Modularity means dividing software into understandable components.
+CONCEPT: Coupling describes how strongly components depend on each other.
+CONCEPT: Cohesion describes how closely related responsibilities inside a component are.
 
-decorators
-context managers
-type hints
-dataclasses
-testing
-concurrency
-async programming
-algorithms
-data structures
-APIs
-databases
-software architecture
-performance optimization
+RELATION: High cohesion generally means a component has closely related responsibilities.
+RELATION: Low coupling generally means components depend less on one another.
 
-Important concept relationships
+============================================================
+SECTION 98: INPUT PROCESSING
+============================================================
 
-Variables store references to values.
+FACT: input() returns text.
+FACT: Numeric user input must be converted when numeric operations are required.
+FACT: int() can convert suitable text to an integer.
+FACT: float() can convert suitable text to a floating-point value.
+FACT: User input can cause ValueError when conversion fails.
+FACT: Validation can ensure user input meets required constraints.
 
-Lists store ordered collections.
+EXAMPLE:
+try:
+    age = int(input("Age: "))
+except ValueError:
+    print("Please enter a number.")
 
-Dictionaries map keys to values.
+============================================================
+SECTION 99: FILE-BASED LEARNING
+============================================================
 
-Sets store unique values.
+CONCEPT: A program can learn structured information from text files by parsing their contents.
+FACT: Plain-text knowledge files can contain facts, concepts, relationships, examples, and rules.
+FACT: Explicit labels can make structured knowledge easier for a text-based learner to extract.
+FACT: Knowledge files should contain meaningful natural-language relationships.
+FACT: Repetition of important relationships can reinforce their representation in simple statistical learners.
+FACT: A knowledge file is not executable Python code.
+FACT: A .txt knowledge file should be read as text by a file-learning system.
 
-Functions organize reusable behavior.
+RELATION: knowledge/python.txt is a knowledge source.
+RELATION: autonomous_ai.py is the program that processes knowledge.
+RELATION: autonomous_brain.json can store persistent learned information.
 
-Classes organize related data and behavior.
+============================================================
+SECTION 100: PYTHON PROBLEM SOLVING
+============================================================
 
-Modules organize code into reusable files.
+CONCEPT: Problem solving begins by understanding the desired input, output, and constraints.
+CONCEPT: Decomposition means breaking a large problem into smaller problems.
+CONCEPT: An abstraction hides unnecessary implementation details.
+CONCEPT: A data structure determines how information is organized.
+CONCEPT: An algorithm determines how information is processed.
 
-Packages organize related modules.
+RULE: Understand the problem before writing code.
+RULE: Identify inputs.
+RULE: Identify expected outputs.
+RULE: Identify edge cases.
+RULE: Choose appropriate data structures.
+RULE: Design the algorithm.
+RULE: Implement the simplest correct version.
+RULE: Test the implementation.
+RULE: Improve performance only when needed.
 
-Exceptions communicate error conditions.
+============================================================
+SECTION 101: EDGE CASES
+============================================================
 
-Files provide persistent storage.
+CONCEPT: An edge case is an unusual or boundary input that a program must handle correctly.
+EXAMPLE: An empty list is an edge case.
+EXAMPLE: Zero can be an edge case.
+EXAMPLE: Negative numbers can be edge cases.
+EXAMPLE: A very large input can be an edge case.
+EXAMPLE: Missing data can be an edge case.
+EXAMPLE: Duplicate data can be an edge case.
+EXAMPLE: A string containing only whitespace can be an edge case.
 
-JSON provides structured data interchange.
+RULE: Good programs consider empty input.
+RULE: Good programs consider invalid input.
+RULE: Good programs consider boundary values.
+RULE: Good programs consider unexpectedly large input.
 
-Databases provide structured persistent storage.
+============================================================
+SECTION 102: DATA VALIDATION
+============================================================
 
-Algorithms describe procedures for solving problems.
+FACT: Validation checks whether data satisfies expected rules.
+FACT: Validation can check type.
+FACT: Validation can check range.
+FACT: Validation can check format.
+FACT: Validation can check required fields.
+FACT: Validation should occur before unsafe operations when possible.
 
-Data structures determine how information is organized.
+============================================================
+SECTION 103: ERROR HANDLING STRATEGY
+============================================================
 
-Good software combines appropriate data structures,
-algorithms, organization, testing, and error handling.
+RULE: Detect errors when they occur.
+RULE: Raise exceptions when a function cannot fulfill its contract.
+RULE: Catch exceptions at a level that can meaningfully handle them.
+RULE: Preserve useful error information.
+RULE: Avoid hiding errors silently.
+RULE: Give users actionable error messages when appropriate.
 
-End of Python knowledge base.
+============================================================
+SECTION 104: API CLIENT DESIGN
+============================================================
+
+CONCEPT: An API client sends requests to a remote service and processes responses.
+FACT: Network operations can fail.
+FACT: Network operations can time out.
+FACT: Remote services can return invalid or unexpected data.
+FACT: API clients should handle errors.
+FACT: API clients should validate important response data.
+FACT: API clients may need authentication.
+FACT: API clients may need retry strategies.
+FACT: Rate limits can restrict request frequency.
+
+============================================================
+SECTION 105: AUTOMATION
+============================================================
+
+CONCEPT: Automation means using software to perform repetitive tasks with limited manual intervention.
+FACT: Python is commonly used for automation.
+FACT: Python can automate file organization.
+FACT: Python can automate data processing.
+FACT: Python can automate report generation.
+FACT: Python can automate repetitive calculations.
+FACT: Python can automate testing.
+FACT: Python can interact with APIs.
+FACT: Automation should include error handling and safeguards.
+
+============================================================
+SECTION 106: DATA PROCESSING
+============================================================
+
+CONCEPT: Data processing transforms raw information into useful information.
+FACT: Data processing often involves reading, cleaning, transforming, analyzing, and exporting data.
+FACT: Lists are useful for ordered collections.
+FACT: Dictionaries are useful for records and key-value data.
+FACT: Sets are useful for uniqueness.
+FACT: CSV is useful for tabular text data.
+FACT: JSON is useful for structured nested data.
+
+============================================================
+SECTION 107: MACHINE LEARNING CONCEPTS
+============================================================
+
+CONCEPT: Machine learning is a field of computing in which algorithms learn patterns from data.
+FACT: Supervised learning uses labeled examples.
+FACT: Unsupervised learning searches for structure without explicit target labels.
+FACT: Reinforcement learning learns from interactions and rewards.
+FACT: A feature is an input variable used by a machine-learning model.
+FACT: A label or target is the desired output in supervised learning.
+FACT: Training is the process of fitting a model to data.
+FACT: Inference is using a trained model to produce predictions.
+FACT: A dataset contains examples used for analysis or training.
+FACT: Overfitting occurs when a model fits training data too specifically and generalizes poorly.
+FACT: Underfitting occurs when a model is too simple to capture useful patterns.
+FACT: Validation data can be used to evaluate model choices.
+FACT: Test data can estimate performance on unseen examples.
+
+RELATION: Training produces a model from data.
+RELATION: Inference uses a model to produce outputs.
+RELATION: Features are inputs.
+RELATION: Labels are desired outputs.
+
+============================================================
+SECTION 108: PYTHON AND MACHINE LEARNING
+============================================================
+
+FACT: Python is widely used for machine learning.
+FACT: NumPy provides numerical array operations.
+FACT: pandas provides tabular data structures and data analysis tools.
+FACT: Matplotlib provides plotting tools.
+FACT: scikit-learn provides many classical machine-learning algorithms.
+FACT: PyTorch provides tools for tensor computation and machine learning.
+FACT: TensorFlow provides tools for machine learning and numerical computation.
+
+RELATION: NumPy is commonly used as a numerical foundation for Python data science.
+RELATION: pandas is commonly used to manipulate tabular data.
+RELATION: scikit-learn provides traditional machine-learning algorithms.
+RELATION: PyTorch and TensorFlow support neural-network development.
+
+============================================================
+SECTION 109: DATA SCIENCE
+============================================================
+
+CONCEPT: Data science combines programming, statistics, data analysis, and domain knowledge.
+FACT: Data cleaning removes or corrects problematic data.
+FACT: Data transformation changes data into a useful representation.
+FACT: Data visualization communicates patterns in data.
+FACT: Statistics can summarize and analyze data.
+FACT: Correlation measures an association between variables.
+FACT: Correlation does not by itself prove causation.
+
+============================================================
+SECTION 110: PYTHON WEB DEVELOPMENT
+============================================================
+
+FACT: Python can be used for web development.
+FACT: Flask is a lightweight Python web framework.
+FACT: Django is a full-featured Python web framework.
+FACT: FastAPI is a modern Python framework commonly used for APIs.
+FACT: Web applications commonly process HTTP requests and generate responses.
+FACT: Templates can generate HTML dynamically.
+FACT: Web applications should validate and sanitize untrusted input.
+FACT: Authentication and authorization are different concepts.
+
+RELATION: Authentication determines who a user is.
+RELATION: Authorization determines what an authenticated user is allowed to do.
+
+============================================================
+SECTION 111: COMMAND LINE PROGRAMS
+============================================================
+
+CONCEPT: A command-line interface allows users to interact with programs through text commands.
+FACT: Python can build command-line programs.
+FACT: sys.argv contains command-line arguments.
+FACT: argparse provides structured command-line argument parsing.
+FACT: A CLI program should provide useful help and error messages.
+
+============================================================
+SECTION 112: GIT AND PYTHON PROJECTS
+============================================================
+
+FACT: Git is a version-control system.
+FACT: Git tracks changes to files.
+FACT: GitHub hosts Git repositories and related project resources.
+FACT: A Python project can be stored in a Git repository.
+FACT: A README can explain how to install and run a Python project.
+FACT: Dependencies should be documented.
+FACT: Secrets should not be committed to Git repositories.
+
+============================================================
+SECTION 113: PYTHON STYLE
+============================================================
+
+FACT: PEP 8 provides widely used Python style guidance.
+FACT: Four spaces are the conventional indentation level.
+FACT: snake_case is commonly used for functions and variables.
+FACT: PascalCase is commonly used for classes.
+FACT: UPPER_CASE names are commonly used for constants.
+FACT: Imports are normally placed near the beginning of a module.
+FACT: Blank lines can separate logical sections.
+
+============================================================
+SECTION 114: NAMING
+============================================================
+
+RULE: Names should communicate purpose.
+RULE: Use nouns for many data variables.
+RULE: Use verbs or verb phrases for many functions.
+RULE: Class names should normally represent concepts or objects.
+RULE: Avoid ambiguous names.
+RULE: Avoid unnecessary abbreviations.
+RULE: Avoid shadowing built-in names.
+
+EXAMPLE GOOD NAME: student_count
+EXAMPLE GOOD NAME: calculate_average
+EXAMPLE GOOD NAME: AssignmentManager
+EXAMPLE POOR NAME: x12345_for_everything
+
+============================================================
+SECTION 115: PYTHON DESIGN PATTERNS
+============================================================
+
+CONCEPT: A design pattern is a reusable approach to a recurring software-design problem.
+FACT: Common patterns include Factory, Strategy, Observer, Adapter, and Repository.
+FACT: Design patterns should be used when they solve an actual design problem.
+FACT: A pattern can add unnecessary complexity if used without need.
+
+============================================================
+SECTION 116: FACTORIES
+============================================================
+
+CONCEPT: A factory creates objects without requiring callers to know all construction details.
+RELATION: A factory can centralize object creation logic.
+RELATION: A factory can select different implementations based on configuration.
+
+============================================================
+SECTION 117: STRATEGY PATTERN
+============================================================
+
+CONCEPT: The Strategy pattern represents interchangeable algorithms behind a common interface.
+RELATION: Strategy allows behavior to change without rewriting the surrounding system.
+EXAMPLE CONCEPT: A sorting system could select different sorting strategies.
+
+============================================================
+SECTION 118: OBSERVER PATTERN
+============================================================
+
+CONCEPT: The Observer pattern allows objects to receive notifications when another object changes.
+RELATION: Observers subscribe to events.
+RELATION: A publisher sends notifications to subscribers.
+
+============================================================
+SECTION 119: ADAPTER PATTERN
+============================================================
+
+CONCEPT: An Adapter converts one interface into another expected interface.
+RELATION: Adapters help incompatible components work together.
+
+============================================================
+SECTION 120: SOFTWARE MAINTENANCE
+============================================================
+
+FACT: Software maintenance includes fixing bugs, improving behavior, updating dependencies, and adding features.
+FACT: Technical debt refers to future costs created by shortcuts or design compromises.
+FACT: Refactoring changes internal structure without intentionally changing external behavior.
+FACT: Backward compatibility means preserving expected behavior for existing users or callers.
+
+============================================================
+SECTION 121: REFACTORING
+============================================================
+
+CONCEPT: Refactoring improves internal code structure while preserving intended behavior.
+RULE: Refactor incrementally.
+RULE: Run tests after significant refactoring.
+RULE: Avoid changing behavior and structure simultaneously when that makes debugging difficult.
+
+============================================================
+SECTION 122: DOCUMENTATION
+============================================================
+
+FACT: Documentation explains how software works or should be used.
+FACT: README files commonly explain installation and usage.
+FACT: Docstrings document modules, classes, and functions.
+FACT: Examples can make documentation easier to understand.
+FACT: Good documentation explains important assumptions and expected inputs.
+
+============================================================
+SECTION 123: SOFTWARE REQUIREMENTS
+============================================================
+
+CONCEPT: A requirement describes something a system must do or satisfy.
+FACT: Functional requirements describe behavior.
+FACT: Non-functional requirements describe qualities such as performance, reliability, security, or usability.
+FACT: Requirements should be specific enough to test when possible.
+
+============================================================
+SECTION 124: DEBUGGING STRATEGY
+============================================================
+
+RULE: Reproduce the problem.
+RULE: Identify the exact error.
+RULE: Reduce the problem to the smallest useful example.
+RULE: Inspect variables and program state.
+RULE: Form a hypothesis.
+RULE: Make one meaningful change.
+RULE: Test the change.
+RULE: Confirm the original problem is fixed.
+RULE: Test for regressions.
+
+============================================================
+SECTION 125: TEST CASE DESIGN
+============================================================
+
+FACT: A test case specifies inputs, actions, and expected results.
+FACT: Boundary testing checks values near limits.
+FACT: Equivalence partitioning groups similar input classes.
+FACT: Regression tests protect previously working behavior.
+FACT: Negative tests check invalid inputs.
+
+============================================================
+SECTION 126: PYTHON BEST PRACTICES
+============================================================
+
+RULE: Prefer clear code.
+RULE: Keep functions focused.
+RULE: Validate external input.
+RULE: Handle expected errors.
+RULE: Use context managers for resources when appropriate.
+RULE: Use pathlib for filesystem paths when practical.
+RULE: Use type hints when they improve clarity.
+RULE: Write tests for important behavior.
+RULE: Keep secrets out of source code.
+RULE: Use virtual environments for project dependencies.
+RULE: Document installation and usage.
+RULE: Use logging for long-running applications.
+RULE: Profile before making performance claims.
+RULE: Prefer standard-library solutions when they are sufficient.
+RULE: Avoid unnecessary dependencies.
+RULE: Keep user-facing error messages understandable.
+
+============================================================
+SECTION 127: PYTHON LEARNING ORDER
+============================================================
+
+FACT: A beginner can learn Python fundamentals before advanced topics.
+RULE: Learn variables and basic data types before complex algorithms.
+RULE: Learn conditionals and loops before advanced control flow.
+RULE: Learn functions before complex object-oriented architecture.
+RULE: Learn collections before advanced data processing.
+RULE: Learn exceptions and files before building large applications.
+RULE: Learn modules and packages before large multi-file projects.
+RULE: Learn testing and debugging while building projects.
+RULE: Learn algorithms and data structures after mastering basic programming constructs.
+RULE: Learn advanced topics such as decorators, generators, asynchronous programming, and metaprogramming after the fundamentals are comfortable.
+
+============================================================
+SECTION 128: PYTHON CONCEPT RELATIONSHIPS
+============================================================
+
+RELATION: Variables refer to objects.
+RELATION: Objects have types.
+RELATION: Types determine supported operations.
+RELATION: Lists contain ordered mutable collections.
+RELATION: Tuples contain ordered immutable collections.
+RELATION: Sets contain unique hashable values.
+RELATION: Dictionaries map hashable keys to values.
+RELATION: Functions organize reusable behavior.
+RELATION: Classes organize related data and behavior.
+RELATION: Modules organize Python code into files.
+RELATION: Packages organize related modules.
+RELATION: Exceptions communicate abnormal conditions.
+RELATION: Tests verify expected behavior.
+RELATION: Logging records runtime information.
+RELATION: pathlib handles filesystem paths.
+RELATION: json handles structured JSON data.
+RELATION: csv handles tabular CSV data.
+RELATION: sqlite3 provides access to SQLite databases.
+RELATION: argparse supports command-line interfaces.
+RELATION: asyncio supports asynchronous programming.
+RELATION: threading supports thread-based concurrency.
+RELATION: multiprocessing supports process-based parallelism.
+
+============================================================
+SECTION 129: COMMON COMPARISONS
+============================================================
+
+FACT: A list is mutable while a tuple is immutable.
+FACT: A set stores unique values while a list can contain duplicates.
+FACT: A dictionary maps keys to values while a list uses positions.
+FACT: == compares values while is compares identity.
+FACT: sort() modifies a list while sorted() returns a new sorted result.
+FACT: append() adds one item while extend() adds elements from an iterable.
+FACT: remove() removes by value while pop() removes by index and returns the item.
+FACT: for loops iterate over iterables while while loops repeat according to a condition.
+FACT: return sends a result from a function while print displays text.
+FACT: comments are ignored by the interpreter while executable statements affect program behavior.
+FACT: shallow copying can share nested objects while deep copying attempts to recursively copy them.
+FACT: threads share process memory while separate processes have separate memory spaces.
+FACT: synchronous code waits for operations in sequence while asynchronous code can coordinate multiple awaiting operations.
+FACT: authentication verifies identity while authorization controls permissions.
+
+============================================================
+SECTION 130: IMPORTANT PYTHON MENTAL MODELS
+============================================================
+
+CONCEPT: Names point to objects rather than storing primitive values in isolated boxes.
+CONCEPT: Mutable objects can change without rebinding the name.
+CONCEPT: Immutable objects require creation of another object when their apparent value changes.
+CONCEPT: Functions are objects and can be passed around.
+CONCEPT: Classes create objects according to class definitions.
+CONCEPT: Exceptions are part of normal control mechanisms for reporting failures.
+CONCEPT: Iterators provide values one at a time.
+CONCEPT: Generators are a convenient way to create lazy iterators.
+CONCEPT: Dictionaries and sets rely on hashing.
+CONCEPT: Good data structures can make algorithms dramatically faster.
+CONCEPT: Correctness comes before optimization.
+CONCEPT: Readability is an important software quality.
+CONCEPT: Tests provide evidence that code behaves as expected.
+CONCEPT: Debugging is a process of finding causes, not merely hiding symptoms.
+
+============================================================
+SECTION 131: BEGINNER QUESTIONS AND ANSWERS
+============================================================
+
+QUESTION: What is Python?
+ANSWER: Python is a high-level general-purpose programming language used for automation, applications, data analysis, web development, education, and many other tasks.
+
+QUESTION: What is a variable?
+ANSWER: A variable is a name that refers to an object.
+
+QUESTION: What is a list?
+ANSWER: A list is an ordered mutable collection.
+
+QUESTION: What is a tuple?
+ANSWER: A tuple is an ordered immutable collection.
+
+QUESTION: What is a dictionary?
+ANSWER: A dictionary maps keys to values.
+
+QUESTION: What is a set?
+ANSWER: A set stores unique hashable values.
+
+QUESTION: What is a function?
+ANSWER: A function is reusable code that can accept inputs and return a result.
+
+QUESTION: What is a class?
+ANSWER: A class defines a type and can describe data and behavior for objects.
+
+QUESTION: What is an object?
+ANSWER: An object is a Python value with identity, type, and value.
+
+QUESTION: What is an exception?
+ANSWER: An exception represents an error or unusual condition during program execution.
+
+QUESTION: What is a module?
+ANSWER: A module is a Python file containing code definitions and statements.
+
+QUESTION: What is a package?
+ANSWER: A package organizes related Python modules.
+
+QUESTION: What is an iterator?
+ANSWER: An iterator provides values one at a time through the iterator protocol.
+
+QUESTION: What is a generator?
+ANSWER: A generator produces values lazily, commonly using yield.
+
+QUESTION: What is recursion?
+ANSWER: Recursion occurs when a function calls itself.
+
+QUESTION: What is an algorithm?
+ANSWER: An algorithm is a procedure for solving a problem.
+
+QUESTION: What is Big O?
+ANSWER: Big O notation describes how resource requirements grow as input size increases.
+
+QUESTION: What is JSON?
+ANSWER: JSON is a text format for structured data.
+
+QUESTION: What is CSV?
+ANSWER: CSV is a text format commonly used for tabular data.
+
+QUESTION: What is an API?
+ANSWER: An API is an interface that allows software systems to communicate.
+
+QUESTION: What is a database?
+ANSWER: A database stores information for persistent retrieval and manipulation.
+
+============================================================
+SECTION 132: INTERMEDIATE QUESTIONS AND ANSWERS
+============================================================
+
+QUESTION: Why are Python strings immutable?
+ANSWER: Strings cannot be modified in place, so operations that appear to change a string generally create another string.
+
+QUESTION: Why are dictionaries fast for lookup?
+ANSWER: Dictionaries use hash-based lookup, which provides efficient average-case key access.
+
+QUESTION: Why use a set?
+ANSWER: Sets are useful when uniqueness and efficient membership testing are important.
+
+QUESTION: Why use a generator?
+ANSWER: Generators can process values lazily without storing all results in memory simultaneously.
+
+QUESTION: Why use pathlib?
+ANSWER: pathlib provides an object-oriented and readable interface for filesystem paths.
+
+QUESTION: Why use exceptions?
+ANSWER: Exceptions allow errors and unusual conditions to be reported and handled separately from ordinary logic.
+
+QUESTION: Why use type hints?
+ANSWER: Type hints improve documentation, editor support, and compatibility with static analysis tools.
+
+QUESTION: Why use tests?
+ANSWER: Tests provide repeatable checks that program behavior matches expectations.
+
+QUESTION: Why use logging?
+ANSWER: Logging records runtime events and problems in a form useful for diagnosis and monitoring.
+
+QUESTION: Why use virtual environments?
+ANSWER: Virtual environments isolate project dependencies and reduce conflicts between projects.
+
+============================================================
+SECTION 133: ADVANCED QUESTIONS AND ANSWERS
+============================================================
+
+QUESTION: What is a closure?
+ANSWER: A closure is a function that retains access to variables from an enclosing scope.
+
+QUESTION: What is a decorator?
+ANSWER: A decorator is a callable mechanism that wraps or modifies another function or class.
+
+QUESTION: What is a context manager?
+ANSWER: A context manager controls setup and cleanup around a block of code.
+
+QUESTION: What is polymorphism?
+ANSWER: Polymorphism allows different objects to support a common operation or interface.
+
+QUESTION: What is memoization?
+ANSWER: Memoization caches results of previous function calls to avoid repeated computation.
+
+QUESTION: What is dynamic programming?
+ANSWER: Dynamic programming solves problems by reusing solutions to overlapping subproblems.
+
+QUESTION: What is asynchronous programming?
+ANSWER: Asynchronous programming allows a program to coordinate work that may pause while waiting for operations to complete.
+
+QUESTION: What is multiprocessing?
+ANSWER: Multiprocessing runs code in separate processes, each with its own memory space.
+
+QUESTION: What is a race condition?
+ANSWER: A race condition occurs when program behavior depends on the timing of concurrent operations accessing shared state.
+
+QUESTION: What is refactoring?
+ANSWER: Refactoring changes internal code structure while preserving intended external behavior.
+
+============================================================
+SECTION 134: LEARNING RELATIONSHIPS
+============================================================
+
+RELATION: Python -> programming language.
+RELATION: Python -> high-level language.
+RELATION: Python -> dynamically typed.
+RELATION: Python -> strongly typed.
+RELATION: Python -> object-oriented support.
+RELATION: Python -> functional programming support.
+RELATION: Python -> standard library.
+RELATION: variable -> name.
+RELATION: variable -> reference to object.
+RELATION: object -> identity.
+RELATION: object -> type.
+RELATION: object -> value.
+RELATION: list -> mutable.
+RELATION: tuple -> immutable.
+RELATION: set -> unique elements.
+RELATION: dict -> key-value mapping.
+RELATION: string -> immutable text sequence.
+RELATION: function -> reusable behavior.
+RELATION: class -> object definition.
+RELATION: exception -> abnormal condition.
+RELATION: generator -> lazy iteration.
+RELATION: iterator -> next value.
+RELATION: algorithm -> problem solving.
+RELATION: BFS -> queue.
+RELATION: DFS -> stack or recursion.
+RELATION: binary search -> sorted data.
+RELATION: dictionary -> hashing.
+RELATION: set -> hashing.
+RELATION: JSON -> structured text.
+RELATION: CSV -> tabular text.
+RELATION: SQLite -> relational database.
+RELATION: pathlib -> filesystem paths.
+RELATION: argparse -> command line arguments.
+RELATION: logging -> runtime records.
+RELATION: unittest -> testing.
+RELATION: asyncio -> asynchronous programming.
+RELATION: threading -> threads.
+RELATION: multiprocessing -> processes.
+
+============================================================
+SECTION 135: PRACTICAL PYTHON PROJECT IDEAS
+============================================================
+
+PROJECT: Calculator
+CONCEPT: A calculator accepts numeric input and performs arithmetic operations.
+
+PROJECT: To-Do List
+CONCEPT: A to-do application stores tasks, completion status, and possibly due dates.
+
+PROJECT: Study Planner
+CONCEPT: A study planner stores subjects, sessions, times, and priorities.
+
+PROJECT: Assignment Tracker
+CONCEPT: An assignment tracker stores assignments, due dates, subjects, completion status, and priority.
+
+PROJECT: File Organizer
+CONCEPT: A file organizer scans directories and moves files according to extension or other rules.
+
+PROJECT: Quiz Application
+CONCEPT: A quiz application stores questions, answers, scores, and user progress.
+
+PROJECT: Flashcard System
+CONCEPT: A flashcard application stores questions and answers and tracks learning progress.
+
+PROJECT: Expense Tracker
+CONCEPT: An expense tracker stores transactions, categories, dates, and amounts.
+
+PROJECT: Text Analyzer
+CONCEPT: A text analyzer counts words, characters, sentences, and frequently used terms.
+
+PROJECT: Local Knowledge Base
+CONCEPT: A local knowledge base stores documents and allows searching or retrieval.
+
+PROJECT: Command-Line Assistant
+CONCEPT: A command-line assistant accepts commands and performs useful local operations.
+
+============================================================
+SECTION 136: PROJECT DESIGN RULES
+============================================================
+
+RULE: Start small.
+RULE: Make the simplest version work.
+RULE: Separate input handling from core logic.
+RULE: Separate storage from business logic.
+RULE: Add error handling.
+RULE: Add tests.
+RULE: Save persistent data carefully.
+RULE: Back up important data.
+RULE: Avoid hard-coding secrets.
+RULE: Document how the project works.
+RULE: Add features incrementally.
+
+============================================================
+SECTION 137: IMPORTANT PYTHON TERMS
+============================================================
+
+TERM: interpreter
+DEFINITION: A program that executes Python code.
+
+TERM: variable
+DEFINITION: A name referring to an object.
+
+TERM: object
+DEFINITION: A Python value with identity, type, and value.
+
+TERM: class
+DEFINITION: A definition used to create and describe objects.
+
+TERM: instance
+DEFINITION: An object created from a class.
+
+TERM: method
+DEFINITION: A function associated with a class or object.
+
+TERM: function
+DEFINITION: Reusable callable code.
+
+TERM: parameter
+DEFINITION: A name in a function definition representing an input.
+
+TERM: argument
+DEFINITION: A value supplied to a function call.
+
+TERM: iterable
+DEFINITION: An object capable of providing values for iteration.
+
+TERM: iterator
+DEFINITION: An object that provides successive values through next().
+
+TERM: generator
+DEFINITION: A lazy iterator commonly created with yield.
+
+TERM: exception
+DEFINITION: An abnormal condition represented by an exception object.
+
+TERM: module
+DEFINITION: A Python file containing code.
+
+TERM: package
+DEFINITION: An organized collection of Python modules.
+
+TERM: library
+DEFINITION: Reusable code made available to programs.
+
+TERM: API
+DEFINITION: An interface through which software components communicate.
+
+TERM: algorithm
+DEFINITION: A procedure for solving a problem.
+
+TERM: data structure
+DEFINITION: A way of organizing and storing data.
+
+TERM: recursion
+DEFINITION: A technique in which a function calls itself.
+
+TERM: decorator
+DEFINITION: A mechanism for wrapping or modifying callables.
+
+TERM: context manager
+DEFINITION: An object controlling setup and cleanup around a block.
+
+TERM: type hint
+DEFINITION: Optional information describing expected types.
+
+TERM: refactoring
+DEFINITION: Improving internal code structure without intentionally changing behavior.
+
+TERM: debugging
+DEFINITION: Finding and correcting causes of software problems.
+
+TERM: testing
+DEFINITION: Checking whether software behaves as expected.
+
+============================================================
+SECTION 138: FINAL PYTHON KNOWLEDGE SUMMARY
+============================================================
+
+FACT: Python is a general-purpose programming language.
+FACT: Python code is organized into statements, expressions, functions, classes, modules, and packages.
+FACT: Python variables refer to objects.
+FACT: Objects have identity, type, and value.
+FACT: Python provides immutable and mutable data structures.
+FACT: Lists are ordered and mutable.
+FACT: Tuples are ordered and immutable.
+FACT: Sets contain unique values.
+FACT: Dictionaries map keys to values.
+FACT: Strings represent immutable Unicode text.
+FACT: Functions provide reusable behavior.
+FACT: Classes define object types.
+FACT: Exceptions handle abnormal conditions.
+FACT: Modules organize reusable code.
+FACT: The standard library provides many useful capabilities.
+FACT: Python can work with files, JSON, CSV, databases, APIs, networks, dates, and operating-system resources.
+FACT: Python supports testing, logging, concurrency, asynchronous programming, and multiprocessing.
+FACT: Python is widely used for automation, education, web development, data science, and machine learning.
+FACT: Good Python programs prioritize correctness, readability, maintainability, security, and appropriate performance.
+FACT: Good programming involves understanding problems, choosing suitable data structures, designing algorithms, writing clear code, testing behavior, and debugging failures.
+FACT: Learning Python is improved by building progressively more complex projects.
+FACT: Python knowledge becomes more useful when concepts are connected rather than memorized independently.
+
+END OF PYTHON KNOWLEDGE BASE
